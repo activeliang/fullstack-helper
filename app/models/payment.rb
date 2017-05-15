@@ -17,7 +17,7 @@ class Payment < ApplicationRecord
     self.transaction do
       self.transaction_no = options[:pay_no]
       self.status = Payment::PaymentStatus::Success
-      self.raw_response = options.to_json
+      self.raw_response = options.to_text
       self.payment_at = Time.now
       self.save!
 
@@ -37,7 +37,7 @@ class Payment < ApplicationRecord
   def do_failed_payment! options
     self.transaction_no = options[:pay_no]
     self.status = Payment::PaymentStatus::Failed
-    self.raw_response = options.to_json
+    self.raw_response = options.to_text
     self.payment_at = Time.now
     self.save!
   end
