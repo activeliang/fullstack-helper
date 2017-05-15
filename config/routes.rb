@@ -49,6 +49,7 @@ Rails.application.routes.draw do
       post :pay_notify
       get :pay_return
       get :pay_notify
+      get :test
       get :success
       get :failed
     end
