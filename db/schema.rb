@@ -47,12 +47,12 @@ ActiveRecord::Schema.define(version: 20170515074128) do
     t.integer  "user_id"
     t.string   "payment_no"
     t.string   "transaction_no"
-    t.string   "status",                                  default: "initial"
-    t.decimal  "total_money",    precision: 10, scale: 2
+    t.string   "status",         default: "initial"
+    t.float    "total_money"
     t.datetime "payment_at"
     t.text     "raw_response"
-    t.datetime "created_at",                                                  null: false
-    t.datetime "updated_at",                                                  null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.index ["payment_no"], name: "index_payments_on_payment_no", unique: true
     t.index ["transaction_no"], name: "index_payments_on_transaction_no"
     t.index ["user_id"], name: "index_payments_on_user_id"
@@ -71,9 +71,9 @@ ActiveRecord::Schema.define(version: 20170515074128) do
     t.string   "title"
     t.text     "description"
     t.integer  "quantity"
-    t.decimal  "price",       precision: 10, scale: 2
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.float    "price"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "image"
   end
 
