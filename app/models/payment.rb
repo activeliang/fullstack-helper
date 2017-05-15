@@ -14,8 +14,6 @@ class Payment < ApplicationRecord
   end
 
   def do_success_payment! options
-    options.flatten!
-
     self.transaction do
       self.transaction_no = options[:pay_no]
       self.status = Payment::PaymentStatus::Success
