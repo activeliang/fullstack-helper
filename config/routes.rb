@@ -49,7 +49,7 @@ Rails.application.routes.draw do
       post :pay_notify
       get :pay_return
       get :pay_notify
-      get :test
+      get :test, :defaults => { :format => :json } 
       get :success
       get :failed
     end
