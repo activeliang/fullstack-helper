@@ -46,10 +46,8 @@ Rails.application.routes.draw do
     collection do
       get :generate_pay
       post :pay_return
-      post :pay_notify
-      get :pay_return, :defaults => { :format => :json } 
       get :pay_notify, :defaults => { :format => :json }
-      get :test, :defaults => { :format => :json }
+      get :test
       get :success
       get :failed
     end
