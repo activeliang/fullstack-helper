@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.total = current_cart.total_price
     @order.user = current_user
+    @order.payment_id = 1
 
     if @order.save
 
@@ -19,16 +20,45 @@ class OrdersController < ApplicationController
       current_cart.clean!
       OrderMailer.notify_order_placed(@order).deliver!
 
-      redirect_to order_path(@order.token), notice:"成功生成订单"
+      redirect_to generate_pay_payments_path(:id => @order.token)
     else
       redirect_to :back
     end
   end
 
-   def show
-     @order = Order.find_by_token(params[:id])
-     @product_lists = @order.product_lists
-   end
+  # def create
+    # @order = Order.new(order_params)
+    # @order1 = Order.new(order_params)
+    # @order.total = current_cart.total_price
+    # @order.user = current_user
+    # # @order.payment_id = 1
+
+    # orders = @order = Order.new.create_from_cart!(current_user, current_cart, order_params)
+
+
+      #
+      # current_cart.cart_items.each do |cart_item|
+      #   product_list = ProductList.new
+      #   product_list.order = @order
+      #   product_list.product_name = cart_item.product.title
+      #   product_list.product_price = cart_item.product.price
+      #   product_list.quantity = cart_item.quantity
+      #   product_list.save
+      #
+      #
+      # current_cart.clean!
+      # OrderMailer.notify_order_placed(@order).deliver!
+
+      # redirect_to generate_pay_payments_path(order_token: orders[:token])
+    # else
+    #   redirect_to :back
+    # end
+  # end
+
+  def show
+   @order = Order.find_by_token(params[:id])
+   @product_lists = @order.product_lists
+  end
 
   def pay_with_wechat
     @order = Order.find_by_token(params[:id])

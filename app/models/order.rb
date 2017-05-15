@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   before_create :generate_token
   belongs_to :user
   has_many :product_lists
-
+  # belongs_to :payment
   validates :billing_name, presence: true
   validates :billing_address, presence:true
   validates :shipping_name, presence:true
@@ -18,6 +18,27 @@ class Order < ApplicationRecord
 
   def pay!
     self.update_columns(is_paid: true)
+  end
+
+  def create_from_cart! user, cart, *order_params
+    order_params.flatten!
+    orders = []
+    transaction do
+      order_params.each do |order_param|
+      orders << user.orders.create!(
+      total: cart.total_price,
+      billing_name: order_param[:billing_name],
+      billing_address: "haha",
+      shipping_name: "haha",
+      shipping_address: "haha",
+      payment_id: 1
+      )
+    end
+
+    cart.clean!
+    end
+
+    orders
   end
 
 

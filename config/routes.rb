@@ -50,7 +50,7 @@ Rails.application.routes.draw do
       get :success
       get :failed
     end
-end
+  end
 
 
 
