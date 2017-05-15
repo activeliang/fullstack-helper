@@ -18,8 +18,7 @@ class OrdersController < ApplicationController
       end
 
       current_cart.clean!
-      OrderMailer.notify_order_placed(@order).deliver!
-
+    
       redirect_to generate_pay_payments_path(:id => @order.token)
     else
       redirect_to :back
