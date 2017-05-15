@@ -10,7 +10,7 @@ class Payment < ApplicationRecord
   belongs_to :user
   has_many :orders
   def is_success?
-    self.status == PaymentStatus::Success
+    self.status == 'success'
   end
 
   def do_success_payment! options
