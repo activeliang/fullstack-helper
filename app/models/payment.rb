@@ -13,11 +13,11 @@ class Payment < ApplicationRecord
     self.status == 'success'
   end
 
-  def do_success_payment! options
+  def do_success_payment! params
     self.transaction do
-      self.transaction_no = options[:pay_no]
+      self.transaction_no = params[:pay_no]
       self.status = Payment::PaymentStatus::Success
-      self.raw_response = options.to_text
+      self.raw_response = params.to_json
       self.payment_at = Time.now
       self.save!
 
@@ -34,10 +34,10 @@ class Payment < ApplicationRecord
     end
   end
 
-  def do_failed_payment! options
-    self.transaction_no = options[:pay_no]
+  def do_failed_payment! params
+    self.transaction_no = params[:pay_no]
     self.status = Payment::PaymentStatus::Failed
-    self.raw_response = options.to_text
+    self.raw_response = params.to_json
     self.payment_at = Time.now
     self.save!
   end
