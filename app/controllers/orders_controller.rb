@@ -4,7 +4,6 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.total = current_cart.total_price
     @order.user = current_user
-    @order.payment_id = 1
 
     if @order.save
 
@@ -18,10 +17,10 @@ class OrdersController < ApplicationController
       end
 
       current_cart.clean!
-    
+
       redirect_to generate_pay_payments_path(:id => @order.token)
     else
-      redirect_to :back
+      redirect_to root_path, alert: "go die"
     end
   end
 
