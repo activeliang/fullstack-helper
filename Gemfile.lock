@@ -261,6 +261,7 @@ DEPENDENCIES
   qiniu-rs
   rails (~> 5.0.0)
   rails-controller-testing
+  rest-client
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   simple_form
