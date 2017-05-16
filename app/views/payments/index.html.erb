@@ -41,5 +41,9 @@
     <p><%= @pay_qr %></p>
     <h1><%= @order_status %></h1>
     <div><%= raw @qr.as_html %></div>
+    <%= link_to success_payments_path %>
+    <%= link_to failed_payments_path %>
+    <%= link_to test_payments_path %>
+    <%= link_to root_path %>
   </div>
 </div>
