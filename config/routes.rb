@@ -45,8 +45,7 @@ Rails.application.routes.draw do
   resources :payments, only: [:index] do
     collection do
       get :generate_pay
-      get :pay_return
-      # post :pay_notify, :defaults => { :format => :json }
+      post :pay_return
       post :pay_notify
       get :pay_notify
       get :pay_return
