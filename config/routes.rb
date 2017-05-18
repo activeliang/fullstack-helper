@@ -45,13 +45,18 @@ Rails.application.routes.draw do
   end
 
   resources :payments, only: [:index] do
+    member do
+      post :create_payment
+      get :create_payment
+      post :get_payment_status
+    end
     collection do
       get :generate_pay
       post :pay_return
       post :pay_notify
       get :pay_notify
       get :pay_return
-      get :test
+      post :test
       get :success
       get :failed
     end

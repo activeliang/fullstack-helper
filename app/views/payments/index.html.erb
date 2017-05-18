@@ -21,7 +21,7 @@
       <br/>
       <div class="pull-right">
         <form action="<%= @payment_url %>" method="post">
-          <% @pay_options.each do |k, v| %>
+          <% $pay_options.each do |k, v| %>
           <input name="<%= k %>" value="<%= v %>"/>
           <% end -%>
           <strong>¥<%= @payment.total_money %></strong>
@@ -29,7 +29,7 @@
         </form>
       </div>
       <div class="container">
-        <%= @pay_options.each do |k, v| %>
+        <%= $pay_options.each do |k, v| %>
         <hr>
         <span><%= k %></span>/<span><%= v %></span>
         <% end %>
@@ -42,19 +42,60 @@
       <div class="container">
         <h2><%= simple_format(@raw) %></h2>
       </div>
-      <h1><%= @raw_order %></h1>
+      <h1 id="order-1"><%= @raw_order %>n</h1>
       <hr>
       <p><%= @pay_qr %></p>
       <h1><%= @order_status %></h1>
       <div><%= raw @qr.as_html %></div>
+      <h1><%= @payment_token %></h1>
     </div>
+    <hr>
+    <%= link_to("支付", create_payment_payment_path(@payment.payment_no), class: "payment-btn btn btn-success", id: "payha") %>
   </div>
+  <hr>
+<div id="pay_qrcode">
+
+  </div>
+  <div id="mytest"></div>
 </div>
 
-<%= content_for :javascripts do %>
 <script>
-  $.get('/products/new', function (data) {
-    $('#address_list').html(data);
+var int=self.setInterval("clock()",1500);
+
+function clock()
+  {
+
+    $.ajax({
+      url: "/payments/test",
+      method: "POST",
+      data: { order: "<%= @raw_order %>" },
+      dataType: "json",
+      success: function(data){
+      status = data["liang"];
+      // alert(data["liang"])
+      if (status == 1)
+        {
+          window.location.href='http://www.baidu.com';
+        }
+      }
+    })
+  }
+
+
+$(".payment-btn").click(function(evt){
+event.preventDefault();
+var url = $(this).attr("href");
+var that = this;
+
+  $.ajax({
+    url: url,
+    method: "POST",
+    dataType: "json",
+    success: function(data){
+    $("#pay_qrcode").html("<%=j raw @qr.as_html %>");
+    }
   })
+})
+
+
 </script>
-<% end %>
