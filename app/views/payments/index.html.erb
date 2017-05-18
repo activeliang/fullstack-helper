@@ -1,49 +1,60 @@
-<h1>支付</h1>
-<div class="row">
-  <div class="container">
-    <div class="page-header">
-      <h4>
-        <i class="fa fa-credit-card"></i>
-        支付宝付款</h4>
-    </div>
-    <p>订单号:
-      <%= @payment.orders.map { |order| "<strong>#{order.token}</strong>" }.join(', ').html_safe %></p>
-    <ul class="list-group">
-      <li class="list-group-item">
-        <%= image_tag "alipay.png", width: 100 %>
-      </li>
-    </ul>
+<div class="container">
+  <h1>支付</h1>
 
-    <br/>
-    <div class="pull-right">
-      <form action="<%= @payment_url %>" method="post">
-        <% @pay_options.each do |k, v| %>
-        <input name="<%= k %>" value="<%= v %>"/>
-        <% end -%>
-        <strong>¥<%= @payment.total_money %></strong>
-        <input type="submit" value="支付" class="btn btn-success btn-lg"/>
-      </form>
-    </div>
+  <div id="address_list"></div>
+
+  <div class="row">
     <div class="container">
-      <%= @pay_options.each do |k, v| %>
-      <hr>
-      <span><%= k %></span>/<span><%= v %></span>
-      <% end %>
-    </div>
-    <hr>
+      <div class="page-header">
+        <h4>
+          <i class="fa fa-credit-card"></i>
+          支付宝付款</h4>
+      </div>
+      <p>订单号:
+        <%= @payment.orders.map { |order| "<strong>#{order.token}</strong>" }.join(', ').html_safe %></p>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <%= image_tag "alipay.png", width: 100 %>
+        </li>
+      </ul>
 
-    <hr>
-    <p><%= @raw %></p>
-    <hr>
-    <h2><%= @raw %></h2>
-    <h1><%= @raw_order %></h1>
-    <hr>
-    <p><%= @pay_qr %></p>
-    <h1><%= @order_status %></h1>
-    <div><%= raw @qr.as_html %></div>
-    <%= link_to success_payments_path %>
-    <%= link_to failed_payments_path %>
-    <%= link_to test_payments_path %>
-    <%= link_to root_path %>
+      <br/>
+      <div class="pull-right">
+        <form action="<%= @payment_url %>" method="post">
+          <% @pay_options.each do |k, v| %>
+          <input name="<%= k %>" value="<%= v %>"/>
+          <% end -%>
+          <strong>¥<%= @payment.total_money %></strong>
+          <input type="submit" value="支付" class="btn btn-success btn-lg"/>
+        </form>
+      </div>
+      <div class="container">
+        <%= @pay_options.each do |k, v| %>
+        <hr>
+        <span><%= k %></span>/<span><%= v %></span>
+        <% end %>
+      </div>
+      <hr>
+
+      <hr>
+      <p><%= @raw %></p>
+      <hr>
+      <div class="container">
+        <h2><%= simple_format(@raw) %></h2>
+      </div>
+      <h1><%= @raw_order %></h1>
+      <hr>
+      <p><%= @pay_qr %></p>
+      <h1><%= @order_status %></h1>
+      <div><%= raw @qr.as_html %></div>
+    </div>
   </div>
 </div>
+
+<%= content_for :javascripts do %>
+<script>
+  $.get('/products/new', function (data) {
+    $('#address_list').html(data);
+  })
+</script>
+<% end %>
