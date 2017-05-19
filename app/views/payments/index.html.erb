@@ -60,7 +60,7 @@
 </div>
 
 <script>
-var int=self.setInterval("clock()",1500);
+
 
 function clock()
   {
@@ -75,27 +75,34 @@ function clock()
       // alert(data["liang"])
       if (status == 1)
         {
-          window.location.href='http://www.baidu.com';
+          window.location.href='/payments/success';
         }
       }
     })
   }
 
 
-$(".payment-btn").click(function(evt){
-event.preventDefault();
-var url = $(this).attr("href");
-var that = this;
 
-  $.ajax({
-    url: url,
-    method: "POST",
-    dataType: "json",
-    success: function(data){
-    $("#pay_qrcode").html("<%=j raw @qr.as_html %>");
-    }
+$(".payment-btn").click(function(evt){
+  event.preventDefault();
+
+
+
+
+
+  var url = $(this).attr("href");
+  var that = this;
+
+    $.ajax({
+      url: url,
+      method: "POST",
+      dataType: "json",
+      success: function(data){
+      $("#pay_qrcode").html("<%=j raw @qr.as_html %>");
+      }
+    });
+      var int=self.setInterval("clock()",1000);
   })
-})
 
 
 </script>
