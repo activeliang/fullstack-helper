@@ -61,10 +61,8 @@
 
 <script>
 
-
 function clock()
   {
-
     $.ajax({
       url: "/payments/test",
       method: "POST",
@@ -81,14 +79,8 @@ function clock()
     })
   }
 
-
-
 $(".payment-btn").click(function(evt){
   event.preventDefault();
-
-
-
-
 
   var url = $(this).attr("href");
   var that = this;
