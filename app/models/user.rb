@@ -1,9 +1,12 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
-  
+
   attr_accessor :password, :password_confirmation
 
   validates_presence_of :email, message: "邮箱不能为空"
+  validates_format_of :email, message: "邮箱格式不合法",
+    with: /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/,
+    if: proc { |user| !user.email.blank? }
   validates :email, uniqueness: true
 
   validates_presence_of :password, message: "密码不能为空",
