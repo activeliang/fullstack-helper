@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   delete '/logout' => 'sessions#destroy', as: :logout
-
+  resources :cellphone_tokens, only: [:create]
+  
   namespace :admin do
     resources :products
     resources :orders do
