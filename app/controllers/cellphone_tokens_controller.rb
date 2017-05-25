@@ -11,9 +11,10 @@ class CellphoneTokensController < ApplicationController
       return
     end
 
+    ChinaSMS.use :yunpian, password: 'a5d0fad8d28413239fe0123e22885c20'
     token = generate_cellphone_token
     VerifyToken.upsert params[:cellphone], token
-    SendSMS.send params[:cellphone], "#{token} 验证码，注册"
+    ChinaSMS.to params[:cellphone], "【全栈助手】感谢您注册fullstackhelper，您的验证码是#{token} "
     session[:token_created_at] = Time.now.to_i
     render json: {status: 'ok'}
   end
