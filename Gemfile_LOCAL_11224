@@ -42,8 +42,6 @@ gem 'aasm'
 gem 'carrierwave-qiniu'
 gem 'qiniu-rs'
 gem 'figaro'
-gem 'rucaptcha'
-gem 'dalli'
 gem 'china_sms'
 
 group :development, :test do
