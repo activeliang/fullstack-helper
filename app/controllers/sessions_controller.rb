@@ -6,9 +6,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if user = login(params[:email], params[:password])
-      # update_browser_uuid user.uuid
-
+    if user = login(params[:cellphone], params[:password])
+    
       flash[:notice] = "登陆成功"
       redirect_to root_path
     else
@@ -19,14 +18,14 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    # cookies.delete :user_uuid
+    cookies.delete :user_uuid
     flash[:notice] = "退出成功"
     redirect_to root_path
   end
 
   def valify_captcha!
     unless verify_rucaptcha?
-      redirect_to new_user_session_path, alert: t('rucaptcha.invalid')
+      redirect_to new_session_path, alert: t('rucaptcha.invalid')
       return
     end
     true
