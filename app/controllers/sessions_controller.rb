@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  prepend_before_action :valify_captcha!, only: [:create]
 
   def new
 
@@ -21,6 +22,14 @@ class SessionsController < ApplicationController
     # cookies.delete :user_uuid
     flash[:notice] = "退出成功"
     redirect_to root_path
+  end
+
+  def valify_captcha!
+    unless verify_rucaptcha?
+      redirect_to new_user_session_path, alert: t('rucaptcha.invalid')
+      return
+    end
+    true
   end
 
 end

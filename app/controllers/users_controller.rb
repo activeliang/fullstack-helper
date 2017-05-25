@@ -7,12 +7,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params.require(:user)
       .permit(:password, :password_confirmation, :cellphone, :token))
-
-
-    if @user.save
+      
+    if verify_rucaptcha?(@user) && @user.save
       flash[:notice] = "注册成功，请登录"
       redirect_to new_session_path
     else
+      @user.errors.add(:base, t('rucaptcha.invalid'))
       render action: :new
     end
   end

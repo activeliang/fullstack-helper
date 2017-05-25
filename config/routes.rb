@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   resources :sessions
   delete '/logout' => 'sessions#destroy', as: :logout
   resources :cellphone_tokens, only: [:create]
-  
+  # mount RuCaptcha::Engine => "/rucaptcha"
+
   namespace :admin do
     resources :products
     resources :orders do
