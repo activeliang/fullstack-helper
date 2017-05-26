@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
 
   get "welcome" => "welcome#index"
   get "test" => "welcome#test"
+
+  # 用户注册和登录登出
+  resources :users
+  resources :sessions
+  delete '/logout' => 'sessions#destroy', as: :logout
+  resources :cellphone_tokens, only: [:create]
+  # mount RuCaptcha::Engine => "/rucaptcha"
 
   namespace :admin do
     resources :slider_photos do

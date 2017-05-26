@@ -17,7 +17,14 @@
           <%= render "common/flashes" %>
           <%= yield %>
         </div>
-      </div>
+        </div>
+
+        <%= render "common/footer"%>
+        <%= javascript_include_tag 'application' %>
+        <%= yield :javascripts %>
+
+      
       <%= render "common/footer" %>
+
     </body>
 </html>

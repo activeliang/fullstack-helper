@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.5'
 
 
 gem 'bootstrap-sass'
-gem 'devise'
+gem 'sorcery'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'carrierwave'
@@ -40,8 +40,14 @@ gem 'aasm'
 gem 'carrierwave-qiniu'
 gem 'qiniu-rs'
 gem 'figaro'
+
+gem 'rucaptcha'
+gem 'dalli'
+gem 'china_sms'
+
 gem 'rest-client'
 gem 'rqrcode'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

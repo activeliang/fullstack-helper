@@ -27,6 +27,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
+
+
+.rucaptcha-image { width: 120px; }
+
 @import "zoom";
 @import "products";
 @import "markdown";
@@ -83,3 +87,4 @@ td {
 }
 td.black { border-color: #000; }
 td.white { border-color: #fff; }
+
