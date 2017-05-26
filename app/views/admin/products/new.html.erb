@@ -3,8 +3,14 @@
 <%= simple_form_for [:admin, @product] do |f| %>
 <div class="group"><%= f.input :title%></div>
 <div class="group"><%= f.input :description%></div>
-<div class="group"><%= f.input :quantity%></div>
-<div class="group"><%= f.input :price%></div>
-<div class="group"><%= f.input :image, as: :file%></div>
+<div class="group"><%= f.input :slogan %></div>
+<select name="product[category_id]">
+  <option></option>
+  <% @root_categories.each do |category| %>
+    <option value="<%= category.id %>" <%= @product.category_id == category.id ? 'selected' : '' %>><%= category.title %></option>
+
+  <% end -%>
+</select>
 <%= f.submit 'Submit', data:{disable_with: "Submiting..."},class:"btn btn-primary"%>
+
 <% end %>

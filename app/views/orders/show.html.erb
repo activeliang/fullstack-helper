@@ -20,7 +20,7 @@
     <div class="total">
         <span class="pull-right">
             总计
-            <%= @order.total %>
+            <%= @order.price %>
             CNY
         </span>
     </div>
@@ -63,3 +63,13 @@
         <% end %>
     </div>
 </div>
+
+<% if @order.is_paid? %>
+<hr>
+
+  <%= simple_form_for @evaluation do |f| %>
+  <%= f.input :grade %>
+  <%= f.input :description %>
+  <%= f.submit "submit" %>
+  <% end %>
+<% end %>

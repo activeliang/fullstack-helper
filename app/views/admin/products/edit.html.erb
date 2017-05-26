@@ -3,14 +3,7 @@
 <%= simple_form_for [:admin,@product] do |f| %>
 <div class="group"><%= f.input :title%></div>
 <div class="group"><%= f.input :description%></div>
-<div class="group"><%= f.input :quantity%></div>
-<div class="group"><%= f.input :price%></div>
-<% if @product.image.present? %>
-<span>目前商品图</span>
-<%= image_tag(@product.image.thumb.url, class:"thumbnail")%>
-<% else %>
-<%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail")%>
-<% end %>
-<div class="group"><%= f.input :image, as: :file%></div>
-<%= f.submit 'Submit', data:{disable_with:"Submiting..."}, class:"btn btn-primary"%>
+<div class="group"><%= f.input :slogan %></div>
+
+<%= f.submit "submit" %>
 <% end %>

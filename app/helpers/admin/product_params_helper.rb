@@ -1,0 +1,2 @@
+module Admin::ProductParamsHelper
+end

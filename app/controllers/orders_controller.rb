@@ -1,34 +1,78 @@
 class OrdersController < ApplicationController
 
-  def create
-    @order = Order.new(order_params)
-    @order.total = current_cart.total_price
-    @order.user = current_user
 
-    if @order.save
 
-      current_cart.cart_items.each do |cart_item|
-        product_list = ProductList.new
-        product_list.order = @order
-        product_list.product_name = cart_item.product.title
-        product_list.product_price = cart_item.product.price
-        product_list.quantity = cart_item.quantity
-        product_list.save
-      end
-
-      current_cart.clean!
-      OrderMailer.notify_order_placed(@order).deliver!
-
-      redirect_to order_path(@order.token), notice:"成功生成订单"
-    else
-      redirect_to :back
-    end
+  def build_order
+    @subproduct_id = params[:subproduct_id]
+    @amount = params[:amount]
   end
 
-   def show
-     @order = Order.find_by_token(params[:id])
-     @product_lists = @order.product_lists
-   end
+  def create
+    order = Order.new(order_params)
+    address = current_user.addresses.find(params[:address_id])
+    order.user = current_user
+    order.total = current_cart.total_price
+    order.save!
+
+      if order.save
+
+        current_cart.cart_items.each do |cart_item|
+
+           cart_item.subproduct.update_column :quantity, cart_item.subproduct.quantity - cart_item.quantity
+
+           product_list = ProductList.new
+           product_list.order_id = order.id
+           product_list.product_name = cart_item.subproduct.product.title,
+           product_list.product_price = cart_item.subproduct.price,
+           product_list.quantity = cart_item.quantity,
+           product_list.address = address.address,
+           product_list.cellphone = address.cellphone,
+           product_list.contact_name = address.contact_name
+           product_list.subproduct = cart_item.subproduct.subtitle
+           product_list.save!
+        end
+          current_cart.clean!
+          redirect_to generate_pay_payments_path(:id => order.token)
+      else
+         redirect_to root_path, alert: "生成订单失败，请联系客服！"
+      end
+  end
+
+  def order_create
+    subproduct = Subproduct.find(params[:subproduct_id])
+    address = current_user.addresses.find(params[:address_id])
+    quantity = params[:quantity].to_i
+    order = Order.new
+
+     order.total = subproduct.price * quantity
+     order.user = current_user
+     order.save!
+
+     if order.save
+      subproduct.update_column :quantity, subproduct.quantity - quantity
+
+
+      product_list = ProductList.new
+      product_list.order_id = order.id
+      product_list.product_name = subproduct.product.title,
+      product_list.product_price = subproduct.price,
+      product_list.quantity = quantity,
+      product_list.address = address.address,
+      product_list.cellphone = address.cellphone,
+      product_list.contact_name = address.contact_name
+      product_list.subproduct = subproduct.subtitle
+      product_list.save!
+
+    end
+
+    redirect_to generate_pay_payments_path(:id => order.token)
+  end
+
+  def show
+   @order = Order.find_by_token(params[:id])
+   @product_lists = @order.product_lists
+   @evaluation = Evaluation.new
+  end
 
   def pay_with_wechat
     @order = Order.find_by_token(params[:id])
@@ -54,6 +98,6 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:billing_name, :billing_address, :shipping_name, :shipping_address)
+
   end
 end

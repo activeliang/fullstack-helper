@@ -1,3 +1,47 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// slider
+#myCarousel {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+span.fa.fa-angle-right {
+    width: 42px;
+    position: relative;
+    right: 77px;
+    top: 218px;
+    font-size: 80px;
+}
+a.right.carousel-control {
+    width: 0;
+}
+a.left.carousel-control {
+    width: 0;
+}
+span.fa.fa-angle-left {
+    width: 42px;
+    position: relative;
+    left: 29px;
+    top: 218px;
+    font-size: 80px;
+}
+.carousel-indicators li {
+    display: inline-block;
+    width: 30px;
+    height: 3px;
+    margin: 3px;
+    text-indent: -999px;
+    border: 0;
+    background-color: rgba(255, 255, 255, .4);
+    border-radius: 0 !important;
+    cursor: pointer;
+}
+.carousel-indicators .active {
+    margin: 3px;
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+}

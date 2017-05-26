@@ -19,18 +19,11 @@
                 <% @products.each do |product| %>
                 <tr>
                     <td><%= product.id %></td>
-                    <td>
-                        <%= link_to product_path(product) do %>
-                        <% if product.image.present? %>
-                        <%= image_tag(product.image.thumb.url, class: "thumbnail")%>
-                    <% else %>
-                        <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail")%>
-                        <% end %>
-                        <% end %>
-                    </td>
-                    <td><%= product.title %></td>
+
+                    <td><%= link_to product.title, admin_product_path(product)%></td>
                     <td><%= product.price %></td>
                     <td><%= link_to("Edit", edit_admin_product_path(product))%></td>
+                    <td><%= link_to("Deleted", admin_product_path(product), method: :delete, "data-confirm":   "亲！确定要删除吗？？？请三思呐！") %></td>
                 </tr>
                 <% end %>
             </tbody>
