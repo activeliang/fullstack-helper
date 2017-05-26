@@ -1,0 +1,17 @@
+
+<div class="product-params">
+  <div class="row product-params-bc">
+  <% if @product.product_params.present? %>
+  <div class="params-slogan">商品参数</div>
+  <% @product.product_params.each do |product_param| %>
+  <div class="params-item col-sm-3">
+    <%= product_param.content %>
+  </div>
+  <% end %>
+  <% end %>
+</div>
+</div>
+<br>
+<div class="intro-markdown">
+  <%= raw @product.description %>
+</div>

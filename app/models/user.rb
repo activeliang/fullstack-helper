@@ -10,5 +10,8 @@ class User < ApplicationRecord
     is_admin
   end
 
+  has_many :addresses, -> { order("id desc") }
+
+
 
 end

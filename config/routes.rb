@@ -1,12 +1,24 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'products#index'
+  root 'welcome#index'
 
   get "welcome" => "welcome#index"
+  get "test" => "welcome#test"
 
   namespace :admin do
-    resources :products
+    resources :slider_photos do
+      member do
+      post :hide
+      post :public
+      end
+    end
+    resources :categories
+    resources :products do
+      resources :subproducts
+      resources :product_params
+      resources :product_photos
+    end
     resources :orders do
       member do
         post :cancel
@@ -17,9 +29,17 @@ Rails.application.routes.draw do
     end
   end
 
+
+
+  resources :categories
+
   resources :products do
     member do
       post :add_to_cart
+    end
+
+    resources :evaluations do
+      resources :evaluation_photos
     end
   end
 
@@ -30,18 +50,34 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :addresses do
+    member do
+      put :set_default_address
+    end
+  end
+
   resources :cart_items
 
   resources :orders do
+    collection do
+      post :build_order
+      post :order_create
+    end
     member do
     post :pay_with_wechat
     post :pay_with_alipay
     post :apply_to_cancel
+    post :order_create
+
   end
   end
 
   namespace :account do
     resources :orders
+  end
+
+  resources :evaluations do
+    resources :evaluation_photos
   end
 
   resources :payments, only: [:index] do

@@ -16,17 +16,17 @@
       <% current_cart.cart_items.each do |cart_item| %>
       <tr>
         <td>
-          <% if cart_item.product.image.present? %>
-          <%= image_tag(cart_item.product.image.thumb.url, class:"thumbnail")%>
+          <% if cart_item.subproduct.product.main_product_photo.product_image.present? %>
+          <%= image_tag(cart_item.subproduct.product.main_product_photo.product_image.thumb.url, class:"thumbnail")%>
         <% else %>
           <%= image_tag("http://placehold.it/200x200&text=No Pic", class:"thumbnail" )%>
           <% end %>
         </td>
-        <td><%= cart_item.product.title%></td>
-        <td><%= cart_item.product.price %></td>
+        <td><%= cart_item.subproduct.subtitle%></td>
+        <td><%= cart_item.subproduct.price %></td>
         <td>
-          <%= form_for cart_item, url: cart_item_path(cart_item.product_id) do |f|%>
-          <%= f.select :quantity, 1..cart_item.product.quantity%>
+          <%= form_for cart_item, url: cart_item_path(cart_item.subproduct_id) do |f|%>
+          <%= f.select :quantity, 1..cart_item.subproduct.quantity%>
           <%= f.submit "Submit", data:{disable_with: "submiting..."}%>
           <% end %>
         </td>

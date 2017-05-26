@@ -1,9 +1,13 @@
 class WelcomeController < ApplicationController
 
-  layout false
-  
+
   def index
-    @liang = "黄鸿亮"
-    flash[:notice] = "haha"
+    @slider_images = SliderPhoto.where(:is_hidden => false).order(weight: "desc")
+    @products = Product.limit(4)
+  end
+
+
+  def test
+    @rand_products = Product.order("RANDOM()").limit(3)
   end
 end

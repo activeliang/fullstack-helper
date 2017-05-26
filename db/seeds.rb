@@ -11,4 +11,5 @@ r.email = "liang@liang.com"
 r.password = "llllll"
 r.password_confirmation = "llllll"
 r.is_admin = true
+r.default_address_id = "2"
 r.save

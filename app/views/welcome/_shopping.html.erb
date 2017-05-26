@@ -1,0 +1,22 @@
+<div class="slogan text-center">
+  <h2>体验性购物</h2>
+</div>
+<div class="panel-group">
+  <% @products.each do |product| %>
+  <div class="col-sm-3">
+    <%= link_to product_path(product) do %>
+    <div class="panel">
+      <div class="panel-body">
+        <%= image_tag(product.main_product_photo.product_image.small, class: "img-responsive thumbnail") %>
+      </div>
+      <div class="line"></div>
+      <div class="panel-footer">
+        <h5><%= product.title %></h5>
+        <% end %>
+        <h5><spna>￥</spna> <%= product.min_subproduct.price %>
+        <span class="msrp">￥ <%= product.min_subproduct.msrp %></span></h5>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

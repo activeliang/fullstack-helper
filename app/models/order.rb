@@ -2,11 +2,6 @@ class Order < ApplicationRecord
   before_create :generate_token
   belongs_to :user
   has_many :product_lists
-  # belongs_to :payment
-  # validates :billing_name, presence: true
-  # validates :billing_address, presence:true
-  # validates :shipping_name, presence:true
-  # validates :shipping_address, presence:true
 
   def generate_token
     self.token = SecureRandom.uuid
@@ -27,10 +22,6 @@ class Order < ApplicationRecord
       order_params.each do |order_param|
       orders << user.orders.create!(
       total: cart.total_price,
-      billing_name: order_param[:billing_name],
-      billing_address: "haha",
-      shipping_name: "haha",
-      shipping_address: "haha",
       payment_id: 1
       )
     end

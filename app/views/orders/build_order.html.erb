@@ -1,0 +1,27 @@
+<h1><%= @subproduct_id %></h1>
+<h2><%= @amount %></h2>
+
+
+<div class="page-header">
+  <h4>
+    <i class="fa fa-map-marker"></i>
+    收货地址</h4>
+</div>
+<div id="address_list"></div>
+
+
+
+<%= form_tag order_create_orders_path, method: :post, class: "create-order-form" do %>
+<input type="hidden" name="address_id" value="3"/>
+<input type="radio" name="payment_method" value="alipay" checked/>支付宝支付 <br>
+<input type="hidden" name="quantity" value="<%= @amount %>">
+<input type="hidden" name="subproduct_id" value="<%= @subproduct_id %>">
+<input type="submit" value="确认订单" class="btn btn-danger btn-lg"/>
+<% end %>
+
+
+<script>
+  $.get('/addresses', function (data) {
+    $('#address_list').html(data);
+  })
+</script>
