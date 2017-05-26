@@ -70,10 +70,11 @@
       $token_btn.click(function () {
         var $this = $(this),
           cellphone = $('#user_cellphone').val();
+          _rucaptcha = $('input[name="_rucaptcha"]').val();
         $.ajax({
           url: $this.data('url'),
           method: 'post',
-          data: {cellphone: cellphone},
+          data: {cellphone: cellphone, _rucaptcha: _rucaptcha},
           beforeSend: function () {
             if (!CELLPHONE_RE.test(cellphone)) {
               alert("手机号码格式错误!");

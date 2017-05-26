@@ -22,6 +22,7 @@ class User < ApplicationRecord
     if: :need_validate_password
 
   validate :validate_email_or_cellphone, on: :create
+  validate :validate_cellphone_unrepeated, on: :create
 
   private
   def need_validate_password
@@ -31,6 +32,16 @@ class User < ApplicationRecord
 
 
   # TODO
+  # 手机号不重复注册的校验
+  def validate_cellphone_unrepeated
+    if self.find_by(cellphone: self.cellphone)
+      self.errors.add :base, "手机号已被注册，不能重复注册哦"
+      reture false
+    else
+      return true
+    end
+  end
+
   # 需要添加邮箱和手机号不能重复的校验
   def validate_email_or_cellphone
     if [self.email, self.cellphone].all? { |attr| attr.nil? }
