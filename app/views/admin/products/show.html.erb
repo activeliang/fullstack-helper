@@ -1,0 +1,127 @@
+<h1>【当前商品】：<%= @product.title %></h1>
+
+<h4>累计评价： <%= @product.evaluation_count %></h4>
+<h4>累计销量： <%= @product.sales_count %></h4>
+<p>商品介绍： <%= @product.description %></p>
+<hr>
+
+<h2>【商品的小分类】</h2>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>原价/现价/促销活动名</th>
+      <th>运费</th>
+      <th>发货地</th>
+      <th>库存</th>
+      <th>优先级</th>
+      <th>缩略图</th>
+      <th>选项</th>
+    </tr>
+  </thead>
+  <tbody>
+<% @subproducts.each do |subproduct| %>
+  <tr>
+    <td><%= subproduct.subtitle %></td>
+    <td><%= subproduct.msrp %> / <%= subproduct.price %> / <%= subproduct.activity %></td>
+    <td><%= subproduct.carriage %></td>
+    <td><%= subproduct.place %></td>
+    <td><%= subproduct.quantity %></td>
+    <td>
+      <%= form_tag admin_product_subproduct_path(@product, subproduct), method: :put do %>
+        <input type="text" value="<%= subproduct.weight %>" name="weight" />
+        <%= submit_tag "更新", class: "btn btn-default btn-xs" %>
+      <% end %>
+    </td>
+    <td><%= image_tag(subproduct.subproduct_image.thumb.url, class: "img-responsive") %></td>
+    <td><%= link_to("Delete", admin_product_subproduct_path(@product, subproduct), method: :delete, "data-confirm": "Are you sure?", class: "btn btn-primary") %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+<hr>
+<h3>新增小分类</h3>
+<%= simple_form_for [:admin,@product, @subproduct] do |f| %>
+<%= f.input :subtitle %>
+<%= f.input :msrp %>
+<%= f.input :price %>
+<%= f.input :activity %>
+<%= f.input :carriage %>
+<%= f.input :place %>
+<%= f.input :quantity %>
+<%= f.input :subproduct_image, as: :file %>
+<%= f.submit "submit" %>
+<% end %>
+<hr>
+<h2>【商品的一些参数信息】</h2>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>内容</th>
+      <th>权重</th>
+      <th>选项</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @product_params.each do |product_param| %>
+    <tr>
+      <td><%= product_param.content %></td>
+      <td><%= product_param.weight %></td>
+      <td><%= link_to("Delete", admin_product_product_param_path(@product, product_param), method: :delete, "data-confirm": "Are you sure?", class: "btn btn-primary") %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<h3>新增参数信息</h3>
+<%= simple_form_for [:admin, @product, @product_param] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :weight %>
+  <%= f.submit "submit" %>
+<% end %>
+<hr>
+<h1>【图片管理】</h1>
+
+
+  <div class="pull-right" style="display: flex;">
+    <%= form_tag admin_product_product_photos_path(product_id: @product), method: :post, enctype: "multipart/form-data", style: "display: flex;", class: "form-horizontal" do %>
+      <input type="file" name="images[]" multiple class="image-input" />
+      <%= submit_tag "上传", class: "btn btn-success" %>
+    <% end -%>
+  </div>
+
+
+<div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>图片</th>
+        <th>权重</th>
+        <th>选项</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @product_photos.each do |product_photo| %>
+        <tr>
+          <td><%= product_photo.id %></td>
+          <td><%= image_tag(product_photo.product_image.thumb.url, class: "img-responsive") %></td>
+          <td>
+            <%= form_tag admin_product_product_photo_path(@product, product_photo), method: :put do %>
+              <input type="text" value="<%= product_photo.weight %>" name="weight" />
+              <%= submit_tag "更新", class: "btn btn-default btn-xs" %>
+            <% end -%>
+          </td>
+          <td align="right">
+            <%= link_to "删除", admin_product_product_photo_path(@product, product_photo), method: :delete, 'data-confirm': "确认删除吗?", class: "btn btn-primary" %>
+          </td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+</div>
+<hr>
+<br>
+<br>
+<br>
+<br>
+<br>

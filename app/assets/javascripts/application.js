@@ -11,8 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require magnifier
 //= require jquery_ujs
-//= require turbolinks
-//= require bootstrap/alert
-//= require bootstrap/dropdown
+//= require bootstrap-sprockets
+//= require num-alignment
+//= require egg
 //= require_tree .

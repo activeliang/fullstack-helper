@@ -1,0 +1,25 @@
+<h3>所有分类</h3>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td>名称</td>
+      <td>生成时间</td>
+      <td>操作</td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @categories.each do |category| %>
+  <tr>
+    <td><%= category.title %></td>
+    <td><%= category.created_at %></td>
+    <td><%= link_to("Deleted", admin_category_path(category), method: :delete, "data-confirm": "Are you sure?", class: "btn btn-primary") %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+<hr>
+<h3>新增分类</h3>
+<%= simple_form_for [:admin,@category] do |f| %>
+<%= f.input :title %>
+<%= f.submit "submit" %>
+<% end %>

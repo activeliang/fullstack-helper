@@ -4,6 +4,16 @@ class Admin::ProductsController < ApplicationController
   layout "admin"
   def new
     @product = Product.new
+    @root_categories = Category.all
+  end
+
+  def show
+    @product = Product.find(params[:id])
+    @subproducts = @product.subproducts
+    @subproduct = Subproduct.new
+    @product_params = @product.product_params
+    @product_param = ProductParam.new
+    @product_photos = @product.product_photos
   end
 
   def create
@@ -32,8 +42,16 @@ class Admin::ProductsController < ApplicationController
     end
   end
 
+  def destroy
+    @product = Product.find(params[:id])
+    if @product.destroy
+      redirect_to :back, warning: "Deleted!"
+    end
+  end
+
+
   private
   def product_params
-    params.require(:product).permit(:title, :description, :quantity, :price, :image)
+    params.require(:product).permit(:title, :description, :quantity, :price, :image, :category_id, :slogan)
   end
 end

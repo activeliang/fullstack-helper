@@ -8,4 +8,8 @@ class CartsController < ApplicationController
   def checkout
     @order = Order.new
   end
+
+  def random_product
+    @product = Product.order("RANDOM()").limit(3)
+  end
 end

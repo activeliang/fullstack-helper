@@ -1,0 +1,53 @@
+
+<div class="pull-right" style="display: flex;">
+  <%= form_tag admin_slider_photos_path, method: :post, enctype: "multipart/form-data", style: "display: flex;", class: "form-horizontal" do %>
+    <input type="file" name="images[]" multiple class="image-input" />
+    <%= submit_tag "上传", class: "btn btn-success" %>
+  <% end -%>
+</div>
+
+
+
+
+<div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>图片</th>
+        <th>权重</th>
+        <th>状态</th>
+        <th>选项</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @slider_photos.each do |slider_photo| %>
+        <tr>
+          <td><%= slider_photo.id %></td>
+          <td><%= image_tag(slider_photo.slider_image.thumb.url, class: "img-responsive") %></td>
+          <td>
+            <%= form_tag admin_slider_photo_path(slider_photo), method: :put do %>
+              <input type="text" value="<%= slider_photo.weight %>" name="weight" />
+            <%= submit_tag "更新", class: "btn btn-default btn-xs" %>
+            <% end %>
+          </td>
+          <td>
+            <% if slider_photo.is_hidden? %>
+            隐藏
+            <% else %>
+            发布
+            <% end %>
+          </td>
+          <td align="right">
+            <%= link_to "删除", admin_slider_photo_path(slider_photo), method: :delete, 'data-confirm': "确认删除吗?", class: "btn btn-primary" %>
+            <% unless slider_photo.is_hidden? %>
+            <%= link_to "下架", hide_admin_slider_photo_path(slider_photo), method: :post, class: "btn btn-danger" %>
+            <% else %>
+            <%= link_to "上架", public_admin_slider_photo_path(slider_photo), method: :post, class: "btn btn-danger" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
