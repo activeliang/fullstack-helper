@@ -32,19 +32,7 @@ class User < ApplicationRecord
 
   has_many :orders
   has_many :payments
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
-  def admin?
-    is_admin
-
-  end
-
   has_many :addresses, -> { order("id desc") }
-
-
 
   # TODO
   # 手机号不重复注册的校验
