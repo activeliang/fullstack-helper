@@ -89,3 +89,4 @@ class User < ApplicationRecord
     return true
   end
 end
+end
