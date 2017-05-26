@@ -4,9 +4,13 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.string :title
       t.text :description
       t.integer :quantity
-      t.integer :price
-
+      t.decimal :price,       precision: 10, scale: 2
+      t.integer :evaluation_count, default: 0
+      t.integer :sales_count, default: 0
+      t.integer :category_id
       t.timestamps
     end
+    add_index :products, [:title]
+    add_index :products, [:category_id]
   end
 end

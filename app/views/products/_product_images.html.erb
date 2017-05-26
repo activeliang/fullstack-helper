@@ -1,0 +1,31 @@
+<div id="magnifier">
+  <div class="small-box">
+    <img src="<%= @product.main_product_photo.product_image.medium %>" alt="#">
+    <span class="hover"></span>
+  </div>
+  <div class="thumbnail-box">
+    <a href="javascript:;" class="btn btn-prev"></a>
+    <a href="javascript:;" class="btn btn-next"></a>
+    <div class="list">
+      <ul class="wrapper">
+        <% @product.product_photos.each_with_index do |p, index| %>
+          <% if index == 0 %>
+            <li class="item item-cur" data-src2="<%= p.product_image.big %>" data-src="<%= p.product_image.medium %>" ><img src="<%= p.product_image.thumb %>" alt="#"></li>
+          <% else %>
+            <li class="item" data-src2="<%= p.product_image.big %>" data-src="<%= p.product_image.medium %>"><img src="<%= p.product_image.thumb %>" alt="#"></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="big-box">
+    <img src="<%= @product.main_product_photo.product_image.big %>" alt="#">
+  </div>
+</div>
+<script>
+  $(function () {
+
+    $('#magnifier').magnifier();
+
+  });
+</script>

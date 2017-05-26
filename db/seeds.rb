@@ -7,8 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 r=User.new
-r.eamil = "liang@liang.com"
+r.email = "liang@liang.com"
 r.password = "llllll"
 r.password_confirmation = "llllll"
 r.is_admin = true
+r.default_address_id = "2"
 r.save

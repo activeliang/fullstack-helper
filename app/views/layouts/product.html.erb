@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jdstore</title>
+        <%= csrf_meta_tags %>
+
+        <%= stylesheet_link_tag    'application', media: 'all' %>
+        <%= javascript_include_tag 'application' %>
+    </head>
+
+    <body>
+      <div class="container-fluid body-content">
+        <div class="content-inside">
+          <div class="row product">
+            <%= render "common/navbar" %>
+          </div>
+          <%= render "common/flashes" %>
+          <%= yield %>
+        </div>
+      </div>
+      <%= render "common/footer" %>
+    </body>
+</html>

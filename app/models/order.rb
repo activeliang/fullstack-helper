@@ -3,11 +3,6 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :product_lists
 
-  validates :billing_name, presence: true
-  validates :billing_address, presence:true
-  validates :shipping_name, presence:true
-  validates :shipping_address, presence:true
-
   def generate_token
     self.token = SecureRandom.uuid
   end
@@ -18,6 +13,23 @@ class Order < ApplicationRecord
 
   def pay!
     self.update_columns(is_paid: true)
+  end
+
+  def create_from_cart! user, cart, *order_params
+    order_params.flatten!
+    orders = []
+    transaction do
+      order_params.each do |order_param|
+      orders << user.orders.create!(
+      total: cart.total_price,
+      payment_id: 1
+      )
+    end
+
+    cart.clean!
+    end
+
+    orders
   end
 
 

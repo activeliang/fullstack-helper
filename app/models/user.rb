@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
   authenticates_with_sorcery!
 
   attr_accessor :password, :password_confirmation, :token
@@ -28,7 +29,21 @@ class User < ApplicationRecord
   def need_validate_password
     self.new_record? ||
       (!self.password.nil? || !self.password_confirmation.nil?)
+
+  has_many :orders
+  has_many :payments
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  def admin?
+    is_admin
+
   end
+
+  has_many :addresses, -> { order("id desc") }
+
 
 
   # TODO

@@ -1,46 +1,25 @@
-<div class="row">
-    <div class="col-md-12">
-        <h2>订单明细</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>商品明细</th>
-                    <th>单价</th>
-                    <th>数量</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% current_cart.cart_items.each do |cart_item| %>
-                <tr>
-                    <td><%= link_to(cart_item.product.title, product_path(cart_item.product))%></td>
-                    <td><%= cart_item.product.price%></td>
-                    <td><%= cart_item.quantity%></td>
-                </tr>
-                <% end %>
-            </tbody>
-        </table>
+<h1><%= @subproduct_id %></h1>
+<h2><%= @amount %></h2>
 
-        <div class="total clearfix">
-            <span class="pull-right">
-                总计
-                <%= render_cart_total_price(current_cart)%>
-                CNY
-            </span>
-        </div>
 
-        <hr/>
-
-        <h2>订单资讯</h2>
-
-        <div class="order-form">
-
-            <%= simple_form_for @order do |f| %>
-            <div class="form-group col-lg-6"><%= f.input :billing_name%></div>
-            <div class="form-group col-lg-6"><%= f.input :billing_address%></div>
-            <div class="form-group col-lg-6"><%= f.input :shipping_name%></div>
-            <div class="form-group col-lg-6"><%= f.input :shipping_address%></div>
-            <div class="checkout"><%= f.submit "生成订单", class:"btn btn-lg btn-danger pull-right", data:{disable_with: "Submiting..."}%></div>
-            <% end %>
-        </div>
-    </div>
+<div class="page-header">
+  <h4>
+    <i class="fa fa-map-marker"></i>
+    收货地址</h4>
 </div>
+<div id="address_list"></div>
+
+
+
+<%= form_tag orders_path, method: :post, class: "create-order-form" do %>
+<input type="hidden" name="address_id" value="3"/>
+<input type="radio" name="payment_method" value="alipay" checked/>支付宝支付 <br>
+<input type="submit" value="确认订单" class="btn btn-danger btn-lg"/>
+<% end %>
+
+
+<script>
+  $.get('/addresses', function (data) {
+    $('#address_list').html(data);
+  })
+</script>

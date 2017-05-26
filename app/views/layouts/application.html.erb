@@ -4,18 +4,27 @@
         <title>Jdstore</title>
         <%= csrf_meta_tags %>
 
-        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <%= stylesheet_link_tag    'application', media: 'all' %>
+        <%= javascript_include_tag 'application' %>
     </head>
 
     <body>
-        <div class="container-fluid">
-            <%= render "common/navbar"%>
-            <%= render "common/flashes"%>
-            <%= yield %>
+      <div class="container-fluid body-content">
+        <div class="content-inside">
+          <div class="row">
+            <%= render "common/navbar" %>
+          </div>
+          <%= render "common/flashes" %>
+          <%= yield %>
         </div>
+        </div>
+
         <%= render "common/footer"%>
         <%= javascript_include_tag 'application' %>
         <%= yield :javascripts %>
+
+      
+      <%= render "common/footer" %>
+
     </body>
 </html>
