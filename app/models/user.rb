@@ -29,6 +29,7 @@ class User < ApplicationRecord
   def need_validate_password
     self.new_record? ||
       (!self.password.nil? || !self.password_confirmation.nil?)
+  end
 
   has_many :orders
   has_many :payments
@@ -37,10 +38,11 @@ class User < ApplicationRecord
   # TODO
   # 手机号不重复注册的校验
   def validate_cellphone_unrepeated
-    if self.find_by(cellphone: self.cellphone)
+     phonenumber = User.find_by_cellphone(self.cellphone)
+     if !phonenumber.nil?
       self.errors.add :base, "手机号已被注册，不能重复注册哦"
       reture false
-    else
+     else
       return true
     end
   end
@@ -76,5 +78,4 @@ class User < ApplicationRecord
 
     return true
   end
-end
 end

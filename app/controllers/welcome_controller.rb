@@ -9,5 +9,8 @@ class WelcomeController < ApplicationController
 
   def test
     @rand_products = Product.order("RANDOM()").limit(3)
+    @cellphone = params[:id]
+    @id2 = params[:id2]
+    @test3 = params[:id3]
   end
 end

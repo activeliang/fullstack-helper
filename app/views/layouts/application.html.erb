@@ -11,20 +11,14 @@
     <body>
       <div class="container-fluid body-content">
         <div class="content-inside">
-          <div class="row">
+          <div class="row product">
             <%= render "common/navbar" %>
           </div>
           <%= render "common/flashes" %>
           <%= yield %>
         </div>
-        </div>
-
-        <%= render "common/footer"%>
-        <%= javascript_include_tag 'application' %>
-        <%= yield :javascripts %>
-
-      
+      </div>
       <%= render "common/footer" %>
-
+      <%= yield :javascripts %>
     </body>
 </html>

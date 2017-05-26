@@ -25,6 +25,7 @@ class CellphoneTokensController < ApplicationController
     def generate_cellphone_token len = 6
       a = lambda { (0..9).to_a.sample }
       token = ""
+
       len.times { |t| token << a.call.to_s }
       token
     end
@@ -32,7 +33,7 @@ class CellphoneTokensController < ApplicationController
 
     def valify_captcha!
       unless verify_rucaptcha?
-        redirect_to new_session_path, alert: ('验证码不正确或者已过期')
+        render :json => {status: "invalid_Captcha"}
         return
       end
       true
@@ -41,9 +42,8 @@ class CellphoneTokensController < ApplicationController
     def valify_phone_unrepeated!
       phonenumber = User.find_by_cellphone(params[:cellphone])
 
-        unless phonenumber.nil?
-        # flash[:notice] = '手机号已被注册了哦～'
-        redirect_to new_user_path, alert: ('手机号已被注册了哦～可以登录试试看呢')
+        if phonenumber.present?
+          render :json => {status: "gologin"}
         return
         end
       true

@@ -60,7 +60,9 @@
 
 <%= content_for :javascripts do %>
   <script>
-    (function() {
+
+
+    (function(){
 
       // 验证码
       var CELLPHONE_RE = /^(\+86|86)?1\d{10}$/;
@@ -69,7 +71,8 @@
         $token_btn = $('.fetch-token-btn');
       $token_btn.click(function () {
         var $this = $(this),
-          cellphone = $('#user_cellphone').val();
+        cellphone = $('#user_cellphone').val();
+        // cellphone = $('input[name="test"]').val();
           _rucaptcha = $('input[name="_rucaptcha"]').val();
         $.ajax({
           url: $this.data('url'),
@@ -85,8 +88,18 @@
           },
           success: function (data) {
             if (data.status == 'error') {
+              alert(1);
               alert(data.message);
-            } else {
+            } else if(data.status == 'tologin'){
+              alert(2);
+
+              window.location.href='/sessions/new';
+            }else if(data.status == "invalid_Captcha"){
+              alert(3);
+
+              alert("输入的验证码错误或者已过期~~~XD");
+            }else{
+              alert(4);
               $this.attr('value', $this.data('old-value'));
               $this.trigger('start_token_timer');
             }
