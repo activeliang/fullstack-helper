@@ -23,6 +23,18 @@
     border-bottom-color: transparent;
     cursor: default;
 }
+.nav-tabs > li > a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    color: #666;
+    border-radius: 4px 4px 0 0;
+}
+.nav-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+    background: #ffeded;
+}
 
 // 以下是蛋人网的
 h1 {
@@ -410,6 +422,25 @@ p.rand_product-price {
     margin: 0 auto;
 }
 
+
+// 以下是商品评价
+p.eva-title {
+    font-size: 17px;
+    font-weight: 400;
+    color: #666;
+    padding: 25px;
+}
+.row.product-eva {
+    margin: auto 0px;
+    /* background: #333; */
+}
+p.eva-nil {
+    font-size: 1em;
+    color: #888;
+    margin: 20px;
+}
+
+
 // 以下是markdown
 .intro-markdown {
     margin-top: -22px;
@@ -449,7 +480,7 @@ h4 {
     float: left;
     margin-left: 20px;
     line-height: 33px;
-    color: #fff; 
+    color: #fff;
     font-size: 1.2em;
 }
 span.btn.btn-danger {
@@ -485,13 +516,7 @@ span.btn.btn-danger:hover {
     color: #fff;
     border: 2px solid #f16464;
 }
-
-
 }
-
-
-
-
 // 以下是contact条
 #contacttop.show {
     display: block !important; /* Show the snackbar */
