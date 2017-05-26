@@ -8,7 +8,7 @@ class SubproductImageUploader < CarrierWave::Uploader::Base
   # storage :file
   # storage :fog
   if Rails.env.production?
-  storage :fog
+  storage :qiniu
   elsif Rails.env.development?
   storage :file
   end

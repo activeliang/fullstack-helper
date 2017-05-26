@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 20170524093404) do
     t.decimal  "price",            precision: 10, scale: 2
     t.string   "activity"
     t.integer  "carriage",                                  default: 0
-    t.string   "place"
+    t.string   "place"  
     t.integer  "quantity"
     t.string   "subproduct_image"
     t.datetime "created_at",                                            null: false
