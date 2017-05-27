@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+skip_before_action :require_login, only: [:new, :create]
+# 用户在注册时不需要验证是否已经登录
   def new
     @user = User.new
   end

@@ -77,7 +77,8 @@
         $.ajax({
           url: $this.data('url'),
           method: 'post',
-          data: {cellphone: cellphone, _rucaptcha: _rucaptcha},
+          data: {cellphone: cellphone},
+          // data: {cellphone: cellphone, _rucaptcha: _rucaptcha},
           beforeSend: function () {
             if (!CELLPHONE_RE.test(cellphone)) {
               alert("手机号码格式错误!");
@@ -86,20 +87,29 @@
             $this.data('old-value', $this.attr('value'));
             $this.attr('value', "发送中...").prop('disabled', true);
           },
+          // 以下为测试图片验证码时使用
+          // success: function (data) {
+          //   if (data.status == 'error') {
+          //     alert(1);
+          //     alert(data.message);
+          //   } else if(data.status == 'tologin'){
+          //     alert(2);
+          //
+          //     window.location.href='/sessions/new';
+          //   }else if(data.status == "invalid_Captcha"){
+          //     alert(3);
+          //
+          //     alert("输入的验证码错误或者已过期~~~XD");
+          //   }else{
+          //     alert(4);
+          //     $this.attr('value', $this.data('old-value'));
+          //     $this.trigger('start_token_timer');
+          //   }
+          // }
           success: function (data) {
             if (data.status == 'error') {
-              alert(1);
               alert(data.message);
-            } else if(data.status == 'tologin'){
-              alert(2);
-
-              window.location.href='/sessions/new';
-            }else if(data.status == "invalid_Captcha"){
-              alert(3);
-
-              alert("输入的验证码错误或者已过期~~~XD");
-            }else{
-              alert(4);
+            } else {
               $this.attr('value', $this.data('old-value'));
               $this.trigger('start_token_timer');
             }

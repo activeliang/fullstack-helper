@@ -1,6 +1,7 @@
 class CellphoneTokensController < ApplicationController
-  prepend_before_action :valify_captcha!, only: [:create]
-  prepend_before_action :valify_phone_unrepeated!, only:[:create]
+  # prepend_before_action :valify_captcha!, only: [:create]
+  # prepend_before_action :valify_phone_unrepeated!, only:[:create]
+  skip_before_action :require_login, only: [:create]
 
   def create
     unless params[:cellphone] =~ User::CELLPHONE_RE

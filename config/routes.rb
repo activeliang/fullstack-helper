@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'welcome#index'
-
-  get "welcome" => "welcome#index"
-  get "test" => "welcome#test"
+  root 'admin/products#new'
+  #
+  # get "welcome" => "welcome#index"
+  # get "test" => "welcome#test"
 
   # 用户注册和登录登出
   resources :users
