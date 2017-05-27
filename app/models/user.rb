@@ -20,9 +20,9 @@ class User < ApplicationRecord
   validate :validate_email_or_cellphone, on: :create
   # validate :validate_cellphone_unrepeated, on: :create
 
-  # def is_admin?
-  #   self.is_admin
-  # end
+  def admin?
+    is_admin
+  end
 
 
 
