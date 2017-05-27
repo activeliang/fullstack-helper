@@ -21,11 +21,12 @@ class ApplicationController < ActionController::Base
 
   def admin_required
     if !current_user.admin?
-      redirect_to "/", alert: "You are not admin."
+      redirect_back_or_to "/sessions/new", alert: "You are not admin."
     end
   end
 
-  # 此为重写sorcery默认的 not_authenticated 方法（config/initializers/sorcery.rb），当用户未登录时，弹出提示，并且重新导向登录页面
+  # 此为重写sorcery默认的 not_authenticated 方法（config/initializers/sorcery.rb），
+  # 当用户未登录时，弹出提示，并且重新导向登录页面
   def not_authenticated
     flash[:warning] = 'You have to authenticate to access this page.'
     redirect_to new_session_path

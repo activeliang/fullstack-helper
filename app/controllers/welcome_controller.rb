@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-skip_before_action :require_login, only: [:create]
+skip_before_action :require_login
 
   def index
     @slider_images = SliderPhoto.where(:is_hidden => false).order(weight: "desc")

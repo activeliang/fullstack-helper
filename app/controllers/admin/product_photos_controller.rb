@@ -1,4 +1,5 @@
 class Admin::ProductPhotosController < ApplicationController
+  before_action :admin_required
 
   before_action :find_product
 

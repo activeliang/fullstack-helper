@@ -56,6 +56,8 @@ group :development, :test do
   gem 'database_cleaner', '~> 1.5.3'
   gem 'rspec-rails', '~> 3.5'
   gem 'rails-controller-testing'
+  gem 'pry'
+  gem 'awesome_rails_console'
 end
 
 group :development do
