@@ -19,8 +19,10 @@ class Cart < ApplicationRecord
   def total_price
     sum = 0
     cart_items.each do |cart_item|
-      if cart_item.subproduct.price.present?
-        sum += cart_item.subproduct.price * cart_item.quantity
+      if cart_item.is_selected?
+        if cart_item.subproduct.price.present?
+          sum += cart_item.subproduct.price * cart_item.quantity
+        end
       end
     end
     sum

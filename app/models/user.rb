@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   authenticates_with_sorcery!
 
   attr_accessor :password, :password_confirmation, :token
@@ -7,6 +6,11 @@ class User < ApplicationRecord
   CELLPHONE_RE = /\A(\+86|86)?1\d{10}\z/
   EMAIL_RE = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
 
+  # validates_presence_of :email, message: "邮箱不能为空"
+  # validates_format_of :email, message: "邮箱格式不合法",
+  #   with: /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/,
+  #   if: proc { |user| !user.email.blank? }
+  # validates :email, uniqueness: true
 
   validates_presence_of :password, message: "密码不能为空",
     if: :need_validate_password
@@ -18,17 +22,15 @@ class User < ApplicationRecord
     if: :need_validate_password
 
   validate :validate_email_or_cellphone, on: :create
-  # validate :validate_cellphone_unrepeated, on: :create
 
-  def admin?
-    is_admin
-  end
-
-
-
+  has_many :addresses, -> { where(address_type: Address::AddressType::User).order("id desc") }
+  belongs_to :default_address, class_name: :Address
   has_many :orders
   has_many :payments
-  has_many :addresses, -> { order("id desc") }
+
+  def username
+    self.email.blank? ? self.cellphone : self.email.split('@').first
+  end
 
   private
   def need_validate_password
@@ -37,17 +39,6 @@ class User < ApplicationRecord
   end
 
   # TODO
-  # 手机号不重复注册的校验
-  def validate_cellphone_unrepeated
-     phonenumber = User.find_by_cellphone(self.cellphone)
-     if !phonenumber.nil?
-      self.errors.add :base, "手机号已被注册，不能重复注册哦"
-      reture false
-     else
-      return true
-    end
-  end
-
   # 需要添加邮箱和手机号不能重复的校验
   def validate_email_or_cellphone
     if [self.email, self.cellphone].all? { |attr| attr.nil? }

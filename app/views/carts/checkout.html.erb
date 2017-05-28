@@ -18,8 +18,10 @@
 <% end %>
 
 
-<script>
-  $.get('/addresses', function (data) {
-    $('#address_list').html(data);
-  })
-</script>
+<%= content_for :javascripts do %>
+  <script>
+    $.get('/addresses', function(data) {
+      $('#address_list').html(data);
+    })
+  </script>
+<% end %>

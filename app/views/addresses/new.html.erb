@@ -1,4 +1,4 @@
-<div class="modal fade" tabindex="-1" id="address_form_modal">
+<div class="modal fade"  id="address_form_modal">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
@@ -40,7 +40,14 @@
             <div class="col-sm-2 address_input_error">
             </div>
           </div>
-
+          <div class="form-group">
+            <label for="zipcode" class="col-sm-2 control-label">邮政编码:</label>
+            <div class="col-sm-7">
+              <%= f.text_field :zipcode, class: "form-control" %>
+            </div>
+            <div class="col-sm-2 address_input_error">
+            </div>
+          </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <label>

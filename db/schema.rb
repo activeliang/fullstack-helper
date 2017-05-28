@@ -10,24 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170527044523) do
+ActiveRecord::Schema.define(version: 20170528125629) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
+    t.string   "address_type"
     t.string   "contact_name"
     t.string   "cellphone"
     t.string   "address"
+    t.string   "zipcode"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["user_id"], name: "index_addresses_on_user_id"
+    t.index ["user_id", "address_type"], name: "index_addresses_on_user_id_and_address_type"
   end
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id"
     t.integer  "subproduct_id"
     t.integer  "quantity",      default: 1
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "is_selected",   default: true
   end
 
   create_table "carts", force: :cascade do |t|
@@ -153,7 +156,7 @@ ActiveRecord::Schema.define(version: 20170527044523) do
     t.decimal  "price",            precision: 10, scale: 2
     t.string   "activity"
     t.integer  "carriage",                                  default: 0
-    t.string   "place"  
+    t.string   "place"
     t.integer  "quantity"
     t.string   "subproduct_image"
     t.datetime "created_at",                                            null: false
@@ -179,6 +182,7 @@ ActiveRecord::Schema.define(version: 20170527044523) do
     t.datetime "activation_token_expires_at"
     t.string   "cellphone"
     t.boolean  "is_admin",                        default: false
+    t.integer  "default_address_id"
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["cellphone"], name: "index_users_on_cellphone"
     t.index ["email"], name: "index_users_on_email"

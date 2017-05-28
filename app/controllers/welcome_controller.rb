@@ -7,10 +7,10 @@ skip_before_action :require_login, only: [:create]
   end
 
 
+
+
   def test
-    @rand_products = Product.order("RANDOM()").limit(3)
-    @cellphone = params[:id]
-    @id2 = params[:id2]
-    @test3 = params[:id3]
+    @test = params[:id]
+    @user = current_user.id
   end
 end

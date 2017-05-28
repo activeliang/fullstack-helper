@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'admin/products#new'
+  root 'welcome#index'
   #
-  # get "welcome" => "welcome#index"
-  # get "test" => "welcome#test"
+  get "welcome" => "welcome#index"
+  get "test" => "welcome#test"
 
   # 用户注册和登录登出
   resources :users
@@ -52,7 +52,8 @@ Rails.application.routes.draw do
   resources :carts do
     collection do
       delete :clean
-        post :checkout
+        get :checkout
+        post :update_cart
     end
   end
 

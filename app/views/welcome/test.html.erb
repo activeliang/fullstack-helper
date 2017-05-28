@@ -1,4 +1,16 @@
-<%= @cellphone %>
-<%= @id2 %>
-<%= @test3.class %>
-<%= @test3 %>
+<h1>我的收货地址</h1>
+<div class="row">
+  <div class="container">
+    <div id="address_list">
+
+    </div>
+  </div>
+</div>
+
+<%= content_for :javascripts do %>
+  <script>
+    $.get('/addresses', function(data) {
+      $('#address_list').html(data);
+    })
+  </script>
+<% end %>
