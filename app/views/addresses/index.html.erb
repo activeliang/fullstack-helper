@@ -3,29 +3,41 @@
 </div>
 <div class="clearfix"></div>
 <br />
-<ul class="list-group">
+<div class="adress-index clearfix">
   <% unless @addresses.blank? %>
     <% @addresses.each_with_index do |address, index| %>
-      <li class="list-group-item">
-        <label>
-          <input type="radio" name="address_id" value="<%= address.id %>" <%= 'checked' if current_user.default_address == address %> />
-          <%= address.contact_name %>
-          <%= address.address %>
-          <%= address.cellphone %>
-
-          <%= link_to "编辑", edit_address_path(address), remote: true, class: "inline edit-address-btn" %>
+      <% if current_user.default_address_id == address.id %>
+      <div class="address-item col-sm-3 clearfix default-address">
+      <% else %>
+      <div class="address-item col-sm-3 clearfix">
+      <% end %>
+        <h4><%= address.address %></h4>
+        <h5><%= address.cellphone %></h5>
+        <h6><%= address.contact_name %></h6>
+          <%= link_to "修改", edit_address_path(address), remote: true, class: "inline edit-address-btn" %>
           <%= link_to "删除", address_path(address), remote: true, method: 'delete', "data-confirm": "确认删除该地址吗？", class: "remove-address-btn inline" %>
-          <% if current_user.default_address == address %>
+          <% if current_user.default_address_id == address.id %>
             <span class="default_address">默认地址</span>
           <% else %>
-            <%= link_to "设为默认收货地址", set_default_address_address_path(address), remote: true, method: 'put', class: "set-default-address-btn inline" %>
+            <%= link_to "设为默认", set_default_address_address_path(address), remote: true, method: 'put', class: "set-default-address-btn inline" %>
           <% end %>
-        </label>
-      </li>
+      </div>
     <% end %>
   <% else %>
-    <li class="list-group-item">
+    <div class="list-group-item">
       请添加送货地址
-    </li>
+    </div>
   <% end %>
-</ul>
+  <input type="hidden" name="address_id" value="<%= current_user.default_address_id if current_user.default_address_id.present? %>" id="address-helper">
+</div>
+
+<script>
+<% unless @addresses.blank? %>
+  <% @addresses.each_with_index do |address, index| %>
+  $("#address-<%= address.id %>").click(function(){
+    $("#address-helper").val(<%= address.id %>);
+  })
+<% end %>
+<% end %>
+
+</script>

@@ -1,3 +1,4 @@
+
 <div class="modal fade"  id="address_form_modal">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
@@ -16,6 +17,8 @@
               </ul>
             </div>
           <% end %>
+
+
           <div class="form-group">
             <label for="address" class="col-sm-2 control-label">详细地址:*</label>
             <div class="col-sm-7">
@@ -36,14 +39,6 @@
             <label for="cellphone" class="col-sm-2 control-label">手机号码:*</label>
             <div class="col-sm-7">
               <%= f.text_field :cellphone, class: "form-control" %>
-            </div>
-            <div class="col-sm-2 address_input_error">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="zipcode" class="col-sm-2 control-label">邮政编码:</label>
-            <div class="col-sm-7">
-              <%= f.text_field :zipcode, class: "form-control" %>
             </div>
             <div class="col-sm-2 address_input_error">
             </div>

@@ -1,87 +1,110 @@
 
-  <div class="container">
-    <div class="cart-nav-top">
-      <p>已选商品（不含运费）<span class="cart-item-total-price"><%= render_cart_total_price(current_cart) %></span><span class="cart-nav-btn btn">结算</span></p>
+  <div class="container carts-index">
+    <div class="row">
+      <h1>购物车</h1>
+    <div class="cart-nav-top clearfix">
+
+      <p>已选商品（不含运费）<span class="cart-item-total-price cart-item-total-price-2"><%= render_cart_total_price(current_cart) %></span>
+          <%= link_to("清空购物车", clean_carts_path, method: :delete, class:"btn btn-danger pull-right", "data-confirm": "你确定要清空购物车吗?")%>
+      </p>
     </div>
-    <h1>购物车</h1>
+    </div>
 
-    <%= link_to("清空购物车", clean_carts_path, method: :delete, class:"btn btn-danger pull-right", data: { confirm: "你确定要清空购物车吗？"})%>
+    <div class="cart-navbar clearfix">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="bc-1 col-sm-3">全选</div>
+          <div class="bc-2 col-sm-9">商品信息</div>
+        </div>
+        <div class="col-sm-6 text-center">
+          <div class="bc-3 col-sm-3">单价</div>
+          <div class="bc-4 col-sm-3">数量</div>
+          <div class="bc-5 col-sm-3">金额</div>
+          <div class="bc-6 col-sm-3">操作</div>
+        </div>
+      </div>
+    </div>
 
-    <div class="col-md-12 table-responsive">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>全选</th>
-            <th colspan="2">商品信息</th>
-            <th>单价</th>
-            <th>数量</th>
-            <th>金额</th>
-            <th>操作</th>
-          </tr>
-        </thead>
-        <tbody>
           <%= form_tag("/carts/update_cart", method: "post") do %>
-
           <% current_cart.cart_items.each do |cart_item| %>
-          <tr>
-            <td>
-              <% if cart_item.is_selected? %>
-              <input class="cart-item-select" id="cart-item-<%= cart_item.id %>" type="checkbox" name="<%= cart_item.id %>[id]" value="<%= cart_item.id %>" checked="true">
-              <% else %>
-              <input class="cart-item-select" id="cart-item-<%= cart_item.id %>" type="checkbox" name="<%= cart_item.id %>[id]" value="<%= cart_item.id %>">
-              <% end %>
-            </td>
-            <td>
-              <% if cart_item.subproduct.product.main_product_photo.product_image.present? %>
-              <%= image_tag(cart_item.subproduct.product.main_product_photo.product_image.small.url, class:"img-responsive")%>
-            <% else %>
-              <%= image_tag("http://placehold.it/200x200&text=No Pic", class:"img-responsive" )%>
-              <% end %>
-            </td>
-            <td>已选分类 ：<%= cart_item.subproduct.subtitle%></td>
-            <td> ￥<%= cart_item.subproduct.price %></td>
-            <td>
-              <div id="cart-item-quantity-<%= cart_item.id %>">
-                <% if cart_item.is_selected? %>
-                <input id="quantity-<%= cart_item.id %>" class="quantity-input" data_step="1" name="<%= cart_item.id %>[quantity]" data_edit="true" data_min="1" data_max="523698" data_digit="0" value="<%= cart_item.quantity %>"/>
-                <% else %>
-                <input id="quantity-<%= cart_item.id %>" class="quantity-input" data_step="1" disabled="disabled" name="<%= cart_item.id %>[quantity]" data_edit="true" data_min="1" data_max="523698" data_digit="0" value="<%= cart_item.quantity %>"/>
-                <% end %>
+
+            <div class="cart-item row">
+              <div class="col-sm-6">
+                <div class="col-sm-3">
+                  <div class="bc-1 col-sm-2">
+                    <% if cart_item.is_selected? %>
+                    <input class="cart-item-select" id="cart-item-<%= cart_item.id %>" type="checkbox" name="<%= cart_item.id %>[id]" value="<%= cart_item.id %>" checked="true">
+                    <% else %>
+                    <input class="cart-item-select" id="cart-item-<%= cart_item.id %>" type="checkbox" name="<%= cart_item.id %>[id]" value="<%= cart_item.id %>">
+                    <% end %>
+                  </div>
+                  <div class="bc-2 col-sm-10">
+                    <% if cart_item.subproduct.product.main_product_photo.product_image.present? %>
+                    <%= image_tag(cart_item.subproduct.product.main_product_photo.product_image.small.url, class:"img-responsive")%>
+                  <% else %>
+                    <%= image_tag("http://placehold.it/200x200&text=No Pic", class:"img-responsive" )%>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="bc-3 col-sm-5">
+                  <%= cart_item.subproduct.product.title %>
+                </div>
+                <div class="bc-4 col-sm-4">
+                  已选分类 ：<%= cart_item.subproduct.subtitle%>
+                </div>
               </div>
-              <!-- 一个辅助的隐藏表单 -->
-              <input type="hidden" id="quantity-help-<%= cart_item.id %>" name="<%= cart_item.id %>[quantity]" value="<%= cart_item.quantity %>">
-            </td>
-            <td>
-              <% if cart_item.is_selected? %>
-              <span>￥</span><span id="cart-item-price-<%= cart_item.id %>" class="selected-item-price cart-item-price"><%= cart_item.subproduct.price * cart_item.quantity %></span>
-              <% else %>
-              <span>￥</span><span id="cart-item-price-<%= cart_item.id %>" class="cart-item-price"><%= cart_item.subproduct.price * cart_item.quantity %></span>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to(content_tag(:i,"", class: "fa fa-trash"), cart_item_path(cart_item),method: :delete, data:{confirm: "确定吗？"})%></td>
-          </tr>
+              <div class="col-sm-6 text-center">
+                <div class="bc-5 col-sm-3">
+                   ￥<%= cart_item.subproduct.price %>
+                </div>
+                <div class="bc-6 col-sm-3">
+                  <div id="cart-item-quantity-<%= cart_item.id %>">
+                    <% if cart_item.is_selected? %>
+                    <input id="quantity-<%= cart_item.id %>" class="quantity-input" data_step="1" name="<%= cart_item.id %>[quantity]" data_edit="true" data_min="1" data_max="523698" data_digit="0" value="<%= cart_item.quantity %>"/>
+                    <% else %>
+                    <input id="quantity-<%= cart_item.id %>" class="quantity-input" data_step="1" disabled="disabled" name="<%= cart_item.id %>[quantity]" data_edit="true" data_min="1" data_max="523698" data_digit="0" value="<%= cart_item.quantity %>"/>
+                    <% end %>
+                  </div>
+                  <!-- 一个辅助的隐藏表单 -->
+                  <input type="hidden" id="quantity-help-<%= cart_item.id %>" name="<%= cart_item.id %>[quantity]" value="<%= cart_item.quantity %>">
+                </div>
+                <div class="bc-7 col-sm-3">
+                <% if cart_item.is_selected? %>
+                <span>￥</span><span id="cart-item-price-<%= cart_item.id %>" class="selected-item-price cart-item-price"><%= cart_item.subproduct.price * cart_item.quantity %></span>
+                <% else %>
+                <span>￥</span><span id="cart-item-price-<%= cart_item.id %>" class="cart-item-price"><%= cart_item.subproduct.price * cart_item.quantity %></span>
+                <% end %>
+                </div>
+                <div class="bc-8 col-sm-3">
+                  <%= link_to(content_tag(:i,"", class: "fa fa-trash"), cart_item_path(cart_item),method: :delete, data:{confirm: "确定吗？"})%>
+                </div>
+              </div>
           <!-- hidden-form -->
           <input type="hidden" name="item-price-<%= cart_item.subproduct.price %>" disabled="true" value="<%= cart_item.subproduct.price %>">
+          </div>
           <% end %>
-        </tbody>
-      </table>
+
       <div class="total clearfix">
         <div class="all-select">
           <input type="hidden" id="select_help" value="0">
           <input class="cart-item" type="checkbox" name="select-item" value="" >
-
+          <p>全选</p>
         </div>
 
-      </div>
-      <hr/>
+
+
       <div class="checkout-btn checkout-btn-1">
         <input id="checkout-btn-1" type="submit" value="去结算" class="btn btn-success btn-lg"/>
       </div>
       <div style="display: none;" class="checkout-btn checkout-btn-2">
-        <span id="checkout-btn-2" class="btn btn-danger">去结算</span>
+        <input id="checkout-btn-2" type="button" value="去结算" class="btn btn-success btn-lg"/>
       </div>
       <% end %>
+      <div class="total-price">
+        <p>合计（不含运费）：<span class="cart-item-total-price"><%= render_cart_total_price(current_cart) %></span></p>
+      </div>
+
+        </div>
     </div>
   </div>
 

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "welcome" => "welcome#index"
   get "test" => "welcome#test"
 
+
   # 用户注册和登录登出
   resources :users
   resources :sessions

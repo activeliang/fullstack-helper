@@ -27,14 +27,16 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
-
-
-.rucaptcha-image { width: 120px; }
-
 @import "zoom";
 @import "products";
 @import "markdown";
 @import "welcome";
+@import "payments";
+@import "carts";
+
+
+//验证码
+.rucaptcha-image { width: 120px; }
 
 //以下是导航条
 .navbar {

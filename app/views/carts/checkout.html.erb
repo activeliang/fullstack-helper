@@ -1,27 +1,70 @@
-<h1><%= @subproduct_id %></h1>
-<h2><%= @amount %></h2>
+<div class="container">
+  <h1><%= @subproduct_id %></h1>
+  <h2><%= @amount %></h2>
+  <%= form_tag orders_path, method: :post, class: "create-order-form" do %>
+
+  <div class="page-header">
+    <h4>选择收货地址</h4>
+  </div>
+  <div id="address_list"></div>
+
+  <div class="require-order">
+    <h4>确认订单信息</h4>
+
+    <table "table table-hover">
+      <thead>
+        <tr>
+          <th>商品信息</th>
+          <th>属性</th>
+          <th>单价</th>
+          <th>数量</th>
+          <th>小计</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% current_cart.cart_items.each do |cart_item| %>
+        <% if cart_item.is_selected? %>
+        <tr>
+          <td>
+            <%= image_tag(cart_item.subproduct.product.main_product_photo.product_image, class: "img-responsive") %>
+            <p><%= cart_item.subproduct.product.title %></p>
+          </td>
+          <td><p>已选分类：<%= cart_item.subproduct.subtitle %></p></td>
+          <td><p><%= cart_item.subproduct.price %></p></td>
+          <td><h5><%= cart_item.subproduct.price * cart_item.quantity %></h5></td>
+        </tr>
+        <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="total-money">
+    <p>实付款：</p><span>￥</span><%= current_cart.total_price %>
+    </div>
+  </div>
+
+  <div class="create-order-btn">
+    <i style="display: none;" class="fa fa-spinner fa-spin fa-fw"></i>
+      <input type="submit" value="确认订单" class="btn btn-danger btn-lg"/>
+
+      <%= link_to carts_path, class: "btn btn-default" do  %>
+      <i class="fa fa-reply" aria-hidden="true"></i>返回购物车
+      <% end %>
+  </div>
+  <% end %>
 
 
-<div class="page-header">
-  <h4>
-    <i class="fa fa-map-marker"></i>
-    收货地址</h4>
+  <%= content_for :javascripts do %>
+    <script>
+      $.get('/addresses', function(data) {
+        $('#address_list').html(data);
+      })
+
+      $(".create-order-btn").click(function(){
+        $(".fa-spinner").css("display", "block");
+      })
+
+
+    </script>
+  <% end %>
+
 </div>
-<div id="address_list"></div>
-
-
-
-<%= form_tag orders_path, method: :post, class: "create-order-form" do %>
-<input type="hidden" name="address_id" value="3"/>
-<input type="radio" name="payment_method" value="alipay" checked/>支付宝支付 <br>
-<input type="submit" value="确认订单" class="btn btn-danger btn-lg"/>
-<% end %>
-
-
-<%= content_for :javascripts do %>
-  <script>
-    $.get('/addresses', function(data) {
-      $('#address_list').html(data);
-    })
-  </script>
-<% end %>

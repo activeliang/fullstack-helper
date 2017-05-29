@@ -1,3 +1,171 @@
 // Place all the styles related to the carts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// 以下是购物车
+.carts-index {
+h1 {
+    float: left;
+    font-size: 1.4em;
+    margin-left: 20px;
+    margin-bottom: 19px;
+    color: #555;
+}
+p {
+    white-space: nowrap;
+    float: left;
+    font-weight: 400;
+    margin-right: 30px;
+    line-height: 35px;
+}
+.cart-nav-top {
+    float: right;
+}
+tr.nav-tr {
+    border-bottom: 3px solid #fff;
+    border-top: 2px solid #d8cfcf;
+}
+.cart-navbar.clearfix {
+    background: #f1f1f1;
+    padding: 8px;
+}
+.cart-navbar.clearfix {
+    background: #f1f1f1;
+    padding: 8px;
+}
+.cart-item.row {
+    background: #f9f9f9;
+    margin-left: 0px;
+    margin-right: 0px;
+    font-size: .9em;
+    font-weight: 400;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 10px;
+    border: 1px solid #f1f1f1;
+}
+.bc-6.col-sm-3 {
+    margin-left: -18px;
+}
+.bc-7.col-sm-3 {
+    /* margin-left: 20px; */
+    padding-left: 58px;
+}
+i.fa.fa-trash {
+    font-size: 1.2em;
+}
+.col-sm-2 {
+    padding-left: 0;
+    padding-right: 0;
+}
+.bc-2.col-sm-10 {
+    padding-left: 5px;
+    /* margin-left: 5px; */
+    padding-right: 0px;
+}
+.bc-7.col-sm-3 .cart-item-price {
+    font-size: 1.5em;
+    color: #e4393c;
+}
+.bc-7.col-sm-3 span {
+    /* font-size: 1.5em; */
+    color: #e4393c;
+}
+.bc-3.col-sm-5 {
+    word-wrap: break-word;
+    word-break: normal;
+}
+.carts-index .cart-nav-top {
+    float: right;
+    margin-bottom: 0px;
+    margin-top: 44px;
+}
+.carts-index h1 {
+    float: left;
+    font-size: 1.4em;
+    margin-left: 27px;
+    margin-bottom: 19px;
+    color: #555;
+    margin-top: 48px;
+}
+.total.clearfix {
+    background: #f4f4f4;
+    margin-top: 10px;
+}
+input.cart-item {
+    float: left;
+    margin-left: 20px;
+    margin-top: 19px;
+}
+.checkout-btn .btn {
+    float: right;
+    background: #e4393c;
+    border: 1px solid #e4393c;
+    border-radius: 0;
+    padding-left: 33px;
+    padding-right: 33px;
+}
+.checkout-btn .btn:hover {
+
+    background: #fff;
+    color: #e4393c;
+}
+.total-price {
+    float: right;
+    /* line-height: 30px; */
+    /* margin-top: 20px; */
+}
+.total-price p {
+    /* line-height: 35px; */
+    /* height: 100%; */
+    /* padding-bottom: 0; */
+    margin-bottom: 0;
+    margin-top: 7px;
+}
+span.cart-item-total-price {
+    color: #e4393c;
+    font-size: 1.7em;
+}
+.cart-nav-top {
+    float: right;
+    margin-top: 22px;
+    margin-bottom: -10px;
+}
+span.cart-item-total-price.cart-item-total-price-2 {
+    font-size: 1.2em;
+}
+.cart-nav-top a.btn.btn-danger.pull-right {
+    border-radius: 0;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: rgba(243, 234, 234, 0.7);
+    color: #e4393c;
+    margin-left: 20px;
+}
+.cart-nav-top a.btn.btn-danger.pull-right:hover {
+    background: #e4393c;
+    color: #fff;
+}
+.cart-item .bc-6.col-sm-3 {
+    margin-left: -18px;
+    padding-right: 1px;
+    margin-right: 25px;
+}
+.bc-7.col-sm-3 {
+    margin-left: 2px;
+    padding-left: 0;
+    margin-right: -9px;
+    /* z-index: 0; */
+}
+.all-select p {
+    margin-top: 7px;
+    margin-left: 13px;
+    margin-bottom: 0;
+}
+
+
+
+
+}
