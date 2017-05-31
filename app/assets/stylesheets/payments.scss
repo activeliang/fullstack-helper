@@ -240,6 +240,12 @@ i.fa.fa-times:hover {
 #pay_qrcode_helper {
     width: 215px;
     height: 205px;
+
+}
+ #pay_qrcode_helper {
+    margin-top: 5px;
+    padding-top: 15px;
+    transition: 1.5s ease;
 }
 .success-img.text-center {
     margin-top: 30px;

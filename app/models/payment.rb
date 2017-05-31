@@ -9,8 +9,9 @@ class Payment < ApplicationRecord
 
   belongs_to :user
   has_many :orders
+
   def is_success?
-    self.status == 'success'
+    self.status == "success"
   end
 
   def do_success_payment! params
@@ -28,7 +29,11 @@ class Payment < ApplicationRecord
         end
 
         order.status = Order::OrderStatus::Paid
+
         order.payment_at = Time.now
+        order.make_payment!
+        order.is_paid = true
+        order.payment_method = "alipay"
         order.save!
       end
     end
@@ -53,7 +58,8 @@ class Payment < ApplicationRecord
       if order.is_paid?
           raise "order #{order.order_no} has alreay been paid"
       end
-      order.payment_id = payment,
+      order.payment_id = payment
+      binding.pry
       order.save!
 
     end

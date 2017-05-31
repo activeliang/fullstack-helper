@@ -11,25 +11,32 @@ class OrdersController < ApplicationController
     order = Order.new(order_params)
     address = current_user.addresses.find(params[:address_id])
     order.user = current_user
-    order.total = current_cart.total_price + current_cart.carriage_price
+    order.carriage = current_cart.carriage_price
+    order.total = current_cart.total_price + order.carriage
     order.save!
 
       if order.save
 
         current_cart.cart_items.each do |cart_item|
 
-           cart_item.subproduct.update_column :quantity, cart_item.subproduct.quantity - cart_item.quantity
+           if cart_item.is_selected?
 
-           product_list = ProductList.new
-           product_list.order_id = order.id
-           product_list.product_name = cart_item.subproduct.product.title,
-           product_list.product_price = cart_item.subproduct.price,
-           product_list.quantity = cart_item.quantity,
-           product_list.address = address.address,
-           product_list.cellphone = address.cellphone,
-           product_list.contact_name = address.contact_name
-           product_list.subproduct = cart_item.subproduct.subtitle
-           product_list.save!
+             cart_item.subproduct.update_column :quantity, cart_item.subproduct.quantity - cart_item.quantity
+
+             product_list = ProductList.new
+             product_list.order_id = order.id
+             product_list.product_name = cart_item.subproduct.product.title
+             product_list.product_price = cart_item.subproduct.price
+             product_list.quantity = cart_item.quantity
+             product_list.address = address.address
+             product_list.cellphone = address.cellphone
+             product_list.contact_name = address.contact_name
+             product_list.subproduct = cart_item.subproduct.subtitle
+             product_list.lists_image = cart_item.subproduct.product.main_product_photo.product_image
+             product_list.save!
+             binding.pry
+
+           end
         end
           current_cart.clean!
           redirect_to generate_pay_payments_path(:id => order.token)
@@ -46,6 +53,7 @@ class OrdersController < ApplicationController
 
      order.total = subproduct.price * quantity + subproduct.carriage
      order.user = current_user
+     order.carriage = subproduct.carriage
      order.save!
 
      if order.save
@@ -54,11 +62,11 @@ class OrdersController < ApplicationController
 
       product_list = ProductList.new
       product_list.order_id = order.id
-      product_list.product_name = subproduct.product.title,
-      product_list.product_price = subproduct.price,
-      product_list.quantity = quantity,
-      product_list.address = address.address,
-      product_list.cellphone = address.cellphone,
+      product_list.product_name = subproduct.product.title
+      product_list.product_price = subproduct.price
+      product_list.quantity = quantity
+      product_list.address = address.address
+      product_list.cellphone = address.cellphone
       product_list.contact_name = address.contact_name
       product_list.subproduct = subproduct.subtitle
       product_list.save!

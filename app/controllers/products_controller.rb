@@ -16,7 +16,6 @@ class ProductsController < ApplicationController
     @subproduct = @product.subproducts.find(params[:subproduct_id])
     if !current_cart.subproducts.include?(@subproduct)
     current_cart.add_product_to_cart(@subproduct, params[:amount])
-    binding.pry
 
     render :json => { :title => @subproduct.subtitle, :message => "ok", :cart_count => current_cart.reload.cart_items.count }
   else

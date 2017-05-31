@@ -39,6 +39,7 @@ class Cart < ApplicationRecord
   end
 
   def clean!
-    self.cart_items.destroy_all
+
+    self.cart_items.where(:is_selected => true).destroy_all
   end
 end

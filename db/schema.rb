@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529013505) do
+ActiveRecord::Schema.define(version: 20170531031019) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20170529013505) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.decimal  "total",          precision: 10, scale: 2
+    t.decimal  "total",          precision: 10, scale: 3
     t.integer  "user_id"
     t.datetime "created_at",                                                       null: false
     t.datetime "updated_at",                                                       null: false
@@ -79,9 +79,7 @@ ActiveRecord::Schema.define(version: 20170529013505) do
     t.string   "payment_method"
     t.string   "aasm_state",                              default: "order_placed"
     t.integer  "payment_id"
-    t.string   "province"
-    t.string   "city"
-    t.string   "district"
+    t.decimal  "carriage",       precision: 10, scale: 3
     t.index ["aasm_state"], name: "index_orders_on_aasm_state"
     t.index ["payment_id"], name: "index_orders_on_payment_id"
   end
@@ -91,7 +89,7 @@ ActiveRecord::Schema.define(version: 20170529013505) do
     t.string   "payment_no"
     t.string   "transaction_no"
     t.string   "status",                                  default: "initial"
-    t.decimal  "total_money",    precision: 10, scale: 2
+    t.decimal  "total_money",    precision: 10, scale: 3
     t.datetime "payment_at"
     t.text     "raw_response"
     t.datetime "created_at",                                                  null: false
@@ -104,7 +102,7 @@ ActiveRecord::Schema.define(version: 20170529013505) do
   create_table "product_lists", force: :cascade do |t|
     t.integer  "order_id"
     t.string   "product_name"
-    t.decimal  "product_price", precision: 10, scale: 2
+    t.decimal  "product_price", precision: 10, scale: 3
     t.integer  "quantity"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
@@ -112,6 +110,7 @@ ActiveRecord::Schema.define(version: 20170529013505) do
     t.string   "cellphone"
     t.string   "contact_name"
     t.string   "subproduct"
+    t.string   "lists_image"
   end
 
   create_table "product_params", force: :cascade do |t|
@@ -136,7 +135,7 @@ ActiveRecord::Schema.define(version: 20170529013505) do
     t.string   "title"
     t.text     "description"
     t.integer  "quantity"
-    t.decimal  "price",            precision: 10, scale: 2
+    t.decimal  "price",            precision: 10, scale: 3
     t.integer  "evaluation_count",                          default: 0
     t.integer  "sales_count",                               default: 0
     t.integer  "category_id"
@@ -158,8 +157,8 @@ ActiveRecord::Schema.define(version: 20170529013505) do
   create_table "subproducts", force: :cascade do |t|
     t.integer  "product_id"
     t.string   "subtitle"
-    t.decimal  "msrp",             precision: 10, scale: 2
-    t.decimal  "price",            precision: 10, scale: 2
+    t.decimal  "msrp",             precision: 10, scale: 3
+    t.decimal  "price",            precision: 10, scale: 3
     t.string   "activity"
     t.integer  "carriage",                                  default: 0
     t.string   "place"

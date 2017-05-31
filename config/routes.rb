@@ -81,7 +81,12 @@ Rails.application.routes.draw do
   end
 
   namespace :account do
-    resources :orders
+    resources :orders do
+      member do
+        post :cancel
+        post :shipped
+      end
+    end
   end
 
   resources :evaluations do
