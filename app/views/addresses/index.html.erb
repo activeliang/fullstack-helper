@@ -6,21 +6,25 @@
 <div class="adress-index clearfix">
   <% unless @addresses.blank? %>
     <% @addresses.each_with_index do |address, index| %>
+    <div class="col-sm-3 clearfix">
       <% if current_user.default_address_id == address.id %>
-      <div class="address-item col-sm-3 clearfix default-address">
+      <div id="address-item-<%= address.id %>" class="address-item default-address-item">
+        <span class="pull-right label label-success">默认地址</span>
       <% else %>
-      <div class="address-item col-sm-3 clearfix">
+      <div id="address-item-<%= address.id %>" class="address-item">
       <% end %>
+
         <h4><%= address.address %></h4>
         <h5><%= address.cellphone %></h5>
         <h6><%= address.contact_name %></h6>
           <%= link_to "修改", edit_address_path(address), remote: true, class: "inline edit-address-btn" %>
           <%= link_to "删除", address_path(address), remote: true, method: 'delete', "data-confirm": "确认删除该地址吗？", class: "remove-address-btn inline" %>
           <% if current_user.default_address_id == address.id %>
-            <span class="default_address">默认地址</span>
+
           <% else %>
             <%= link_to "设为默认", set_default_address_address_path(address), remote: true, method: 'put', class: "set-default-address-btn inline" %>
           <% end %>
+      </div>
       </div>
     <% end %>
   <% else %>
@@ -32,10 +36,33 @@
 </div>
 
 <script>
+
+
+  var address = $(".default-address-item").find("h4").html();
+  var cellphone = $(".default-address-item").find("h5").html();
+  var contact_name = $(".default-address-item").find("h6").html();
+
+  $(".require-address").html(address);
+  $(".require-contact").html(contact_name);
+  $(".require-cellphone").html(cellphone);
+
+
 <% unless @addresses.blank? %>
   <% @addresses.each_with_index do |address, index| %>
-  $("#address-<%= address.id %>").click(function(){
+  $("#address-item-<%= address.id %>").click(function(){
     $("#address-helper").val(<%= address.id %>);
+    $(".address-item").css("border", "3px solid #f1f1f1");
+    $(this).css("border", "3px solid #e4393c");
+    $(this).css("color", "#555");
+
+    // 赋值给留下的确认框
+    var address = $(this).find("h4").html();
+    var cellphone = $(this).find("h5").html();
+    var contact_name = $(this).find("h6").html();
+
+    $(".require-address").html(address);
+    $(".require-contact").html(contact_name);
+    $(".require-cellphone").html(cellphone);
   })
 <% end %>
 <% end %>

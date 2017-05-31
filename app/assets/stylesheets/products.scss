@@ -533,3 +533,66 @@ However, delay the fade out process for 2.5 seconds */
     to {top: 0; opacity: 1;}
 }
 // contacttop条结束
+
+
+// 以下是生成购物车的modal提示框
+@media (min-width: 768px){
+.modal-dialog {
+    width: 606px;
+    margin: 190px auto;
+}}
+.modal-content {
+    padding-left: 57px;
+    padding-right: 57px;
+    padding-bottom: 0;
+    border-radius: 0;
+    padding-top: 30px;
+}
+.success-img img {
+    width: 70px;
+    margin: 0 auto;
+}
+h5.text-center {
+    font-size: 1.6em;
+    font-weight: 200;
+    margin-top: 20px;
+    color: #555;
+}
+h4.media-heading {
+    font-size: 1.1em;
+    font-weight: 200;
+    color: #666;
+}
+.media-body .row .col-sm-6 p {
+    color: #777;
+    font-size: .8em;
+    margin-bottom: 0;
+    margin-top: 11px;
+}
+.modal-footer {
+    padding: 18px;
+    text-align: center;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 0px;
+}
+button.btn.btn-default {
+    background: #f6f6f6;
+    border: 1px solid #e8e8e8;
+    padding-left: 45px;
+    padding-right: 45px;
+    color: #777;
+    border-radius: 0;
+}
+a.btn.btn-danger {
+    background: #e4393c;
+    border: 1px solid #e8e8e8;
+    padding-left: 45px;
+    padding-right: 45px;
+    color: #fff;
+    border-radius: 0;
+}
+a.btn.btn-danger:hover {
+    background: #f7f7f7;
+    border: 1px solid #e4393c;
+    color: #e4393c;
+}

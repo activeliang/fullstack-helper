@@ -40,7 +40,7 @@
                   </div>
                   <div class="bc-2 col-sm-10">
                     <% if cart_item.subproduct.product.main_product_photo.product_image.present? %>
-                    <%= image_tag(cart_item.subproduct.product.main_product_photo.product_image.small.url, class:"img-responsive")%>
+                    <%= image_tag(cart_item.subproduct.subproduct_image, class:"img-responsive")%>
                   <% else %>
                     <%= image_tag("http://placehold.it/200x200&text=No Pic", class:"img-responsive" )%>
                     <% end %>
@@ -127,7 +127,7 @@
       $("#cart-item-price-<%= cart_item.id %>").html(price * quantity);
       var total = 0;
         $(".selected-item-price").each(function(i){
-          total += parseInt($(this).html());
+          total += parseFloat($(this).html());
         });
       $(".cart-item-total-price").html(total);
       // 赋值给辅助提交表单
@@ -146,7 +146,7 @@
       $("#cart-item-price-<%= cart_item.id %>").html(price * quantity);
       var total = 0;
         $(".selected-item-price").each(function(i){
-          total += parseInt($(this).html());
+          total += parseFloat($(this).html());
         });
       $(".cart-item-total-price").html(total);
       $("#quantity-help-<%= cart_item.id %>").val(quantity);
@@ -165,7 +165,7 @@ $("#cart-item-<%= cart_item.id %>").click(function(){
     $("#cart-item-price-<%= cart_item.id %>").removeClass('selected-item-price');
     var total = 0;
       $(".selected-item-price").each(function(i){
-        total += parseInt($(this).html());
+        total += parseFloat($(this).html());
       });
     $(".cart-item-total-price").html(total);
     $("#quantity-help-<%= cart_item.id %>").prop("disabled", "disabled");
@@ -183,7 +183,7 @@ $("#cart-item-<%= cart_item.id %>").click(function(){
     $("#cart-item-price-<%= cart_item.id %>").addClass('selected-item-price');
     var total = 0;
       $(".selected-item-price").each(function(i){
-        total += parseInt($(this).html());
+        total += parseFloat($(this).html());
       });
     $(".cart-item-total-price").html(total);
     $("#quantity-help-<%= cart_item.id %>").prop("disabled",false);
@@ -210,7 +210,7 @@ $("#cart-item-<%= cart_item.id %>").click(function(){
         $(".cart-item-select").prop('checked', true);
         var total = 0;
           $(".cart-item-price").each(function(i){
-            total += parseInt($(this).html());
+            total += parseFloat($(this).html());
           });
         $(".cart-item-total-price").html(total);
         $("#select_help").val(1);

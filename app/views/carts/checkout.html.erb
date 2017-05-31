@@ -1,3 +1,4 @@
+<div class="checkout-html">
 <div class="container">
   <h1><%= @subproduct_id %></h1>
   <h2><%= @amount %></h2>
@@ -10,47 +11,86 @@
 
   <div class="require-order">
     <h4>确认订单信息</h4>
+    <hr>
 
-    <table "table table-hover">
-      <thead>
-        <tr>
-          <th>商品信息</th>
-          <th>属性</th>
-          <th>单价</th>
-          <th>数量</th>
-          <th>小计</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% current_cart.cart_items.each do |cart_item| %>
-        <% if cart_item.is_selected? %>
-        <tr>
-          <td>
-            <%= image_tag(cart_item.subproduct.product.main_product_photo.product_image, class: "img-responsive") %>
-            <p><%= cart_item.subproduct.product.title %></p>
-          </td>
-          <td><p>已选分类：<%= cart_item.subproduct.subtitle %></p></td>
-          <td><p><%= cart_item.subproduct.price %></p></td>
-          <td><h5><%= cart_item.subproduct.price * cart_item.quantity %></h5></td>
-        </tr>
-        <% end %>
-        <% end %>
-      </tbody>
-    </table>
-    <div class="total-money">
-    <p>实付款：</p><span>￥</span><%= current_cart.total_price %>
+    <div class="order-require-nav">
+      <div class="row">
+        <div class="col-sm-5 col-sm-offset-1">
+          商品信息
+        </div>
+        <div class="col-sm-2 text-center">单价</div>
+        <div class="col-sm-2 text-center">数量</div>
+        <div class="col-sm-2 text-center">小计</div>
+      </div>
     </div>
-  </div>
 
-  <div class="create-order-btn">
-    <i style="display: none;" class="fa fa-spinner fa-spin fa-fw"></i>
-      <input type="submit" value="确认订单" class="btn btn-danger btn-lg"/>
+    <% carriage_total = [] %>
+    <% current_cart.cart_items.each do |cart_item| %>
+      <% if cart_item.is_selected? %>
+      <% carriage_total << cart_item.subproduct.carriage %>
+      <div class="order-require-item">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="col-sm-2">
+              <%= image_tag cart_item.subproduct.subproduct_image, class: "img-responsive" %>
+            </div>
+              <div class="col-sm-5">
+                <%= cart_item.subproduct.product.title %>
+              </div>
+              <div class="col-sm-5">
+                <p>已选分类：<%= cart_item.subproduct.subtitle %></p>
+              </div>
+            </div>
+            <div class="col-sm-6 text-center">
+              <div class="col-sm-4">
+                <%= cart_item.subproduct.price %>
+              </div>
+              <div class="col-sm-4">
+                <%= cart_item.quantity %>
+              </div>
+              <div class="col-sm-4 subtotal">
+                <%= cart_item.subproduct.price * cart_item.quantity %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
 
-      <%= link_to carts_path, class: "btn btn-default" do  %>
-      <i class="fa fa-reply" aria-hidden="true"></i>返回购物车
+        <div class="carriage">
+          <div class="row">
+            <p>运送方式：<span class="bc-1">普通快递</span>快递费：<span class="carriage-price"><%= carriage_total.max %></span></p>
+          </div>
+        </div>
+
+        <div class="total-money">
+          <div class="row">
+            <h5>合计（含运费）<span class="total">￥<%= current_cart.total_price + carriage_total.max %></span></h5>
+          </div>
+        </div>
+
+        <div class="row order-require ">
+          <div class="col-sm-4 col-sm-offset-8">
+            <div class="detail">
+              <p class="total-price">实付款：<span class="total-price-2"><span>￥</span><%= current_cart.total_price + carriage_total.max %></span></p>
+              <p class="address-1">寄送至：</p><span class="require-address"></span>
+              <p class="contact-1">收件人：<span class="require-contact"></span><span class="require-cellphone"></span></p>
+            </div>
+            <div class="btn col-sm-6">
+              <%= link_to carts_path, class: "btn btn-default" do  %>
+              <i class="fa fa-reply" aria-hidden="true"></i>返回购物车
+              <% end %>
+            </div>
+            <div class="btn col-sm-6">
+              <i style="display: none;" class="fa fa-spinner fa-spin fa-fw"></i>
+                <input type="submit" value="确认订单" class="btn btn-danger btn-lg"/>
+            </div>
+          </div>
+        </div>
+      </div>
       <% end %>
-  </div>
-  <% end %>
+</div>
+</div>
 
 
   <%= content_for :javascripts do %>
@@ -66,5 +106,3 @@
 
     </script>
   <% end %>
-
-</div>

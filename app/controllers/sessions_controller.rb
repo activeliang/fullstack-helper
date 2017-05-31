@@ -25,6 +25,7 @@ class SessionsController < ApplicationController
   end
 
   def valify_captcha!
+    binding.pry
     unless verify_rucaptcha?
       redirect_to new_session_path, alert: ('验证码不正确或者已过期')
       return

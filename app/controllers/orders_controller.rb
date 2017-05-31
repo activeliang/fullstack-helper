@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
 
 
   def build_order
-    @subproduct_id = params[:subproduct_id]
+    @subproduct = Subproduct.find(params[:subproduct_id])
     @amount = params[:amount]
   end
 
@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
     order = Order.new(order_params)
     address = current_user.addresses.find(params[:address_id])
     order.user = current_user
-    order.total = current_cart.total_price
+    order.total = current_cart.total_price + current_cart.carriage_price
     order.save!
 
       if order.save
@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
     quantity = params[:quantity].to_i
     order = Order.new
 
-     order.total = subproduct.price * quantity
+     order.total = subproduct.price * quantity + subproduct.carriage
      order.user = current_user
      order.save!
 

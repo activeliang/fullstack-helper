@@ -28,6 +28,16 @@ class Cart < ApplicationRecord
     sum
   end
 
+  def carriage_price
+    sum = []
+    cart_items.each do |cart_item|
+      if cart_item.is_selected?
+        sum << cart_item.subproduct.carriage
+      end
+    end
+    sum.max
+  end
+
   def clean!
     self.cart_items.destroy_all
   end
