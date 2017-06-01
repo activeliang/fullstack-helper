@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531031019) do
+ActiveRecord::Schema.define(version: 20170531230058) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 20170531031019) do
     t.string   "city"
     t.string   "district"
     t.index ["user_id", "address_type"], name: "index_addresses_on_user_id_and_address_type"
+  end
+
+  create_table "buyers", force: :cascade do |t|
+    t.integer  "lesson_id"
+    t.integer  "user_id"
+    t.decimal  "price",      precision: 10, scale: 2
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["user_id"], name: "index_buyers_on_user_id"
   end
 
   create_table "cart_items", force: :cascade do |t|
@@ -45,6 +54,14 @@ ActiveRecord::Schema.define(version: 20170531031019) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "chapters", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "lesson_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "weight"
   end
 
   create_table "evaluation_photos", force: :cascade do |t|
@@ -69,6 +86,20 @@ ActiveRecord::Schema.define(version: 20170531031019) do
     t.index ["user_id"], name: "index_evaluations_on_user_id"
   end
 
+  create_table "lessons", force: :cascade do |t|
+    t.string   "title"
+    t.string   "subtitle"
+    t.string   "main_image"
+    t.string   "minor_image"
+    t.text     "intro"
+    t.text     "description"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "category_id"
+    t.decimal  "price",       precision: 10, scale: 2
+    t.integer  "weight"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.decimal  "total",          precision: 10, scale: 3
     t.integer  "user_id"
@@ -80,7 +111,9 @@ ActiveRecord::Schema.define(version: 20170531031019) do
     t.string   "aasm_state",                              default: "order_placed"
     t.integer  "payment_id"
     t.decimal  "carriage",       precision: 10, scale: 3
+    t.boolean  "of_lesson",                               default: false
     t.index ["aasm_state"], name: "index_orders_on_aasm_state"
+    t.index ["of_lesson"], name: "index_orders_on_of_lesson"
     t.index ["payment_id"], name: "index_orders_on_payment_id"
   end
 
@@ -97,6 +130,15 @@ ActiveRecord::Schema.define(version: 20170531031019) do
     t.index ["payment_no"], name: "index_payments_on_payment_no", unique: true
     t.index ["transaction_no"], name: "index_payments_on_transaction_no"
     t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "chapter_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "weight"
   end
 
   create_table "product_lists", force: :cascade do |t|

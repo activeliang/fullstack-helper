@@ -1,0 +1,80 @@
+<h2>课程信息</h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>标题</th>
+      <th>副标题</th>
+      <th>简介</th>
+      <th>首图</th>
+      <th>副图</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= link_to @lesson.title, admin_lesson_path(@lesson) %></td>
+      <td><%= @lesson.intro %></td>
+      <td><%= @lesson.description %></td>
+      <td><%= image_tag @lesson.main_image.thumb, class: "img-responsive" %></td>
+      <td><%= image_tag @lesson.minor_image.thumb, class: "img-responsive" %></td>
+      <td>
+        <%= link_to "Delete", admin_lesson_path(@lesson), method: :delete, "data-confirm": "确定要删除吗？所有数据会不见哦！！请三思呐！", class: "btn btn-primary" %>
+        <%= link_to "Update", edit_admin_lesson_path(@lesson), class: "btn btn-primary" %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<h2>课程章节管理</h2>
+  <% @chapters.each do |chapter| %>
+  <div class="row well">
+    <div class="col-sm-4"><h4><%= chapter.title %></h4></div>
+    <div class="col-sm-4">
+      <%= form_tag admin_lesson_chapter_path(@lesson, chapter), method: :put do %>
+        <input type="text" value="<%= chapter.weight %>" name="weight" />
+        <%= submit_tag "更新", class: "btn btn-default btn-xs" %>
+      <% end %>
+    </div>
+    <div class="col-sm-4"><%= link_to "编辑名称", edit_admin_lesson_chapter_path(@lesson, chapter), class: "btn btn-primary btn-xs" %></div>
+  </div>
+
+<table class="table table-bordered">
+  <% chapter.posts.each do |post| %>
+    <tr>
+      <td><%= post.title %></td>
+      <td>
+        <%= form_tag update_weight_admin_lesson_post_path(@lesson, post), method: :post do %>
+          <input type="text" value="<%= post.weight %>" name="weight" />
+          <%= submit_tag "更新", class: "btn btn-default btn-xs" %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to "查看课程文件", admin_lesson_post_path(@lesson, post), class: "btn btn-xs btn-success" %>
+        <%= link_to "编辑", edit_admin_lesson_post_path(@lesson, post), class: "btn btn-xs btn-success" %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+  <% end %>
+  <hr>
+<h5>新增章节</h5>
+<%= simple_form_for [:admin,@lesson,@chapter] do |f| %>
+<%= f.input :title %>
+<%= f.input :weight %>
+<%= f.submit "submit" %>
+<% end %>
+<hr>
+<h5>新增文章</h5>
+<%= simple_form_for [:admin, @lesson, @post] do |f| %>
+<select name="post[chapter_id]">
+  <option>-选择章节-</option>
+  <% @chapters.each do |chapter| %>
+    <option value="<%= chapter.id %>"><%= chapter.title %></option>
+  <% end %>
+</select>
+<%= f.input :title %>
+<%= f.input :weight %>
+<%= f.input :description %>
+<%= f.submit "submit" %>
+<% end %>

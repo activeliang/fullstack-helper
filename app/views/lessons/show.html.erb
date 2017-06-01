@@ -1,0 +1,234 @@
+<div class="container lesson-show">
+  <div class="lesson-bc-1 clearfix">
+    <div class="col-sm-7">
+      <div class="lesson-minor-image">
+        <%= image_tag(@lesson.minor_image, class: "img-responsive") %>
+      </div>
+      <div class="lesson-intro">
+        <p><%= @lesson.intro %></p>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="row lesson-title">
+        <h5><%= @lesson.title %></h5>
+      </div>
+      <div class="row lesson-subtitle">
+        <p><%= @lesson.subtitle %></p>
+      </div>
+
+      <% if @lesson.buyers.include?(current_user) %>
+
+      <div class="buyer-alert">
+        <i class="fa fa-check-circle" aria-hidden="true"></i>已成功付款
+        <%= link_to "开始学习", '#', class: "btn btn-success" %>
+      </div>
+
+      <% else %>
+
+      <div class="row lesson-price">
+        <h6 class="price"><%= @lesson.price %></h6>
+      </div>
+      <div class="payment-alert">
+        <p>立即付款开始学习，支付成功后，可在个人订单中心查看此订单。</p>
+      </div>
+      <div class="to-learn-btn">
+        <%= link_to "开始学习", '#', class: "btn btn-success" %>
+      </div>
+      <div class="payment-index">
+      <div class="payment-btn">
+        <%= link_to lesson_order_create_orders_path, class: "payment-btn btn btn-primary", id: "payha" do %>
+        <div class="alipay-img"><img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-30-520.png" alt=""></div>
+        <div class="payment-btn-font">
+
+          <p class="btn-font"><i style="display: none;" class="fa fa-spinner payment-btn-1 fa-spin fa-fw"></i>使用支付宝付款</p>
+        </div>
+        <% end %>
+        </div>
+        </div>
+        <% end %>
+    </div>
+  </div>
+
+  <div class="lesson-bc-2 row">
+    <div class="intro-markdown">
+      <%= raw @lesson.description %>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="payment-index">
+  <div class="pay-counter-bc">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="pay-counter-nav">
+          商店大赛加油站<span></span>收银台<i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="pay-counter container">
+
+      <div class="payment-counter-bc-1">
+        <p>正在使用即时到账交易[<a type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="付款后资金直接进入对方账户
+  若发生退款需联系收款方协商，如付款给陌生人，请谨慎操作。">?</a>]</p>
+        <div class="row">
+          <div class="col-sm-6">
+            <h5 class="payment-payment_no"></h5>
+          </div>
+          <div class="col-sm-6">
+            <h5>收款方：商店大赛加油站...</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="payment-counter-bc-2">
+        <div class="bc-2">
+          <div class="bc-2-1">
+            <p>扫一扫付款（元）</p>
+            <h5 class="pay-total"></h5>
+          </div>
+          <div class="payment-counter-bc-3">
+            <div class="image-1 image-alert">
+              <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-29-083857.jpg" alt="扫一扫">
+            </div>
+            <div class="image-2 image-alert">
+              <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-29-083957.jpg" alt="扫一扫">
+            </div>
+          </div>
+          <div class="bc-2-2">
+            <div id="pay_qrcode"></div>
+            <div id="pay_qrcode_helper" style="display: none;">
+              <div class="success-img text-center">
+                <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-30-Snip20170530_1.png" alt="join-cart-success">
+              </div>
+              <p><i class="fa fa-spinner fa-spin fa-fw"></i>正在跳转页面</p>
+            </div>
+            <div class="alipay-logo text-center">
+              <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-30-53.png" alt="alipay">
+            </div>
+            <div class="bc-2-3">
+              <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-29-T1bdtfXfdiXXXXXXXX.png" alt="扫一扫">
+              <div>
+                <p>打开手机支付宝</p>
+                <p>扫一扫继续付款</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="alipay-app">
+          <p><a href="https://mobile.alipay.com/index.htm" target="view_window">首次使用请下载手机支付宝</a></p>
+        </div>
+        <div class="pay-alert">
+          <p class="pay-alert-1">提示：付款后，通常在10秒内会跳转页面，请耐心等候...</p>
+        </div>
+        <input type="hidden" id="order_id_helper" value="">
+      </div>
+
+
+
+  </div>
+
+    </div>
+    <div id="pay_qrcode2"></div>
+
+  </div>
+</div>
+
+
+
+<!-- overlay -->
+<div id="overlay">
+  <div id="text">
+  <i  class="fa fa-spinner fa-spin fa-fw"></i>正在加载中…
+  </div>
+</div>
+
+<script>
+
+$(".payment-btn").click(function(){
+  $(".payment-btn-1").css("display", "block");
+  setTimeout(function (){
+
+    $("#overlay").css("display", "block"),
+    $(".payment-btn-1").css("display", "none")
+  }, 800);
+})
+
+
+function clock()
+  {
+    var order_id = $("#order_id_helper").val();
+    $.ajax({
+      url: "/payments/test",
+      method: "POST",
+      data: { order: order_id },
+      dataType: "json",
+      success: function(data){
+      status = data["liang"];
+      if ( status == 1 || status == 2 )
+        {
+          $("#pay_qrcode").css("display", "none");
+          $(".alipay-logo").css("display", "none");
+          $("#pay_qrcode_helper").fadeIn();
+          window.location.href='/payments/success';
+        }
+      }
+    })
+  }
+
+  // 以下是发起支付
+
+$(".payment-btn").click(function(evt){
+  event.preventDefault();
+
+  var url = $(this).attr("href");
+  var lesson_id = '<%= @lesson.id %>'
+  var that = this;
+
+    $.ajax({
+      url: url,
+      method: "POST",
+      data: { lesson_id: lesson_id },
+      dataType: "json",
+      success: function(data){
+      if (data["status"] = "ok"){
+        $("#pay_qrcode").html(data["qrcode"]);
+        $(".payment-payment_no").html(data["payment_no"]);
+        $(".pay-total").html(data["price"]);
+        $(".pay-counter-bc").css("height", "854px");
+        $("#order_id_helper").val(data["order_id"]);
+        setTimeout(function (){
+
+
+          $(".image-2").fadeIn();
+        }, 3000);
+        setTimeout(function (){
+          $(".image-2").fadeOut();
+
+
+          $(".image-1").fadeIn();
+
+        }, 5000);
+      }else{
+        alert(data["status"]);
+      }
+      }
+    });
+      var int=self.setInterval("clock()",1000);
+  })
+
+// 以下是关闭收银台
+$(".fa-times").click(function(){
+  alert("您确定要关闭吗？\n\关闭后，点击支付按钮，可再次发起支付哦~~~XD");
+  $(".pay-counter-bc").css("height", "0");
+  $("#overlay").css("display", "none");
+})
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+
+
+</script>

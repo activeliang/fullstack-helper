@@ -1,0 +1,7 @@
+<h1>Edit</h1>
+<%= simple_form_for [:admin,@lesson, @post] do |f| %>
+<%= f.input :title %>
+<%= f.input :weight %>
+<%= f.input :description %>
+<%= f.submit "submit" %>
+<% end %>

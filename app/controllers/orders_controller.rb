@@ -76,6 +76,39 @@ class OrdersController < ApplicationController
     redirect_to generate_pay_payments_path(:id => order.token)
   end
 
+  def lesson_order_create
+    lesson = Lesson.find(params[:lesson_id])
+
+    if lesson.present?
+
+      order = Order.new
+
+        order.total = lesson.price
+        order.user = current_user
+        order.of_lesson = true
+        order.save
+
+      product_list = ProductList.new
+
+        product_list.order = order
+        product_list.product_name = lesson.title
+        product_list.product_price = lesson.price
+        product_list.lists_image = lesson.main_image
+        product_list.save
+
+      buyer = Buyer.new
+
+        buyer.user_id = current_user.id
+        buyer.price = lesson.price
+        buyer.save
+
+    redirect_to lesson_generat_pay_payments_path(:id => order.token)
+    end
+
+
+
+  end
+
   def show
    @order = Order.find_by_token(params[:id])
    @product_lists = @order.product_lists

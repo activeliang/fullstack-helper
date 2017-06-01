@@ -34,6 +34,17 @@ Rails.application.routes.draw do
         post :return
       end
     end
+
+    resources :lessons do
+      resources :buyers
+      resources :chapters
+      resources :posts do
+        member do
+          post :update_weight
+        end
+      end
+
+    end
   end
 
 
@@ -70,6 +81,7 @@ Rails.application.routes.draw do
     collection do
       post :build_order
       post :order_create
+      post :lesson_order_create
     end
     member do
     post :pay_with_wechat
@@ -101,6 +113,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :generate_pay
+      get :lesson_generat_pay
       post :pay_return
       post :pay_notify
       get :pay_notify
@@ -108,6 +121,13 @@ Rails.application.routes.draw do
       post :test
       get :success
       get :failed
+    end
+  end
+
+  resources :lessons do
+    resources :buyers
+    resources :chapters do
+      resources :posts
     end
   end
 
