@@ -1,27 +1,107 @@
-<h1><%= @subproduct_id %></h1>
-<h2><%= @amount %></h2>
+<div class="checkout-html">
+<div class="container">
+
+  <%= form_tag order_create_orders_path, method: :post, class: "create-order-form" do %>
 
 
-<div class="page-header">
-  <h4>
-    <i class="fa fa-map-marker"></i>
-    收货地址</h4>
+
+
+  <div class="page-header">
+    <h4>选择收货地址</h4>
+  </div>
+  <div id="address_list"></div>
+
+  <div class="require-order">
+    <h4>确认订单信息</h4>
+    <hr>
+
+    <div class="order-require-nav">
+      <div class="row">
+        <div class="col-sm-5 col-sm-offset-1">
+          商品信息
+        </div>
+        <div class="col-sm-2 text-center">单价</div>
+        <div class="col-sm-2 text-center">数量</div>
+        <div class="col-sm-2 text-center">小计</div>
+      </div>
+    </div>
+
+
+      <div class="order-require-item">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="col-sm-2">
+              <%= image_tag @subproduct.subproduct_image, class: "img-responsive" %>
+            </div>
+              <div class="col-sm-5">
+                <%= @subproduct.product.title %>
+              </div>
+              <div class="col-sm-5">
+                <p>已选分类：<%= @subproduct.subtitle %></p>
+              </div>
+            </div>
+            <div class="col-sm-6 text-center">
+              <div class="col-sm-4">
+                <%= @subproduct.price %>
+              </div>
+              <div class="col-sm-4">
+                <%= @amount %>
+              </div>
+              <div class="col-sm-4 subtotal">
+                <%= @subproduct.price * @amount.to_i %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carriage">
+          <div class="row">
+            <p>运送方式：<span class="bc-1">普通快递</span>快递费：<span class="carriage-price"><%= @subproduct.carriage.to_i %></span></p>
+          </div>
+        </div>
+
+        <div class="total-money">
+          <div class="row">
+            <h5>合计（含运费）<span class="total">￥<%= @subproduct.price * @amount.to_i + @subproduct.carriage.to_i %></span></h5>
+          </div>
+        </div>
+
+        <div class="row order-require ">
+          <div class="col-sm-4 col-sm-offset-8">
+            <div class="detail">
+              <p class="total-price">实付款：<span class="total-price-2"><span>￥</span><%= @subproduct.price * @amount.to_i + @subproduct.carriage %></p>
+              <p class="address-1">寄送至：</p><span class="require-address"></span>
+              <p class="contact-1">收件人：<span class="require-contact"></span><span class="require-cellphone"></span></p>
+            </div>
+            <div class="btn col-sm-6">
+              <%= link_to product_path(@subproduct.product), class: "btn btn-default" do  %>
+              <i class="fa fa-reply" aria-hidden="true"></i>返回购物
+              <% end %>
+            </div>
+            <input type="hidden" name="quantity" value="<%= @amount %>">
+            <input type="hidden" name="subproduct_id" value="<%= @subproduct.id %>">
+            <div class="btn col-sm-6">
+              <i style="display: none;" class="fa fa-spinner fa-spin fa-fw"></i>
+                <input type="submit" value="确认订单" class="btn btn-danger btn-lg"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
 </div>
-<div id="address_list"></div>
+</div>
 
 
+  <%= content_for :javascripts do %>
+    <script>
+      $.get('/addresses', function(data) {
+        $('#address_list').html(data);
+      })
 
-<%= form_tag order_create_orders_path, method: :post, class: "create-order-form" do %>
-<input type="hidden" name="address_id" value="3"/>
-<input type="radio" name="payment_method" value="alipay" checked/>支付宝支付 <br>
-<input type="hidden" name="quantity" value="<%= @amount %>">
-<input type="hidden" name="subproduct_id" value="<%= @subproduct_id %>">
-<input type="submit" value="确认订单" class="btn btn-danger btn-lg"/>
-<% end %>
+      $(".create-order-btn").click(function(){
+        $(".fa-spinner").css("display", "block");
+      })
 
 
-<script>
-  $.get('/addresses', function (data) {
-    $('#address_list').html(data);
-  })
-</script>
+    </script>
+  <% end %>

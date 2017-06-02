@@ -1,0 +1,70 @@
+<div class="container-fluid syllabus-page post-show">
+  <div class="row lesson-navbar">
+    <div class="container navbar-content">
+      <div class="lesson-title">
+        <%= @lesson.title %>
+      </div>
+      <div class="lesson-syllabus">
+        <%= link_to syllabus_lesson_path(@lesson) do %>
+        <i class="fa fa-list-ul" aria-hidden="true"></i>
+        目录
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="container lesson-content">
+    <div class="post-title">
+      <%= @post.title %> <span class="pull-right">所属章节：<%= @chapter.title %></span>
+    </div>
+    <div class="post-content">
+      <div class="intro-markdown">
+        <%= raw @lesson.description %>
+      </div>
+    </div>
+    <div class="post-page-footer text-center">
+      <div class="btn-left">
+        <% if @left.present? %>
+        <%= link_to  post_path(@left), class: "btn btn-left-url btn-default" do %>
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        上一页
+        <% end %>
+        <% end %>
+      </div>
+      <div class="btn-alert">
+        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+        可以使用
+        <i class="fa fa-long-arrow-left" aria-hidden="true"></i><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+        键进行翻页
+      </div>
+      <div class="btn-right">
+        <% if @right.present? %>
+        <%= link_to post_path(@right), class: "btn btn-right-url btn-success" do %>
+        下一页
+        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.onkeydown=function(event){
+             var e = event || window.event || arguments.callee.caller.arguments[0];
+             var left = $(".btn-left-url").attr("href");
+             var right = $(".btn-right-url").attr("href");
+             if(e && e.keyCode==37){
+                <% if @left.present? %>
+                window.location.href= left;
+                <% end %>
+               }
+             if(e && e.keyCode==39){
+               <% if @right.present? %>
+               window.location.href= right;
+               <% end %>
+
+               }
+         };
+
+</script>

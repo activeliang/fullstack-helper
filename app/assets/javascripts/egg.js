@@ -20,7 +20,7 @@
       if ($('#address_form_modal').length > 0) {
         $('#address_form_modal').remove();
       }
-      alert(0);
+
       $('body').append(data);
       $('#address_form_modal').modal();
     })

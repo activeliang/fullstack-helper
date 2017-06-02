@@ -1,10 +1,16 @@
 class UsersController < ApplicationController
 skip_before_action :require_login, only: [:new, :create]
+helper_method :is_buyer?
 # 用户在注册时不需要验证是否已经登录
 
 
   def new
     @user = User.new
+  end
+
+  def is_buyer?(lesson)
+    buyer_id = lesson.buyers.map{|x| x.user_id}
+    buyer_id.include?(current_user)
   end
 
   def create

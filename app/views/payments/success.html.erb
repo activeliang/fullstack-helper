@@ -1,11 +1,21 @@
-<h1>支付结果</h1>
-<div class="row">
-  <div class="container">
-    <div class="alert alert-success">
-      <h2>
-        <i class="fa fa-check-circle"></i>
-        支付成功</h2>
+<div class="container text-center success-page">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="bc-2">
+        <div class="success-img text-center">
+          <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-30-Snip20170530_1.png" alt="join-cart-success">
+        </div>
+        <h5>支付成功！</h5>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <%= link_to "继续购物", root_path, class: "btn btn-default" %>
+        </div>
+        <div class="col-sm-6">
+          <%= link_to "为网站投票", "https://fullstack.xinshengdaxue.com/competitions/4", class: "btn btn-primary" %>
+        </div>
+      </div>
     </div>
-    <a href="<%= root_path %>">继续购物</a>
   </div>
 </div>

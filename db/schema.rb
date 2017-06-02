@@ -10,24 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170602033504) do
+
+
+ActiveRecord::Schema.define(version: 20170602001136) do
+
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
+    t.string   "address_type"
     t.string   "contact_name"
     t.string   "cellphone"
     t.string   "address"
+    t.string   "zipcode"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["user_id"], name: "index_addresses_on_user_id"
+    t.string   "province"
+    t.string   "city"
+    t.string   "district"
+    t.index ["user_id", "address_type"], name: "index_addresses_on_user_id_and_address_type"
+  end
+
+  create_table "buyers", force: :cascade do |t|
+    t.integer  "lesson_id"
+    t.integer  "user_id"
+    t.decimal  "price",      precision: 10, scale: 2
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["user_id"], name: "index_buyers_on_user_id"
   end
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id"
     t.integer  "subproduct_id"
     t.integer  "quantity",      default: 1
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "is_selected",   default: true
   end
 
   create_table "carts", force: :cascade do |t|
@@ -39,6 +57,14 @@ ActiveRecord::Schema.define(version: 20170602033504) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "chapters", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "lesson_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "weight"
   end
 
   create_table "evaluation_photos", force: :cascade do |t|
@@ -63,8 +89,23 @@ ActiveRecord::Schema.define(version: 20170602033504) do
     t.index ["user_id"], name: "index_evaluations_on_user_id"
   end
 
+  create_table "lessons", force: :cascade do |t|
+    t.string   "title"
+    t.string   "subtitle"
+    t.string   "main_image"
+    t.string   "minor_image"
+    t.text     "intro"
+    t.text     "description"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "category_id"
+    t.decimal  "price",       precision: 10, scale: 2
+    t.integer  "weight"
+    t.string   "effect"
+  end
+
   create_table "orders", force: :cascade do |t|
-    t.decimal  "total",          precision: 10, scale: 2
+    t.decimal  "total",          precision: 10, scale: 3
     t.integer  "user_id"
     t.datetime "created_at",                                                       null: false
     t.datetime "updated_at",                                                       null: false
@@ -73,7 +114,12 @@ ActiveRecord::Schema.define(version: 20170602033504) do
     t.string   "payment_method"
     t.string   "aasm_state",                              default: "order_placed"
     t.integer  "payment_id"
+    t.decimal  "carriage",       precision: 10, scale: 3
+    t.boolean  "of_lesson",                               default: false
+    t.integer  "lesson_id"
+    t.integer  "product_id"
     t.index ["aasm_state"], name: "index_orders_on_aasm_state"
+    t.index ["of_lesson"], name: "index_orders_on_of_lesson"
     t.index ["payment_id"], name: "index_orders_on_payment_id"
   end
 
@@ -82,7 +128,7 @@ ActiveRecord::Schema.define(version: 20170602033504) do
     t.string   "payment_no"
     t.string   "transaction_no"
     t.string   "status",                                  default: "initial"
-    t.decimal  "total_money",    precision: 10, scale: 2
+    t.decimal  "total_money",    precision: 10, scale: 3
     t.datetime "payment_at"
     t.text     "raw_response"
     t.datetime "created_at",                                                  null: false
@@ -92,10 +138,20 @@ ActiveRecord::Schema.define(version: 20170602033504) do
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "chapter_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "weight"
+    t.integer  "lesson_id"
+  end
+
   create_table "product_lists", force: :cascade do |t|
     t.integer  "order_id"
     t.string   "product_name"
-    t.decimal  "product_price", precision: 10, scale: 2
+    t.decimal  "product_price", precision: 10, scale: 3
     t.integer  "quantity"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
@@ -103,6 +159,8 @@ ActiveRecord::Schema.define(version: 20170602033504) do
     t.string   "cellphone"
     t.string   "contact_name"
     t.string   "subproduct"
+    t.string   "lists_image"
+    t.integer  "product_id"
   end
 
   create_table "product_params", force: :cascade do |t|
@@ -127,7 +185,7 @@ ActiveRecord::Schema.define(version: 20170602033504) do
     t.string   "title"
     t.text     "description"
     t.integer  "quantity"
-    t.decimal  "price",            precision: 10, scale: 2
+    t.decimal  "price",            precision: 10, scale: 3
     t.integer  "evaluation_count",                          default: 0
     t.integer  "sales_count",                               default: 0
     t.integer  "category_id"
@@ -149,8 +207,8 @@ ActiveRecord::Schema.define(version: 20170602033504) do
   create_table "subproducts", force: :cascade do |t|
     t.integer  "product_id"
     t.string   "subtitle"
-    t.decimal  "msrp",             precision: 10, scale: 2
-    t.decimal  "price",            precision: 10, scale: 2
+    t.decimal  "msrp",             precision: 10, scale: 3
+    t.decimal  "price",            precision: 10, scale: 3
     t.string   "activity"
     t.integer  "carriage",                                  default: 0
     t.string   "place"
@@ -179,7 +237,11 @@ ActiveRecord::Schema.define(version: 20170602033504) do
     t.datetime "activation_token_expires_at"
     t.string   "cellphone"
     t.boolean  "is_admin",                        default: false
+
     t.string   "username"
+
+    t.integer  "default_address_id"
+
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["cellphone"], name: "index_users_on_cellphone"
     t.index ["email"], name: "index_users_on_email"

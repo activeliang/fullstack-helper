@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="subnavbar">
     <div class="container">
-      <%= link_to "首页", root_path %> > <%= link_to @product.category.title, category_path(@product.category) %> > <%= @product.title %>
+      <%= link_to "首页", root_path %> > <%= @product.category.title %> > <%= @product.title %>
     </div>
   </div>
 </div>
@@ -28,9 +28,15 @@
             <p>累计评价</p>
             <p class="p2"><%= @product.evaluation_count %></p>
           </div>
-          <p>价格 <span id="msrp">￥ <%= @product.min_subproduct.msrp %> - <%= @product.max_subproduct.msrp %></span></p>
-          <p>促销价 <span id="price"><span class="price-icon">￥</span><%= @product.min_subproduct.price %> - <%= @product.max_subproduct.price %></span>
-          <s></s><span class="label label-danger"><%= @product.max_subproduct.activity %></span></p>
+          <% if @product.subproducts.count != 1 %>
+            <p>价格 <span id="msrp">￥ <%= @product.min_subproduct.msrp %> - <%= @product.max_subproduct.msrp %></span></p>
+            <p>促销价 <span id="price"><span class="price-icon">￥</span><%= @product.min_subproduct.price %> - <%= @product.max_subproduct.price %></span>
+            <s></s><span class="label label-danger"><%= @product.max_subproduct.activity %></span></p>
+          <% else %>
+            <p>价格 <span id="msrp">￥ <%= @product.max_subproduct.msrp %></span></p>
+            <p>促销价 <span id="price"><span class="price-icon">￥</span><%= @product.max_subproduct.price %></span>
+            <s></s><span class="label label-danger"><%= @product.max_subproduct.activity %></span></p>
+          <% end %>
         </div>
       </div>
       <div class="carriage">
@@ -185,7 +191,10 @@
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-body">
-        <h4 class="text text-success"><i class='fa fa-check-circle-o'></i> 加入购物车成功</h4>
+        <div class="success-img text-center">
+          <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-30-Snip20170530_1.png" alt="join-cart-success">
+        </div>
+        <h5 class="text-center">加入购物车成功</h5>
 
         <div class="media">
           <div class="media-left">
@@ -195,14 +204,26 @@
           </div>
           <div class="media-body">
             <h4 class="media-heading"><%= @product.title %></h4>
-            分类： <p id="modal-subproduct"></p>
-            数量: <p id="modal-amount"></p>
+            <div class="row">
+              <div class="col-sm-6">
+                <p>分类：<span id="modal-subproduct"></span></p>
+              </div>
+              <div class="col-sm-6">
+                <p>数量：<span id="modal-amount"></span></p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">继续购物</button>
-        <%= link_to "查看购物车", carts_path, class: "btn btn-danger" %>
+        <div class="row">
+          <div class="col-sm-6">
+            <button type="button" class="btn btn-default" data-dismiss="modal">继续购物</button>
+          </div>
+          <div class="col-sm-6">
+            <%= link_to "查看购物车", carts_path, class: "btn btn-danger" %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -293,9 +314,11 @@ $("#select_item-<%= subproduct.id %>").click(function(){
             $("#modal-subproduct").html(data["title"]);
             $("#modal-amount").html(amount);
             $("#shopping_cart_modal").modal();
+            $("#cart-count").html(data["cart_count"]);
            },
            complete: function(){
              $(".to-cart-icon").css("display", "none");
+
            }
          });
      }else{

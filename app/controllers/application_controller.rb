@@ -3,19 +3,36 @@ class ApplicationController < ActionController::Base
   before_action :require_login
 
   helper_method :current_cart
+  helper_method :is_buyer?
+
+
+
+
+
+  def is_buyer?(lesson)
+    b = lesson.buyers.map{|x| x.user_id}
+    b.include?(current_user.id)
+  end
 
   def current_cart
     @current_cart ||= find_cart
   end
 
+  def auth_user
+    unless logged_in?
+      flash[:notice] = "请登录"
+      redirect_to new_session_path
+    end
+  end
+
   private
 
   def find_cart
-    cart = Cart.find_by(id: session[:cart_id])
+    cart = Cart.find_by(id: session[:fullstack_cart_id])
     if cart.blank?
       cart = Cart.create
     end
-    session[:cart_id] = cart.id
+    session[:fullstack_cart_id] = cart.id
     return cart
   end
 
