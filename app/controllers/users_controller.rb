@@ -32,9 +32,9 @@ helper_method :is_buyer?
     # redirect_to test_path(:id => @cellphone, :id2 => @id2, :id3 => @test3)
   end
 
-    def username
-      @username = User.find_by_cellphone(params[:username])
-    end
+    # def username
+    #   @username = User.find_by_cellphone(params[:username])
+    # end
 
     # def check_cellphone_unrepeated
     #   phonenumber = User.find_by_cellphone(params[:cellphone])
