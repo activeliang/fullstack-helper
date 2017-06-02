@@ -168,7 +168,6 @@ $(".payment-btn").click(function(evt){
       dataType: "json",
       success: function(data){
       if (data["status"] = "ok"){
-        $("#pay_qrcode2").html(data["test7"]);
         $("#pay_qrcode").html(data["qrcode"]);
 
         $(".pay-counter-bc").css("height", "854px");
