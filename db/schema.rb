@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170527044523) do
+ActiveRecord::Schema.define(version: 20170602033504) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 20170527044523) do
     t.decimal  "price",            precision: 10, scale: 2
     t.string   "activity"
     t.integer  "carriage",                                  default: 0
-    t.string   "place"  
+    t.string   "place"
     t.integer  "quantity"
     t.string   "subproduct_image"
     t.datetime "created_at",                                            null: false
@@ -179,6 +179,7 @@ ActiveRecord::Schema.define(version: 20170527044523) do
     t.datetime "activation_token_expires_at"
     t.string   "cellphone"
     t.boolean  "is_admin",                        default: false
+    t.string   "username"
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["cellphone"], name: "index_users_on_cellphone"
     t.index ["email"], name: "index_users_on_email"

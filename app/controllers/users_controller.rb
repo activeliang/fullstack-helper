@@ -7,6 +7,8 @@ skip_before_action :require_login, only: [:new, :create]
 
   def create
     @user =User.new(user_params)
+    @user.username = params[:user][:username]
+  
       if @user.save
         flash[:notice] = '注册成功～'
         redirect_to new_session_path
@@ -22,15 +24,9 @@ skip_before_action :require_login, only: [:new, :create]
     # redirect_to test_path(:id => @cellphone, :id2 => @id2, :id3 => @test3)
   end
 
-    # def generate_rucaptcha
-    #   res = RuCaptcha.generate()
-    #   session_val = {
-    #     code: res[0],
-    #     time: Time.now.to_i
-    #   }
-    #   RuCaptcha.cache.write(rucaptcha_sesion_key_key, session_val, expires_in: RuCaptcha.config.expires_in)
-    #   res[1]
-    # end
+    def username
+      @username = User.find_by_cellphone(params[:username])
+    end
 
     # def check_cellphone_unrepeated
     #   phonenumber = User.find_by_cellphone(params[:cellphone])
@@ -46,6 +42,6 @@ skip_before_action :require_login, only: [:new, :create]
     private
 
     def user_params
-      params.require(:user).permit(:password, :password_confirmation, :cellphone, :token)
+      params.require(:user).permit(:password, :password_confirmation, :cellphone, :token, :username)
     end
 end

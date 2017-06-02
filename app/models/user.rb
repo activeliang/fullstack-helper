@@ -2,7 +2,7 @@ class User < ApplicationRecord
 
   authenticates_with_sorcery!
 
-  attr_accessor :password, :password_confirmation, :token
+    attr_accessor :password, :password_confirmation, :token
 
   CELLPHONE_RE = /\A(\+86|86)?1\d{10}\z/
   EMAIL_RE = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
@@ -19,6 +19,7 @@ class User < ApplicationRecord
 
   validate :validate_email_or_cellphone, on: :create
   # validate :validate_cellphone_unrepeated, on: :create
+  validates_presence_of :username, message: "用户名不能为空"
 
   def admin?
     is_admin

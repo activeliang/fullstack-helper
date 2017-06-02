@@ -10,6 +10,14 @@
 <% end -%>
 
 <%= form_for :user, url: users_path, method: :post, html: { class: 'form-horizontal', id: "user_form"} do |f| %>
+    <!--输入用户名  -->
+    <div class="form-group">
+      <label class="col-sm-2 control-label">用户名 *</label>
+      <div class="col-sm-4">
+      <%= f.text_field :username, class: "form-control" %>
+      </div>
+    </div>
+
     <!-- 输入手机号 -->
     <div class="form-group">
       <label class="col-sm-2 control-label">手机号 *</label>
@@ -37,6 +45,7 @@
         <input type="button" value="获取验证码" class="btn btn-warning fetch-token-btn" data-url="<%= cellphone_tokens_path %>" />
       </div>
     </div>
+  
     <!-- 输入密码 -->
     <div class="form-group">
       <label class="col-sm-2 control-label">密码 *</label>
