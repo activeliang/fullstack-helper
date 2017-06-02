@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jdstore</title>
+        <%= csrf_meta_tags %>
+        <%= stylesheet_link_tag    'application', media: 'all' %>
+        <%= javascript_include_tag 'application' %>
+
+        <link rel="stylesheet" href="style.scss" />
+        <script type='text/javascript' src='js/jquery-1.11.1.min.js'></script>
+        <script type='text/javascript' src='js/jquery.particleground.min.js'></script>
+        <script type='text/javascript' src='js/demo.js'></script>
+
+    </head>
+
+    <body>
+      <div class="container-fluid body-content" id="particles">
+        <div class="content-inside">
+          <canvas class="pg-canvas" width="1280" height="588">
+          <div class="row product">
+            <%= render "common/navbar" %>
+          </div>
+          <%= render "common/flashes" %>
+          <%= yield %>
+        </div>
+      </div>
+      <%= render "common/footer" %>
+      </canvas>
+      <%= yield :javascripts %>
+    </body>
+</html>

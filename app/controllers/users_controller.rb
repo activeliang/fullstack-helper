@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 skip_before_action :require_login, only: [:new, :create]
 # 用户在注册时不需要验证是否已经登录
+
+
   def new
     @user = User.new
   end
@@ -8,7 +10,7 @@ skip_before_action :require_login, only: [:new, :create]
   def create
     @user =User.new(user_params)
     @user.username = params[:user][:username]
-  
+
       if @user.save
         flash[:notice] = '注册成功～'
         redirect_to new_session_path
