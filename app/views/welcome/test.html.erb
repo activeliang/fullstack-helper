@@ -1,10 +1,43 @@
+<h1>我的收货地址</h1>
+<div class="row">
+  <div class="container">
+    <div id="address_list">
+
+    </div>
+  </div>
+</div>
+
+<%= content_for :javascripts do %>
+  <script>
+    $.get('/addresses', function(data) {
+      $('#address_list').html(data);
+    })
+  </script>
+<% end %>
 
 
-<center>
-不可编辑:<input id="1" class="alignment" value="15.1"/><br><br>
-可编辑：<input id="2" class="alignment" data_edit="true" value="15.1"/><br><br>
-自定义类型：<input id="3" user_data="aaa" value="5"/><br><br>
-默认类型设置最大值：<input id="4" data_max="11" value="10"/><br><br>
-自定义数据：<input id="5" data_step="5" data_min="5" data_max="50" data_digit="0" value="10"/><br><br>
-设置长度:<input id="6" style="width:100px;" class="alignment" value="15.1"/>
-</center>
+<h2>选择</h2>
+<div class="city-group">
+  <select class="city-select">
+    <option>--省份--</option>
+    <%= options_for_select(ChinaCity.list) %>
+  </select>
+  <select class="city-select">
+    <option>--城市--</option>
+  </select>
+  <select class="city-select">
+    <option>--地区--</option>
+  </select>
+  <select class="city-select">
+    <option>--街道--</option>
+  </select>
+</div>
+
+<h2>回显</h2>
+<div class="city-group">
+  <%= select_tag "province", options_for_select(ChinaCity.list          , '440000')   , class: 'city-select', prompt: "--省份--" %>
+  <%= select_tag "city"    , options_for_select(ChinaCity.list('440000'), '440300')   , class: 'city-select', prompt: "--城市--" %>
+  <%= select_tag "district", options_for_select(ChinaCity.list('440300'), '440305')   , class: 'city-select', prompt: "--地区--" %>
+  <% binding.pry %>
+  <%= select_tag "street"  , options_for_select(ChinaCity.list('440305'), ''), class: 'city-select', prompt: "--街道--" %>
+</div>

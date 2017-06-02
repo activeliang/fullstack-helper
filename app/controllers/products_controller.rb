@@ -17,10 +17,10 @@ class ProductsController < ApplicationController
     if !current_cart.subproducts.include?(@subproduct)
     current_cart.add_product_to_cart(@subproduct, params[:amount])
 
-    render :json => { :title => @subproduct.subtitle, :message => "ok" }
+    render :json => { :title => @subproduct.subtitle, :message => "ok", :cart_count => current_cart.reload.cart_items.count }
   else
     current_cart.update_quantity(@subproduct, params[:amount])
-    render :json => { :title => @subproduct.subtitle, :message => "ok", :test => params[:amount] }
+    render :json => { :title => @subproduct.subtitle, :message => "ok", :cart_count => current_cart.reload.cart_items.count, :test => params[:amount] }
   end
   end
 

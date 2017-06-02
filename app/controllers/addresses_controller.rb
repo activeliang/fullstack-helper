@@ -1,7 +1,7 @@
 class AddressesController < ApplicationController
 
   layout false
-
+  before_action :auth_user
   before_action :find_address, only: [:edit, :update, :destroy, :set_default_address]
 
   def index
@@ -12,8 +12,10 @@ class AddressesController < ApplicationController
     @address = current_user.addresses.new
   end
 
+
   def create
     @address = current_user.addresses.new(address_params)
+    @address.address_type = "user"
     if @address.save
       @addresses = current_user.reload.addresses
       render json: {
@@ -21,6 +23,7 @@ class AddressesController < ApplicationController
         data: render_to_string(file: 'addresses/index')
       }
     else
+      binding.pry
       render json: {
         status: 'error',
         data: render_to_string(file: 'addresses/new')
@@ -59,6 +62,7 @@ class AddressesController < ApplicationController
   end
 
   def set_default_address
+
     @address.set_as_default = 1
     @address.save
 
@@ -71,8 +75,7 @@ class AddressesController < ApplicationController
 
   private
   def address_params
-    params.require(:address).permit(:contact_name, :cellphone, :address,
-      :zipcode, :set_as_default)
+    params.require(:address).permit(:contact_name, :cellphone, :address,:zipcode, :set_as_default, :province, :city, :district)
   end
 
   def find_address

@@ -19,14 +19,27 @@ class Cart < ApplicationRecord
   def total_price
     sum = 0
     cart_items.each do |cart_item|
-      if cart_item.subproduct.price.present?
-        sum += cart_item.subproduct.price * cart_item.quantity
+      if cart_item.is_selected?
+        if cart_item.subproduct.price.present?
+          sum += cart_item.subproduct.price * cart_item.quantity
+        end
       end
     end
     sum
   end
 
+  def carriage_price
+    sum = []
+    cart_items.each do |cart_item|
+      if cart_item.is_selected?
+        sum << cart_item.subproduct.carriage
+      end
+    end
+    sum.max
+  end
+
   def clean!
-    self.cart_items.destroy_all
+
+    self.cart_items.where(:is_selected => true).destroy_all
   end
 end

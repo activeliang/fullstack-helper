@@ -1,18 +1,77 @@
-<h2>个人订单列表</h2>
+<div class="container account-order-index">
+  <div class="title">
+    <h5>我的订单</h5>
+  </div>
+  <div class="order-nav text-center">
+    <div class="row">
+      <div class="col-sm-6">
+        <p>商品</p>
+      </div>
+      <div class="col-sm-6">
+        <div class="col-sm-3">单价</div>
+        <div class="col-sm-3">数量</div>
+        <div class="col-sm-3">实付款</div>
+        <div class="col-sm-3">操作</div>
+      </div>
+    </div>
+  </div>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>生成时间</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @orders.each do |order| %>
-        <tr>
-            <td><%= link_to(order.id, order_path(order.token))%></td>
-            <td><%= order.created_at.to_s(:long)%></td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
+
+      <% @orders.each do |order| %>
+        <div class="item-nav">
+          <p><span class="titme"><%= order.created_at.strftime("%Y-%m-%d") %></span> 订单号：<%= order.token %></p>
+        </div>
+        <div class="row">
+          <div class="col-sm-8">
+            <% order.product_lists.each do |product_list| %>
+            <div class="product-lists-item">
+              <div class="row">
+                <div class="col-sm-8">
+                  <div class="col-sm-3">
+                    <%= image_tag product_list.lists_image.thumb, class: "img-responsive" %>
+                  </div>
+                  <div class="col-sm-9">
+                    <p class="product-title">
+                      <%= product_list.product_name %>
+                    </p>
+                    <p class="subtitle">
+                      <%= product_list.subproduct %>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="col-sm-4"><%= product_list.product_price %></div>
+                  <div class="col-sm-4"><%= product_list.quantity %></div>
+                  <div class="col-sm-4"><%= product_list.product_price * product_list.quantity %></div>
+                </div>
+              </div>
+
+            </div>
+            <% end %>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="row">
+              <div class="col-sm-4">
+                <p class="total">￥<%= order.total %></p>
+                <p class="carriage">(含运费：￥<%= order.carriage %>)</p>
+              </div>
+              <div class="col-sm-4"><%= render_order_status(order) %></div>
+              <div class="col-sm-4">
+                <% case order.aasm_state %>
+                <% when "order_placed"%>
+                <%= link_to("取消订单", cancel_account_order_path(order), class: "btn btn-default ", method: :post)%>
+                <%= link_to("付款", payments_path(payment_no: order.payment.payment_no, order_token: order.token)) %>
+                <% when "shipping"%>
+                <%= link_to("确认收货", shipped_account_order_path(order), class: "btn btn-primary", method: :post)%>
+                <% when "order_cancelled"%>
+                <span class="label label-default">订单已取消</span>
+                <% when "good_returned"%>
+                <span class="label label-default">已退货</span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+</div>

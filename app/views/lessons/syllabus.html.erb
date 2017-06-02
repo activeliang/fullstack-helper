@@ -1,0 +1,35 @@
+<div class="container-fluid syllabus-page">
+  <div class="row lesson-navbar">
+    <div class="container navbar-content">
+      <div class="lesson-title">
+        <%= @lesson.title %>
+      </div>
+      <div class="lesson-syllabus">
+        <%= link_to syllabus_lesson_path(@lesson) do %>
+        <i class="fa fa-list-ul" aria-hidden="true"></i>
+        目录
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="container lesson-content">
+    <% @chapters.each do |chapter| %>
+      <div class="chapter-item">
+        <div class="chapter-title">
+          <h5><%= chapter.title %></h5>
+        </div>
+        <% chapter.posts.each do |post| %>
+        <div class="post-item">
+          <p class="post">
+            <%= link_to post_path(post) do %>
+              <i class="fa fa-stop" aria-hidden="true"></i>
+              <%= post.title %>
+            <% end %>
+          </p>
+        </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

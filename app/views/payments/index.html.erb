@@ -1,83 +1,159 @@
-<div class="container">
-  <h1>支付</h1>
+<div class="container payment-index">
+  <h1>商店大赛加油站收银台</h1>
 
-  <div id="address_list"></div>
+  <div class="pay-alert">
+    <div class="pay-alert-1">
+      <div class="row">
+        <div class="col-sm-2 text-center">
+          <img src="https://pay.djicdn.com/assets/order/create-success-3923f23be32c9caabe84cc5e107667d11f2248d13b7e8249171f2bd84494d95d.png" alt="Create success">
+        </div>
+        <div class="col-sm-10">
+          <div class="row">
+            <h4>订单提交成功，请尽快完成付款~</h4>
+          </div>
 
-  <div class="row">
-    <div class="container">
-      <div class="page-header">
-        <h4>
-          <i class="fa fa-credit-card"></i>
-          支付宝付款</h4>
-      </div>
-      <p>订单号:
-        <%= @payment.orders.map { |order| "<strong>#{order.token}</strong>" }.join(', ').html_safe %></p>
-      <ul class="list-group">
-        <li class="list-group-item">
-          <%= image_tag "alipay.png", width: 100 %>
-        </li>
-      </ul>
+            <div class="col-sm-6 order-no">
+              <p>订单号:<%= @order.token %></p>
+            </div>
+            <div class="col-sm-6">
+              应付金额：￥ <%= @order.total %>
+            </div>
 
-      <br/>
-      <div class="pull-right">
-        <form action="<%= @payment_url %>" method="post">
-          <% $pay_options.each do |k, v| %>
-          <input name="<%= k %>" value="<%= v %>"/>
-          <% end -%>
-          <strong>¥<%= @payment.total_money %></strong>
-          <input type="submit" value="支付" class="btn btn-success btn-lg"/>
-        </form>
-      </div>
-      <div class="container">
-        <%= $pay_options.each do |k, v| %>
-        <hr>
-        <span><%= k %></span>/<span><%= v %></span>
-        <% end %>
-      </div>
-      <hr>
+        </div>
 
-      <hr>
-      <p><%= @raw %></p>
-      <hr>
-      <div class="container">
-        <h2><%= simple_format(@raw) %></h2>
       </div>
-      <h1 id="order-1"><%= @raw_order %>n</h1>
-      <hr>
-      <p><%= @pay_qr %></p>
-      <h1><%= @order_status %></h1>
-      <div><%= raw @qr.as_html %></div>
-      <h1><%= @payment_token %></h1>
+
     </div>
-    <hr>
-    <%= link_to("支付", create_payment_payment_path(@payment.payment_no), class: "payment-btn btn btn-success", id: "payha") %>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="payment-btn">
+      <%= link_to create_payment_payment_path(params[:payment_no]) , class: "payment-btn btn btn-primary", id: "payha" do %>
+      <div class="alipay-img"><img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-30-520.png" alt=""></div>
+      <div class="payment-btn-font">
+
+        <p class="btn-font"><i style="display: none;" class="fa fa-spinner payment-btn-1 fa-spin fa-fw"></i>使用支付宝付款</p>
+      </div>
+      <% end %>
+      </div>
+
+
+<div class="pay-counter-bc">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="pay-counter-nav">
+        商店大赛加油站<span></span>收银台<i class="fa fa-times" aria-hidden="true"></i>
+      </div>
+    </div>
   </div>
-  <hr>
-<div id="pay_qrcode">
+  <div class="pay-counter container">
+
+    <div class="payment-counter-bc-1">
+      <p>正在使用即时到账交易[<a type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="付款后资金直接进入对方账户
+若发生退款需联系收款方协商，如付款给陌生人，请谨慎操作。">?</a>]</p>
+      <div class="row">
+        <div class="col-sm-6">
+          <h5><%= params["payment_no"] %></h5>
+        </div>
+        <div class="col-sm-6">
+          <h5>收款方：商店大赛加油站...</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="payment-counter-bc-2">
+      <div class="bc-2">
+        <div class="bc-2-1">
+          <p>扫一扫付款（元）</p>
+          <h5 class="pay-total"><%= @order.total %></h5>
+        </div>
+        <div class="payment-counter-bc-3">
+          <div class="image-1 image-alert">
+            <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-29-083857.jpg" alt="扫一扫">
+          </div>
+          <div class="image-2 image-alert">
+            <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-29-083957.jpg" alt="扫一扫">
+          </div>
+        </div>
+        <div class="bc-2-2">
+          <div id="pay_qrcode"></div>
+          <div id="pay_qrcode_helper" style="display: none;">
+            <div class="success-img text-center">
+              <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-30-Snip20170530_1.png" alt="join-cart-success">
+            </div>
+            <p><i class="fa fa-spinner fa-spin fa-fw"></i>正在跳转页面</p>
+          </div>
+          <div class="alipay-logo text-center">
+            <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-30-53.png" alt="alipay">
+          </div>
+          <div class="bc-2-3">
+            <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-29-T1bdtfXfdiXXXXXXXX.png" alt="扫一扫">
+            <div>
+              <p>打开手机支付宝</p>
+              <p>扫一扫继续付款</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="alipay-app">
+        <p><a href="https://mobile.alipay.com/index.htm" target="view_window">首次使用请下载手机支付宝</a></p>
+      </div>
+      <div class="pay-alert">
+        <p class="pay-alert-1">提示：付款后，通常在10秒内会跳转页面，请耐心等候...</p>
+      </div>
+      <input type="hidden" id="order_id_helper" value="">
+    </div>
+
+
+
+</div>
 
   </div>
-  <div id="mytest"></div>
+  <div id="pay_qrcode2"></div>
+
+</div>
+<!-- overlay -->
+<div id="overlay">
+  <div id="text">
+  <i  class="fa fa-spinner fa-spin fa-fw"></i>正在加载中…
+  </div>
 </div>
 
 <script>
 
+$(".payment-btn").click(function(){
+  $(".payment-btn-1").css("display", "block");
+  setTimeout(function (){
+
+    $("#overlay").css("display", "block"),
+    $(".payment-btn-1").css("display", "none")
+  }, 800);
+})
+
+
 function clock()
   {
+    var order_id = $("#order_id_helper").val();
     $.ajax({
       url: "/payments/test",
       method: "POST",
-      data: { order: "<%= @raw_order %>" },
+      data: { order: order_id },
       dataType: "json",
       success: function(data){
       status = data["liang"];
-      // alert(data["liang"]);
       if ( status == 1 || status == 2 )
         {
+          $("#pay_qrcode").css("display", "none");
+          $(".alipay-logo").css("display", "none");
+          $("#pay_qrcode_helper").fadeIn();
           window.location.href='/payments/success';
         }
       }
     })
   }
+
+  // 以下是发起支付
 
 $(".payment-btn").click(function(evt){
   event.preventDefault();
@@ -88,13 +164,46 @@ $(".payment-btn").click(function(evt){
     $.ajax({
       url: url,
       method: "POST",
+      data: { payment_no: "<%= params[:payment_no] %>" },
       dataType: "json",
       success: function(data){
-      $("#pay_qrcode").html("<%=j raw @qr.as_html %>");
+      if (data["status"] = "ok"){
+        $("#pay_qrcode2").html(data["test7"]);
+        $("#pay_qrcode").html(data["qrcode"]);
+
+        $(".pay-counter-bc").css("height", "854px");
+        $("#order_id_helper").val(data["order_id"]);
+        setTimeout(function (){
+
+
+          $(".image-2").fadeIn();
+        }, 3000);
+        setTimeout(function (){
+          $(".image-2").fadeOut();
+
+
+          $(".image-1").fadeIn();
+
+        }, 5000);
+      }else{
+        alert(data["status"]);
+      }
       }
     });
-      var int=self.setInterval("clock()",1000);
+      // var int=self.setInterval("clock()",1000);
   })
+
+// 以下是关闭收银台
+$(".fa-times").click(function(){
+  alert("您确定要关闭吗？\n\关闭后，点击支付按钮，可再次发起支付哦~~~XD");
+  $(".pay-counter-bc").css("height", "0");
+  $("#overlay").css("display", "none");
+})
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
 
 
 </script>

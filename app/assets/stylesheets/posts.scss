@@ -1,0 +1,55 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.post-show .lesson-content {
+  // 以下是页眉
+.post-title {
+    font-size: 1.7em;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 18px;
+    color: #555;
+}
+span.pull-right {
+    font-size: .61em;
+    color: #888;
+    line-height: 44px;
+    margin-bottom: -20px;
+    padding-bottom: 0;
+}
+// 以下是页脚
+.post-page-footer {
+    border-top: 2px solid #e5e5e5;
+    padding: 20px;
+    margin-bottom: 34px;
+}
+.btn-left {
+    float: left;
+}
+.btn-right {
+    float: right;
+}
+a.btn.btn-success:hover {
+  background-color: #fff;
+  color: #5CB860;
+}
+.btn-alert {
+    display: inline-block;
+    color: #888;
+    font-size: .85em;
+}
+i.fa.fa-long-arrow-left {
+    border: 1px solid #d1d1d1;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+i.fa.fa-long-arrow-right {
+    border: 1px solid #d1d1d1;
+    padding: 2px 4px;
+    border-radius: 3px;
+    margin-left: 6px;
+}
+
+
+
+
+}

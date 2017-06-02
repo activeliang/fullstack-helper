@@ -1,31 +1,70 @@
 <div class="pull-right">
-  <%= link_to "添加收货地址f", new_address_path, class: "btn btn-info btn-xs new-address-btn" %>
+  <%= link_to "添加收货地址", new_address_path, class: "btn btn-info btn-xs new-address-btn" %>
 </div>
 <div class="clearfix"></div>
-<br/>
-<ul class="list-group">
+<br />
+<div class="adress-index clearfix">
   <% unless @addresses.blank? %>
-  <% @addresses.each_with_index do |address, index| %>
-  <li class="list-group-item">
-    <label>
-      <input type="radio" name="address_id" value="<%= address.id %>" <%= 'checked' if current_user.default_address_id == address %>/>
-      <%= address.contact_name %>
-      <%= address.address %>
-      <%= address.cellphone %>
-
-      <%= link_to "编辑", edit_address_path(address), remote: true, class: "inline edit-address-btn" %>
-      <%= link_to "删除", address_path(address), remote: true, method: 'delete', "data-confirm": "确认删除该地址吗？", class: "remove-address-btn inline" %>
-      <% if current_user.default_address_id == address %>
-      <span class="default_address">默认地址</span>
-    <% else %>
-      <%= link_to "设为默认收货地址", set_default_address_address_path(address), remote: true, method: 'put', class: "set-default-address-btn inline" %>
+    <% @addresses.each_with_index do |address, index| %>
+    <div class="col-sm-3 clearfix">
+      <% if current_user.default_address_id == address.id %>
+      <div id="address-item-<%= address.id %>" class="address-item default-address-item">
+        <span class="pull-right label label-success">默认地址</span>
+      <% else %>
+      <div id="address-item-<%= address.id %>" class="address-item">
       <% end %>
-    </label>
-  </li>
+
+        <h4><%= address.address %></h4>
+        <h5><%= address.cellphone %></h5>
+        <h6><%= address.contact_name %></h6>
+          <%= link_to "修改", edit_address_path(address), remote: true, class: "inline edit-address-btn" %>
+          <%= link_to "删除", address_path(address), remote: true, method: 'delete', "data-confirm": "确认删除该地址吗？", class: "remove-address-btn inline" %>
+          <% if current_user.default_address_id == address.id %>
+
+          <% else %>
+            <%= link_to "设为默认", set_default_address_address_path(address), remote: true, method: 'put', class: "set-default-address-btn inline" %>
+          <% end %>
+      </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="list-group-item">
+      请添加送货地址
+    </div>
   <% end %>
-<% else %>
-  <li class="list-group-item">
-    请添加送货地址
-  </li>
-  <% end %>
-</ul>
+  <input type="hidden" name="address_id" value="<%= current_user.default_address_id if current_user.default_address_id.present? %>" id="address-helper">
+</div>
+
+<script>
+
+
+  var address = $(".default-address-item").find("h4").html();
+  var cellphone = $(".default-address-item").find("h5").html();
+  var contact_name = $(".default-address-item").find("h6").html();
+
+  $(".require-address").html(address);
+  $(".require-contact").html(contact_name);
+  $(".require-cellphone").html(cellphone);
+
+
+<% unless @addresses.blank? %>
+  <% @addresses.each_with_index do |address, index| %>
+  $("#address-item-<%= address.id %>").click(function(){
+    $("#address-helper").val(<%= address.id %>);
+    $(".address-item").css("border", "3px solid #f1f1f1");
+    $(this).css("border", "3px solid #e4393c");
+    $(this).css("color", "#555");
+
+    // 赋值给留下的确认框
+    var address = $(this).find("h4").html();
+    var cellphone = $(this).find("h5").html();
+    var contact_name = $(this).find("h6").html();
+
+    $(".require-address").html(address);
+    $(".require-contact").html(contact_name);
+    $(".require-cellphone").html(cellphone);
+  })
+<% end %>
+<% end %>
+
+</script>

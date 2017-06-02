@@ -4,7 +4,7 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.integer :user_id
       t.string :payment_no, :transaction_no
       t.string :status, default: 'initial'
-      t.decimal :total_money,       precision: 10, scale: 2
+      t.decimal :total_money,       precision: 10, scale: 3
       t.datetime :payment_at
       t.text :raw_response
       t.timestamps
