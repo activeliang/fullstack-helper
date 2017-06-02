@@ -24,8 +24,6 @@ class User < ApplicationRecord
     is_admin
   end
 
-
-
   has_many :orders
   has_many :payments
   has_many :addresses, -> { order("id desc") }
@@ -36,17 +34,17 @@ class User < ApplicationRecord
       (!self.password.nil? || !self.password_confirmation.nil?)
   end
 
-  # TODO
-  # 手机号不重复注册的校验
-  def validate_cellphone_unrepeated
-     phonenumber = User.find_by_cellphone(self.cellphone)
-     if !phonenumber.nil?
-      self.errors.add :base, "手机号已被注册，不能重复注册哦"
-      reture false
-     else
-      return true
-    end
-  end
+  # #
+  # # 手机号不重复注册的校验
+  # def validate_cellphone_unrepeated
+  #    phonenumber = User.find_by_cellphone(self.cellphone)
+  #    if !phonenumber.nil?
+  #     self.errors.add :base, "手机号已被注册，不能重复注册哦"
+  #     reture false
+  #    else
+  #     return true
+  #   end
+  # end
 
   # 需要添加邮箱和手机号不能重复的校验
   def validate_email_or_cellphone
