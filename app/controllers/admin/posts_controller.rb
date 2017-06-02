@@ -2,8 +2,9 @@ class Admin::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    binding.pry
     @post.chapter_id = params[:post][:chapter_id]
+    @post.lesson_id = params[:lesson_id]
+    binding.pry
     if @post.save
       redirect_to :back, notice: "success!"
     else
@@ -37,6 +38,13 @@ class Admin::PostsController < ApplicationController
       redirect_to :back, notice: "success!"
     else
       redirect_to :back, alert: "failed!"
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    if @post.destroy
+      redirect_to :back, alert: "Deleted!"
     end
   end
 

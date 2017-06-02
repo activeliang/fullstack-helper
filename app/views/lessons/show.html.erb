@@ -1,14 +1,15 @@
 <div class="container lesson-show">
+  <div class="lesson-page-nav"><%= link_to "首页", root_path %> > <%= @lesson.category.title %> > <%= @lesson.title %></div>
   <div class="lesson-bc-1 clearfix">
-    <div class="col-sm-7">
+    <div class="col-sm-7 bc-1-1">
       <div class="lesson-minor-image">
-        <%= image_tag(@lesson.minor_image, class: "img-responsive") %>
+        <%= image_tag(@lesson.minor_image.medium, class: "img-responsive") %>
       </div>
       <div class="lesson-intro">
         <p><%= @lesson.intro %></p>
       </div>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-5 bc-1-2">
       <div class="row lesson-title">
         <h5><%= @lesson.title %></h5>
       </div>
@@ -16,40 +17,50 @@
         <p><%= @lesson.subtitle %></p>
       </div>
 
-      <% if @lesson.buyers.include?(current_user) %>
-
-      <div class="buyer-alert">
-        <i class="fa fa-check-circle" aria-hidden="true"></i>已成功付款
-        <%= link_to "开始学习", '#', class: "btn btn-success" %>
+      <div class="row lesson-price">
+        <h6 class="price"><span class="price-icon">￥</span><%= @lesson.price %> </h6>
+        <p class="effect"><%= @lesson.effect %></p>
       </div>
+      <% if is_buyer?(@lesson) %>
+
+      <div class="payment-alert">
+        <p>已成功支付！</p>
+      </div>
+
+      <div class="to-learn-btn">
+        <%= link_to "开始学习", syllabus_lesson_path(@lesson), class: "btn btn-success" %>
+      </div>
+
 
       <% else %>
-
-      <div class="row lesson-price">
-        <h6 class="price"><%= @lesson.price %></h6>
-      </div>
       <div class="payment-alert">
         <p>立即付款开始学习，支付成功后，可在个人订单中心查看此订单。</p>
       </div>
-      <div class="to-learn-btn">
-        <%= link_to "开始学习", '#', class: "btn btn-success" %>
-      </div>
-      <div class="payment-index">
-      <div class="payment-btn">
-        <%= link_to lesson_order_create_orders_path, class: "payment-btn btn btn-primary", id: "payha" do %>
-        <div class="alipay-img"><img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-30-520.png" alt=""></div>
-        <div class="payment-btn-font">
 
-          <p class="btn-font"><i style="display: none;" class="fa fa-spinner payment-btn-1 fa-spin fa-fw"></i>使用支付宝付款</p>
+      <div class="lesson-pay-btn">
+        <div class="to-learn-btn">
+          <a type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="付款后可以开始学习">开始学习</a>
         </div>
-        <% end %>
-        </div>
-        </div>
+        <div class="payment-index">
+        <div class="payment-btn">
+          <%= link_to lesson_order_create_orders_path, class: "payment-btn btn btn-primary", id: "payha" do %>
+          <div class="alipay-img"><img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-30-520.png" alt=""></div>
+          <div class="payment-btn-font">
+
+            <p class="btn-font"><i style="display: none;" class="fa fa-spinner payment-btn-1 fa-spin fa-fw"></i>使用支付宝付款</p>
+          </div>
+          <% end %>
+          </div>
+          </div>
+      </div>
         <% end %>
     </div>
   </div>
 
-  <div class="lesson-bc-2 row">
+  <div class="lesson-bc-2">
+    <div class="lesson-intro-slogan">
+      <p>课程介绍</p>
+    </div>
     <div class="intro-markdown">
       <%= raw @lesson.description %>
     </div>
@@ -228,6 +239,8 @@ $(".fa-times").click(function(){
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
+
+$('#liangliang').popover(options)
 
 
 

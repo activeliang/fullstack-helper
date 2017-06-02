@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 
 
-
+  layout 'product'
   def build_order
     @subproduct = Subproduct.find(params[:subproduct_id])
     @amount = params[:amount]
@@ -32,9 +32,9 @@ class OrdersController < ApplicationController
              product_list.cellphone = address.cellphone
              product_list.contact_name = address.contact_name
              product_list.subproduct = cart_item.subproduct.subtitle
+             product_list.product_id = cart_item.subproduct.product_id
              product_list.lists_image = cart_item.subproduct.product.main_product_photo.product_image
              product_list.save!
-             binding.pry
 
            end
         end
@@ -69,6 +69,8 @@ class OrdersController < ApplicationController
       product_list.cellphone = address.cellphone
       product_list.contact_name = address.contact_name
       product_list.subproduct = subproduct.subtitle
+      product_list.product_id = subproduct.product_id
+      product_list.lists_image = subproduct.product.main_product_photo.product_image
       product_list.save!
 
     end
@@ -86,6 +88,7 @@ class OrdersController < ApplicationController
         order.total = lesson.price
         order.user = current_user
         order.of_lesson = true
+        order.lesson_id = lesson.id
         order.save
 
       product_list = ProductList.new
@@ -96,11 +99,6 @@ class OrdersController < ApplicationController
         product_list.lists_image = lesson.main_image
         product_list.save
 
-      buyer = Buyer.new
-
-        buyer.user_id = current_user.id
-        buyer.price = lesson.price
-        buyer.save
 
     redirect_to lesson_generat_pay_payments_path(:id => order.token)
     end

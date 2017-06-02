@@ -30,11 +30,28 @@ class Payment < ApplicationRecord
 
         order.status = Order::OrderStatus::Paid
 
-        order.payment_at = Time.now
-        order.make_payment!
-        order.is_paid = true
-        order.payment_method = "alipay"
-        order.save!
+        if !order.of_lesson?
+          order.payment_at = Time.now
+          order.make_payment!
+          order.is_paid = true
+          order.payment_method = "alipay"
+          order.save!
+
+          order.product_lists.each do |product_list|
+            product = Product.find(product_list.product_id)
+            product.sales_count += 1
+            product.save!
+          end
+        end
+
+
+        if order.of_lesson?
+          buyer = Buyer.new
+          buyer.user_id = current_user.id
+          buyer.lesson_id = order.lesson_id
+          buyer.save!
+        end
+
       end
     end
   end

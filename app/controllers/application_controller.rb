@@ -3,6 +3,16 @@ class ApplicationController < ActionController::Base
   before_action :require_login
 
   helper_method :current_cart
+  helper_method :is_buyer?
+
+
+
+
+
+  def is_buyer?(lesson)
+    b = lesson.buyers.map{|x| x.user_id}
+    b.include?(current_user.id)
+  end
 
   def current_cart
     @current_cart ||= find_cart

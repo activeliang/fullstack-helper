@@ -27,6 +27,7 @@ class Admin::LessonsController < ApplicationController
   end
 
   def edit
+    @root_categories = Category.all
     @lesson = Lesson.find(params[:id])
   end
 
@@ -48,6 +49,6 @@ class Admin::LessonsController < ApplicationController
 
   private
   def lesson_params
-    params.require(:lesson).permit(:title, :intro, :description, :subtitle, :main_image, :minor_image, :price, :weight)
+    params.require(:lesson).permit(:title, :intro, :description, :subtitle, :main_image, :minor_image, :price, :weight, :effect, :category_id)
   end
 end

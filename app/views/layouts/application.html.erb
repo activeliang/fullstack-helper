@@ -11,7 +11,7 @@
     <body>
       <div class="container-fluid body-content">
         <div class="content-inside">
-          <div class="row product">
+          <div class="row application">
             <%= render "common/navbar" %>
           </div>
           <%= render "common/flashes" %>
@@ -20,6 +20,6 @@
         </div>
       </div>
       <%= render "common/footer" %>
-
+      <%= yield :javascripts %>
     </body>
 </html>

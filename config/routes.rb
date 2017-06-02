@@ -125,12 +125,16 @@ Rails.application.routes.draw do
   end
 
   resources :lessons do
-    resources :buyers
-    resources :chapters do
-      resources :posts
+    member do
+      get :syllabus
     end
+    resources :buyers
+    resources :chapters
+
+  
   end
 
+  resources :posts
 
 
 end

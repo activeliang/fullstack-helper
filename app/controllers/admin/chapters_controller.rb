@@ -12,7 +12,6 @@ class Admin::ChaptersController < ApplicationController
   def create
     @chapter = Chapter.new(chapter_params)
     @chapter.lesson_id = params[:lesson_id]
-    binding.pry
     if @chapter.save
       redirect_to :back, notice: "success!"
     else
@@ -29,7 +28,7 @@ class Admin::ChaptersController < ApplicationController
     @chapter = Chapter.find(params[:id])
     if params[:weight].present?
       @chapter.weight = params[:weight]
-    end 
+    end
     if params[:chapter].present?
       @chapter.title = params[:chapter][:title]
     end

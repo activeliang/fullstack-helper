@@ -62,7 +62,17 @@
   <script>
 
 
+
+
+
     (function(){
+
+      // 黄鸿亮写的js
+      $(".input-group-captcha").click(function(){
+        var url = $(".rucaptcha-image").attr("src");
+        $(".rucaptcha-image").attr("src", url+'#');
+      })
+
 
       // 验证码
       var CELLPHONE_RE = /^(\+86|86)?1\d{10}$/;

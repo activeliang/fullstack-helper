@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531230058) do
+ActiveRecord::Schema.define(version: 20170602001136) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20170531230058) do
     t.integer  "category_id"
     t.decimal  "price",       precision: 10, scale: 2
     t.integer  "weight"
+    t.string   "effect"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -112,6 +113,8 @@ ActiveRecord::Schema.define(version: 20170531230058) do
     t.integer  "payment_id"
     t.decimal  "carriage",       precision: 10, scale: 3
     t.boolean  "of_lesson",                               default: false
+    t.integer  "lesson_id"
+    t.integer  "product_id"
     t.index ["aasm_state"], name: "index_orders_on_aasm_state"
     t.index ["of_lesson"], name: "index_orders_on_of_lesson"
     t.index ["payment_id"], name: "index_orders_on_payment_id"
@@ -139,6 +142,7 @@ ActiveRecord::Schema.define(version: 20170531230058) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "weight"
+    t.integer  "lesson_id"
   end
 
   create_table "product_lists", force: :cascade do |t|
@@ -153,6 +157,7 @@ ActiveRecord::Schema.define(version: 20170531230058) do
     t.string   "contact_name"
     t.string   "subproduct"
     t.string   "lists_image"
+    t.integer  "product_id"
   end
 
   create_table "product_params", force: :cascade do |t|
