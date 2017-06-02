@@ -68,7 +68,7 @@
 
         <div class="row order-require ">
           <div class="col-sm-4 col-sm-offset-8">
-            <div class="detail">
+            <div class="detail clearfix">
               <p class="total-price">实付款：<span class="total-price-2"><span>￥</span><%= @subproduct.price * @amount.to_i + @subproduct.carriage %></p>
               <p class="address-1">寄送至：</p><span class="require-address"></span>
               <p class="contact-1">收件人：<span class="require-contact"></span><span class="require-cellphone"></span></p>
@@ -82,7 +82,8 @@
             <input type="hidden" name="subproduct_id" value="<%= @subproduct.id %>">
             <div class="btn col-sm-6">
               <i style="display: none;" class="fa fa-spinner fa-spin fa-fw"></i>
-                <input type="submit" value="确认订单" class="btn btn-danger btn-lg"/>
+                <input type="submit" value="确认订单" class="btn btn-danger btn-lg require-helper-1"/>
+                <span style="display: none;" class="btn btn-danger btn-lg require-helper-2">确认订单</span>
             </div>
           </div>
         </div>
@@ -94,6 +95,10 @@
 
   <%= content_for :javascripts do %>
     <script>
+      $(".require-helper-2").click(function(){
+        alert("请选择收货地址！");
+      })
+
       $.get('/addresses', function(data) {
         $('#address_list').html(data);
       })
