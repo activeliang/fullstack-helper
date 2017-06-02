@@ -1,4 +1,5 @@
 class Admin::SubproductsController < ApplicationController
+  before_action :admin_required
 
   def create
     @product = Product.find(params[:product_id])

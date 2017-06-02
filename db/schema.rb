@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
+
 ActiveRecord::Schema.define(version: 20170602001136) do
+
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -234,7 +237,11 @@ ActiveRecord::Schema.define(version: 20170602001136) do
     t.datetime "activation_token_expires_at"
     t.string   "cellphone"
     t.boolean  "is_admin",                        default: false
+
+    t.string   "username"
+
     t.integer  "default_address_id"
+
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["cellphone"], name: "index_users_on_cellphone"
     t.index ["email"], name: "index_users_on_email"

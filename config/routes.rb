@@ -7,11 +7,12 @@ Rails.application.routes.draw do
 
 
   # 用户注册和登录登出
-  resources :users
+  resources :users 
   resources :sessions
   delete '/logout' => 'sessions#destroy', as: :logout
   resources :cellphone_tokens, only: [:create]
   # mount RuCaptcha::Engine => "/rucaptcha"
+
 
   namespace :admin do
     resources :slider_photos do

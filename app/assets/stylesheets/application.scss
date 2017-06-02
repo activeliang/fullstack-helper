@@ -61,6 +61,7 @@ abbr,acronym {
 
 @import "font-awesome";
 
+
 @import "zoom";
 
 @import "products";
@@ -176,6 +177,10 @@ td.white {
   border-color: #fff;
 }
 
+td.black { border-color: #000; }
+td.white { border-color: #fff; }
+
+
 }
 
 
@@ -221,3 +226,4 @@ html, body {
 .row.footer-row {
     margin-top: 60px;
 }
+

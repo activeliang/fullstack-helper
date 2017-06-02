@@ -1,4 +1,6 @@
 class Admin::ProductParamsController < ApplicationController
+  before_action :admin_required
+
   def create
     @product = Product.find(params[:product_id])
     @product_param = ProductParam.new(product_param_params)

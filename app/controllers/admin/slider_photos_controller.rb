@@ -1,4 +1,6 @@
 class Admin::SliderPhotosController < ApplicationController
+  before_action :admin_required
+
   layout 'admin'
   def index
     @slider_photos = SliderPhoto.all
@@ -35,7 +37,7 @@ class Admin::SliderPhotosController < ApplicationController
   def public
     @slider_photo = SliderPhoto.find(params[:id])
     @slider_photo.update_column :is_hidden, false
-    
+
       redirect_to :back, notice: "成功！"
   end
 

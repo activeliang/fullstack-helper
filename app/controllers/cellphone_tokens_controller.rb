@@ -1,7 +1,8 @@
 class CellphoneTokensController < ApplicationController
-  # prepend_before_action :valify_captcha!, only: [:create]
-  # prepend_before_action :valify_phone_unrepeated!, only:[:create]
+  prepend_before_action :valify_captcha!, only: [:create]
+
   skip_before_action :require_login, only: [:create]
+  # prepend_before_action :valify_phone_unrepeated!
 
   def create
     unless params[:cellphone] =~ User::CELLPHONE_RE
@@ -11,7 +12,7 @@ class CellphoneTokensController < ApplicationController
 
     if session[:token_created_at] and
       session[:token_created_at] + 60 > Time.now.to_i
-      render json: {status: 'error', message: "请稍后再试！"}
+      render json: {status: 'error', message: "您已经申请过验证码啦，请60s后再试哦！"}
       return
     end
 
@@ -34,21 +35,22 @@ class CellphoneTokensController < ApplicationController
 
     def valify_captcha!
       unless verify_rucaptcha?
-        render :json => {status: "invalid_Captcha"}
+        render json: {status: 'error', message: "图形验证码不正确或者已经过期，请刷新重试"}
         return
       end
       true
     end
 
-    def valify_phone_unrepeated!
-      phonenumber = User.find_by_cellphone(params[:cellphone])
-
-        if phonenumber.present?
-          render :json => {status: "gologin"}
-        return
-        end
-      true
-    end
+    # def valify_phone_unrepeated!
+    #   phonenumber = User.find_by_cellphone(params[:cellphone])
+    #     if phonenumber.present?
+    #       # redirect_back_or_to "/sessions/new", notic: "You are not admin."
+    #       render :json => {status: "gologin"}
+    #     return false
+    #     else
+    #     return true
+    #     end
+    # end
 
 
     # def generate_rucaptcha
