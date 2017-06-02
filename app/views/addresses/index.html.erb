@@ -7,11 +7,19 @@
   <% unless @addresses.blank? %>
     <% @addresses.each_with_index do |address, index| %>
     <div class="col-sm-3 clearfix">
+      <% if current_user.default_address_id.present? %>
       <% if current_user.default_address_id == address.id %>
       <div id="address-item-<%= address.id %>" class="address-item default-address-item">
         <span class="pull-right label label-success">默认地址</span>
       <% else %>
       <div id="address-item-<%= address.id %>" class="address-item">
+      <% end %>
+      <% else %>
+        <% if index == 0 %>
+        <div id="address-item-<%= address.id %>" class="address-item default-address-item">
+        <% else %>
+        <div id="address-item-<%= address.id %>" class="address-item">
+        <% end %>
       <% end %>
 
         <h4><%= address.address %></h4>
@@ -32,10 +40,21 @@
       请添加送货地址
     </div>
   <% end %>
-  <input type="hidden" name="address_id" value="<%= current_user.default_address_id if current_user.default_address_id.present? %>" id="address-helper">
+    <% if @addresses.present? %>
+    <input type="hidden" name="address_id" value="<%= if current_user.default_address_id.present? then current_user.default_address_id else @addresses.first.id end %>" id="address-helper">
+    <% end %>
 </div>
 
 <script>
+
+    var require_helper = $("#address-helper").val();
+    if (require_helper == null || undefined) {
+      $(".require-helper-1").hide();
+      $(".require-helper-2").css("display", "block");
+    } else {
+      $(".require-helper-2").prop("style", "display: none;" );
+      $(".require-helper-1").prop("style", "display: block;" );
+    }
 
 
   var address = $(".default-address-item").find("h4").html();

@@ -352,4 +352,14 @@ a.btn.btn-default {
     border: 0;
     color: #666;
 }
+span.btn.btn-danger.btn-lg.require-helper-2 {
+    border-radius: 0;
+    color: #fff;
+    background: #e4393c;
+}
+span.btn.btn-danger.btn-lg.require-helper-2:hover {
+
+    color: #e4393c;
+    background: #fff;
+}
 }

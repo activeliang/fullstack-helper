@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-
+  layout 'product'
   def clean
     current_cart.cart_items.destroy_all
     redirect_to :back, alert: "Deleted!"
