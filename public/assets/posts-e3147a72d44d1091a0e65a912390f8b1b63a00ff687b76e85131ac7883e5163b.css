@@ -1,0 +1,53 @@
+/* line 6, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content .post-title {
+  font-size: 1.7em;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 18px;
+  color: #555;
+}
+/* line 12, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content span.pull-right {
+  font-size: .61em;
+  color: #888;
+  line-height: 44px;
+  margin-bottom: -20px;
+  padding-bottom: 0;
+}
+/* line 20, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content .post-page-footer {
+  border-top: 2px solid #e5e5e5;
+  padding: 20px;
+  margin-bottom: 34px;
+}
+/* line 25, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content .btn-left {
+  float: left;
+}
+/* line 28, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content .btn-right {
+  float: right;
+}
+/* line 31, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content a.btn.btn-success:hover {
+  background-color: #fff;
+  color: #5CB860;
+}
+/* line 35, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content .btn-alert {
+  display: inline-block;
+  color: #888;
+  font-size: .85em;
+}
+/* line 40, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content i.fa.fa-long-arrow-left {
+  border: 1px solid #d1d1d1;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+/* line 45, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content i.fa.fa-long-arrow-right {
+  border: 1px solid #d1d1d1;
+  padding: 2px 4px;
+  border-radius: 3px;
+  margin-left: 6px;
+}
