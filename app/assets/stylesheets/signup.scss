@@ -17,6 +17,7 @@ div#fix_signup {
     margin-top: 9px;
 }
 }
+
 #fix_signup{
 
 .intro {
@@ -38,19 +39,7 @@ div#fix_signup {
     padding: 0px;
 
   }
-  input.btn.btn-warning.fetch-token-btn {
-    background: #fff;
-    border: 1px solid;
-    color: #2db360;
-    width: 110px;
-    padding-left: 10px;
-    padding-top: 9px;
-    padding-bottom: 9px;
-    margin-right: -42px;
 
-    font-size: 15px;
-    padding-right: 10px;
-}
 
 input.btn.btn-primary {
     background: transparent;
@@ -175,4 +164,17 @@ img.rucaptcha-image {
 div#fix_signup {
     margin-left: -15px;
     margin-right: -15px;
+}
+#fix_signup input.btn.btn-warning.fetch-token-btn {
+    border: 1px solid;
+    width: 125px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    margin-right: -42px;
+    font-size: 15px;
+    text-align: center;
+    font-weight: 200;
+    background: transparent;
+    color: #fff !important;
+    margin-left: -15px;
 }
