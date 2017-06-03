@@ -21,15 +21,12 @@ class MinorImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-
-  process resize_to_fit: [500, 500]
-
-  version :thumb do
-    process resize_to_fill: [200, 200]
+  version :medium do
+    process resize_to_fill: [240, 300]
   end
 
-  version :medium do
-    process resize_to_fill: [500, 280]
+  version :thumb do
+    process resize_to_fill: [100, 100]
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

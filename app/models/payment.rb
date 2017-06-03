@@ -39,6 +39,7 @@ class Payment < ApplicationRecord
 
         if !order.of_lesson?
           order.product_lists.each do |product_list|
+            product_list.lists_image = subproduct.subproduct_image.thumb
             product = Product.find(product_list.product_id)
             product.sales_count += 1
             product.save!

@@ -22,12 +22,8 @@ class ListsImageUploader < CarrierWave::Uploader::Base
   end
 
 
-
-
-      process resize_to_fit: [300, 300]
-
       version :thumb do
-        process resize_to_fill: [200,200]
+        process resize_to_fill: [100,100]
       end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
