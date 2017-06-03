@@ -1,0 +1,54 @@
+/* line 6, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+#myCarousel {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+/* line 11, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+span.fa.fa-angle-right {
+  width: 42px;
+  position: relative;
+  right: 77px;
+  top: 218px;
+  font-size: 80px;
+}
+
+/* line 18, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+a.right.carousel-control {
+  width: 0;
+}
+
+/* line 21, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+a.left.carousel-control {
+  width: 0;
+}
+
+/* line 24, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+span.fa.fa-angle-left {
+  width: 42px;
+  position: relative;
+  left: 29px;
+  top: 218px;
+  font-size: 80px;
+}
+
+/* line 31, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.carousel-indicators li {
+  display: inline-block;
+  width: 30px;
+  height: 3px;
+  margin: 3px;
+  text-indent: -999px;
+  border: 0;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 0 !important;
+  cursor: pointer;
+}
+
+/* line 42, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.carousel-indicators .active {
+  margin: 3px;
+  width: 30px;
+  height: 3px;
+  background-color: #fff;
+}

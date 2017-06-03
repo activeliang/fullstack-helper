@@ -4,7 +4,6 @@ class Admin::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.chapter_id = params[:post][:chapter_id]
     @post.lesson_id = params[:lesson_id]
-    binding.pry
     if @post.save
       redirect_to :back, notice: "success!"
     else

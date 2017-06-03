@@ -23,7 +23,6 @@ class AddressesController < ApplicationController
         data: render_to_string(file: 'addresses/index')
       }
     else
-      binding.pry
       render json: {
         status: 'error',
         data: render_to_string(file: 'addresses/new')
