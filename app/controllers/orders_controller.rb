@@ -97,7 +97,8 @@ class OrdersController < ApplicationController
         product_list.product_name = lesson.title
         product_list.product_price = lesson.price
         product_list.lists_image = lesson.main_image
-        product_list.save
+        product_list.quantity = 1
+        product_list.save!
 
 
     redirect_to lesson_generat_pay_payments_path(:id => order.token)
