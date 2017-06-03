@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170602033504) do
+ActiveRecord::Schema.define(version: 20170603005621) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -93,12 +93,13 @@ ActiveRecord::Schema.define(version: 20170602033504) do
     t.string   "minor_image"
     t.text     "intro"
     t.text     "description"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.integer  "category_id"
     t.decimal  "price",       precision: 10, scale: 2
     t.integer  "weight"
     t.string   "effect"
+    t.integer  "sales_count",                          default: 0
   end
 
   create_table "orders", force: :cascade do |t|
@@ -114,6 +115,7 @@ ActiveRecord::Schema.define(version: 20170602033504) do
     t.decimal  "carriage",       precision: 10, scale: 3
     t.boolean  "of_lesson",                               default: false
     t.integer  "lesson_id"
+    t.datetime "payment_at"
     t.index ["aasm_state"], name: "index_orders_on_aasm_state"
     t.index ["of_lesson"], name: "index_orders_on_of_lesson"
     t.index ["payment_id"], name: "index_orders_on_payment_id"
