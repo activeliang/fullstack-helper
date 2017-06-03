@@ -1,3 +1,5 @@
+#fix_signup{
+    
 /*
 CSS Reset
 http://meyerweb.com/eric/tools/css/reset/
@@ -162,4 +164,5 @@ p {
   h1::after {
     height: 4px;
   }
+}
 }
