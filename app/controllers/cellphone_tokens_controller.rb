@@ -19,7 +19,7 @@ class CellphoneTokensController < ApplicationController
     ChinaSMS.use :yunpian, password: ENV["sms_signup"]
     token = generate_cellphone_token
     VerifyToken.upsert params[:cellphone], token
-    ChinaSMS.to params[:cellphone], "【商店加油站】#{token}(注册验证码)，请在15分钟内完成注册。"
+    ChinaSMS.to params[:cellphone], "【大赛加油站】#{token}(注册验证码)，请在15分钟内完成注册。如非本人操作，请忽略。"
     session[:token_created_at] = Time.now.to_i
     render json: {status: 'ok'}
   end

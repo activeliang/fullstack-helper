@@ -15,7 +15,7 @@ class Admin::OrdersController < ApplicationController
      @order = Order.find(params[:id])
      @order.ship!
      ChinaSMS.use :yunpian, password: ENV["sms_pay"]
-     ChinaSMS.to @payment.user.cellphone, "【商店加油站】您的订单已发货！可进入个人订单查看物流动态。希望成为你5票中的1票：http://t.cn/RS6vf95"
+     ChinaSMS.to @payment.user.cellphone, "【大赛加油站】您的订单已发货！可进入个人订单查看物流动态。希望成为你5票中的1票：http://t.cn/RS6vf95"
      redirect_to :back
   end
 
