@@ -1,0 +1,155 @@
+#fix_signup{
+
+.intro {
+  position: absolute;
+  left: 0;
+  padding: 0 20px;
+  width: 100%;
+  text-align: center;
+}
+
+  .pg-canvas{
+    height: 800px;
+  }
+
+  #change-captcha-size {
+    height: 50px;
+    width: 120px;
+    margin:0px;
+    padding: 0px;
+
+  }
+  input.btn.btn-warning.fetch-token-btn {
+    background: #fff;
+    border: 1px solid;
+    color: #2db360;
+    width: 110px;
+    padding-left: 10px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    margin-right: -42px;
+
+    font-size: 15px;
+    padding-right: 10px;
+}
+
+input.btn.btn-primary {
+    background: transparent;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+}
+input.btn.btn-primary:hover {
+    background: #fff;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    color: #2dbe60;
+
+}
+
+span.input-group-addon.input-group-captcha {
+    background: #fff;
+    margin-right: -27px;
+    /* width: 120px; */
+    padding: 0;
+}
+
+input#user_username {
+    width: 230px;
+}
+
+
+input#user_cellphone {
+    width: 230px;
+}
+
+
+form.form-horizontal.login-form {
+    position: absolute;
+    left: 30%;
+    top: 50%;
+    width: 60%;
+    }
+
+
+.col-sm-6.token-size {
+      padding: 0;
+      width: 100px;
+  }
+
+  .col-sm-6.change-captcha-size {
+    width: 120px;
+    padding: 0px;
+    margin-left: 10px;
+}
+
+.col-sm-6.button-size {
+    width: 110px;
+}
+
+input#signup-input {
+    width: 230px;
+}
+
+input.btn.btn-primary {
+    width: 230px;
+}
+.col-sm-4.signup-input {
+    width: 230px;
+}
+
+form#user_form {
+    margin: 60px;
+    padding: 20px;
+    padding-left: 5%;
+}
+
+img.rucaptcha-image {
+  width: 80%;
+  height: 30px;
+}
+
+}
+
+#fix-login{
+
+  .pg-canvas{
+    height: 800px;
+  }
+
+  form.form-horizontal.login-form {
+      position: absolute;
+      left: 30%;
+      top: 50%;
+      width: 60%;
+      }
+  .intro {
+          position: absolute;
+          left: 0;
+          top: 40%;
+          padding: 0 20px;
+          width: 100%;
+          text-align: center;
+      }
+    input.col-xs-12.btn.btn-primary {
+      background: transparent;
+      border: 1px solid #fff;
+      border-radius: 4px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    input.col-xs-12.btn.btn-primary:hover {
+        background: #fff;
+        border: 1px solid #fff;
+        border-radius: 4px;
+        color: #2dbe60;
+    }
+    a.text-color {
+      color: #fff;
+  }
+
+
+}

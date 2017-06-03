@@ -78,12 +78,19 @@ abbr,acronym {
 
 @import "posts";
 
+
+@import "login";
+
 @import "orders";
 
 
+
+@import "signup";
 //验证码
 .rucaptcha-image {
   width: 120px;
+  margin: 0;
+  border: 0;
 }
 
 //以下是导航条

@@ -16,4 +16,6 @@
 //= require bootstrap-sprockets
 //= require num-alignment
 //= require egg
+//= require demo
+//= require jquery.particleground
 //= require_tree .

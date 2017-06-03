@@ -1,15 +1,19 @@
-<h1>登陆</h1>
-<%= form_tag sessions_path, method: :post, class: "form-horizontal" do %>
+<div id="fix-login">
+
+<div id="particles">
+	<div class="intro" style="margin-top: -170px;">
+
+  <%= form_tag sessions_path, method: :post, class: "form-horizontal login-form" do %>
   <div class="form-group">
-    <label class="col-sm-2 control-label">手机号 *</label>
+    <label class="col-sm-2 control-label"> </label>
     <div class="col-sm-4">
-      <%= text_field_tag :cellphone, nil, class: "form-control" %>
+      <%= text_field_tag :cellphone, nil, class: "form-control" , placeholder:"手机号"%>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 control-label">密码 *</label>
+    <label class="col-sm-2 control-label"> </label>
     <div class="col-sm-4">
-      <%= password_field_tag :password, nil, class: "form-control" %>
+      <%= password_field_tag :password, nil, class: "form-control", placeholder:"密码"%>
     </div>
   </div>
   <!-- 输入Captcha -->
@@ -23,14 +27,21 @@
 
   <div class="form-group">
     <div class="col-sm-2">
-      <div class="pull-left">
-        <a href="<%= new_user_path %>">注册</a>
+    </div>
+    <div class="col-sm-4">
+      <div class="pull-right">
+        <a href="<%= new_user_path %>", class="text-color">注册</a>
       </div>
     </div>
   </div>
   <div class="form-group">
-    <div class="col-lg-12">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-4">
       <input type="submit" name="sign_submit" value="登陆" class="col-xs-12 btn btn-primary">
     </div>
   </div>
 <% end -%>
+</div>
+</div>
+</div>

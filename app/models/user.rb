@@ -38,9 +38,9 @@ class User < ApplicationRecord
   has_many :orders
   has_many :payments
 
-  def username
-    self.email.blank? ? self.cellphone : self.email.split('@').first
-  end
+  # def username
+  #   self.email.blank? ? self.cellphone : self.email.split('@').first
+  # end
 
   private
   def need_validate_password
