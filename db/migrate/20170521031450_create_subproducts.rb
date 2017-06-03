@@ -3,8 +3,8 @@ class CreateSubproducts < ActiveRecord::Migration[5.0]
     create_table :subproducts do |t|
       t.integer :product_id
       t.string :subtitle
-      t.decimal :msrp,       precision: 10, scale: 3
-      t.decimal :price,       precision: 10, scale: 3
+      t.decimal :msrp,       precision: 10, scale: 2
+      t.decimal :price,       precision: 10, scale: 2
       t.string :activity
       t.integer :carriage, default: 0
       t.string :place

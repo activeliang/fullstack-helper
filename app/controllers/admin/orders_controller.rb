@@ -14,7 +14,8 @@ class Admin::OrdersController < ApplicationController
   def ship
      @order = Order.find(params[:id])
      @order.ship!
-     OrderMailer.notify_ship(@order).deliver!
+     ChinaSMS.use :yunpian, password: ENV["sms_pay"]
+     ChinaSMS.to @payment.user.cellphone, "【大赛加油站】您的订单已发货！可进入个人订单查看物流动态。希望成为你5票中的1票：http://t.cn/RS6vf95"
      redirect_to :back
   end
 
@@ -27,7 +28,7 @@ class Admin::OrdersController < ApplicationController
   def cancel
     @order = Order.find(params[:id])
     @order.cancel_order!
-    OrderMailer.notify_cancel(@order).deliver!
+
     redirect_to :back
   end
 

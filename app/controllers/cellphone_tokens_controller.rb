@@ -16,10 +16,10 @@ class CellphoneTokensController < ApplicationController
       return
     end
 
-    ChinaSMS.use :yunpian, password: 'a5d0fad8d28413239fe0123e22885c20'
+    ChinaSMS.use :yunpian, password: ENV["sms_signup"]
     token = generate_cellphone_token
     VerifyToken.upsert params[:cellphone], token
-    ChinaSMS.to params[:cellphone], "【全栈助手】感谢您注册fullstackhelper，您的验证码是#{token} "
+    ChinaSMS.to params[:cellphone], "【大赛加油站】#{token}(注册验证码)，请在15分钟内完成注册。如非本人操作，请忽略。"
     session[:token_created_at] = Time.now.to_i
     render json: {status: 'ok'}
   end
