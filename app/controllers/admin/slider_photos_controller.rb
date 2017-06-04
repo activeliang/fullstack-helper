@@ -10,6 +10,7 @@ class Admin::SliderPhotosController < ApplicationController
     params[:images].each do |image|
     @slider_photo = SliderPhoto.new(slider_image: image)
     end
+    SliderPhoto.new(slider_photo_params)
     if @slider_photo.save
       redirect_to :back, notice: "created!"
     end
@@ -45,6 +46,7 @@ class Admin::SliderPhotosController < ApplicationController
     @slider_photo = SliderPhoto.find(params[:id])
 
     @slider_photo.weight = params[:weight]
+    @slider_photo.link = params[:link]
     if @slider_photo.save
       flash[:notice] = "修改成功"
     else
@@ -53,5 +55,12 @@ class Admin::SliderPhotosController < ApplicationController
 
     redirect_to :back
   end
+
+  private
+  def slider_photo_params
+    params.require(:slider_photo).permit(:link)
+  end
+
+
 
 end

@@ -16,6 +16,7 @@
         <th>ID</th>
         <th>图片</th>
         <th>权重</th>
+        <th>链接</th>
         <th>状态</th>
         <th>选项</th>
       </tr>
@@ -28,6 +29,12 @@
           <td>
             <%= form_tag admin_slider_photo_path(slider_photo), method: :put do %>
               <input type="text" value="<%= slider_photo.weight %>" name="weight" />
+            <%= submit_tag "更新", class: "btn btn-default btn-xs" %>
+            <% end %>
+          </td>
+          <td>
+            <%= form_tag admin_slider_photo_path(slider_photo), method: :put do %>
+              <input type="text" value="<%= slider_photo.link %>" name="link" />
             <%= submit_tag "更新", class: "btn btn-default btn-xs" %>
             <% end %>
           </td>

@@ -1,5 +1,5 @@
 <div class="slogan text-center">
-  <h2>体验性购物</h2>
+  <h2>体验性购物<span class="subslogan"></span></h2>
 </div>
 <div class="panel-group">
   <% @products.each do |product| %>
@@ -7,14 +7,21 @@
     <%= link_to product_path(product) do %>
     <div class="panel">
       <div class="panel-body">
-        <%= image_tag(product.main_product_photo.product_image.small, class: "img-responsive thumbnail") %>
+        <%= image_tag(product.main_product_photo.product_image.small, class: "img-responsive") %>
+        <div class="overlay">
+          <div class="activity"><%= product.min_subproduct.activity %></div>
+        </div>
       </div>
       <div class="line"></div>
       <div class="panel-footer">
-        <h5><%= product.title %></h5>
+        <span class="product-title"><%= product.title %><span>
         <% end %>
-        <h5><spna>￥</spna> <%= product.min_subproduct.price %>
-        <span class="msrp">￥ <%= product.min_subproduct.msrp %></span></h5>
+        <div class="footer-btn">
+          <span class="msrp">￥ <%= product.min_subproduct.msrp %></span>
+          <spna>￥</spna> <%= product.min_subproduct.price %>
+
+          <%= link_to "立即查看", product_path(product), class: "btn btn-default"%>
+        </div>
       </div>
     </div>
   </div>

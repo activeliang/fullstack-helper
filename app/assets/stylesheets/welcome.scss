@@ -45,3 +45,196 @@ span.fa.fa-angle-left {
     height: 3px;
     background-color: #fff;
 }
+.slogan.text-center {
+    padding-top: 75px;
+    padding-bottom: 45px;
+}
+.wel-bc {
+    padding-bottom: 90px;
+}
+.wel-bc-2-2.wel-bc {
+    background: #f8f8f8;
+}
+
+// 以下是lesson版块的css
+.lesson-block {
+  .slogan h2 {
+    font-size: 32px;
+    color: #555;
+}
+
+.lesson-item {
+    border: 1px solid #e5e5e5;
+    overflow: hidden;
+}
+.lesson-image {
+    position: relative;
+}
+.lesson-image img {
+    width: 100%;
+}
+.lesson-title {
+    position: absolute;
+    bottom: 0;
+    background: rgba(255,255,255, .5);
+    width: 100%;
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: 500;
+    color: #444;
+    padding: 12px;
+}
+.lesson-subtitle {
+    color: #666;
+    font-size: 1.1em;
+    /* margin-left: 15px; */
+    padding: 8px;
+}
+p.lesson-price {
+    margin-bottom: 0;
+}
+.panel-btn {
+    float: right;
+    padding-bottom: 7px;
+    margin-top: 8px;
+}
+span.lesson-price {
+    font-size: .83em;
+    margin-right: 14px;
+    /* margin-top: 8px; */
+    position: relative;
+    bottom: -3px;
+}
+.panel-btn a.btn.btn-success {
+    background: #2dbe60;
+    border-radius: 2px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.panel-btn a.btn.btn-success:hover {
+  background: #fff;
+  color: #2dbe60;
+}
+.lesson-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 1.4em;
+    width: 67%;
+}
+.lesson-voerlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,.5);
+    transition: 0.5s ease;
+}
+.lesson-voerlay:hover {
+  opacity: 1;
+}
+}
+
+// 以下是体验性购物版块的样式
+.shopping-block {
+.panel-body {
+  padding: 0;
+  position: relative;
+}
+.panel-body img {
+  width: 100%;
+}
+.panel .panel-footer a {
+    color: #555;
+}
+.panel:hover {
+
+}
+.panel {
+  border-radius: 0;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #fff;
+    background: rgba(0,0,0,.5);
+    opacity: 0;
+}
+.activity {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    font-size: 25px;
+    width: 59%;
+}
+.overlay:hover {
+  opacity: 1;
+}
+.panel .footer-btn a.btn.btn-default {
+    color: #fff;
+    background: #2dbe60;
+    border-radius: 2px;
+    border: 1px solid #2dbe60;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.panel .footer-btn a.btn.btn-default:hover {
+    background: #fff;
+    color: #2dbe60;
+}
+span.msrp {
+    font-size: .75em;
+    color: #777;
+}
+.footer-btn {
+    float: right;
+    margin-right: -7px;
+    margin-bottom: -3px;
+    color: #2dbe60;
+    font-size: 1.2em;
+}
+.panel-group .panel-footer {
+    border-top: 0;
+    overflow: hidden;
+    position: relative;
+    min-height: 111px;
+}
+.panel {
+    border-radius: 0;
+    border: 1px solid #e5e5e5;
+}
+.footer-btn {
+    float: right;
+    margin-right: -7px;
+    margin-bottom: -3px;
+    color: #2dbe60;
+    font-size: 1.2em;
+    position: absolute;
+    bottom: 10px;
+    right: 14px;
+}
+span.product-title:hover {
+  text-decoration: none;
+  color: #e4393c;
+}
+.panel-footer a:hover {
+  text-decoration: none;
+}
+
+
+
+
+
+}

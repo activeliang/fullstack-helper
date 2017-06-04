@@ -1,56 +1,32 @@
 <div class="slogan text-center">
-  <h2>购买他人爬坑时间</h2>
+  <h2>购买他人爬坑时间(教程)</h2>
 </div>
 <% @lessons.each do |lesson| %>
+<%= link_to lesson_path(lesson) do %>
 <div class="col-sm-3">
   <div class="lesson-item">
     <div class="lesson-image">
       <%= image_tag lesson.main_image.small, class: "img-responsive" %>
+      <div class="lesson-title">
+        ￥<%= lesson.title %>
+      </div>
+      <div class="lesson-voerlay">
+        <div class="lesson-effect"><%= lesson.effect %></div>
+      </div>
     </div>
-    <div class="lesson-title">
-      ￥<%= lesson.title %>
-    </div>
+
+    <% end %>
     <div class="lesson-subtitle">
-      <%= lesson.subtitle %>
-      <p class="lesson-price"><%= lesson.price %></p>
+      <div class="lesson-subtitle-1">
+        <%= lesson.subtitle %>
+      </div>
+      <div class="panel-btn">
+        <span class="lesson-price">￥<%= lesson.price %></span>
+        <%= link_to "开始学习", lesson_path(lesson), class: "btn btn-success" %>
+      </div>
     </div>
   </div>
-  <div class="lesson-voerlay">
-    <div class="btn btn-success">进入教程</div>
-  </div>
+
 </div>
+
 <% end %>
-<div class="col-sm-3">
-  <div class="lesson-item">
-    <div class="lesson-image">
-      <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-06-03-040804.jpg" alt="">
-    </div>
-    <div class="lesson-title">
-      请期待
-    </div>
-    <div class="lesson-subtitle">
-      值得期待
-      ￥999
-    </div>
-  </div>
-  <div class="lesson-voerlay">
-    <div class="btn btn-success">进入教程</div>
-  </div>
-</div>
-<div class="col-sm-3">
-  <div class="lesson-item">
-    <div class="lesson-image">
-      <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-06-03-040804.jpg" alt="">
-    </div>
-    <div class="lesson-title">
-      请期待
-    </div>
-    <div class="lesson-subtitle">
-      值得期待
-      ￥999
-    </div>
-  </div>
-  <div class="lesson-voerlay">
-    <div class="btn btn-success">进入教程</div>
-  </div>
-</div>
