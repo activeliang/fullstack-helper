@@ -1,0 +1,268 @@
+/* line 6, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+#myCarousel {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+/* line 11, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+span.fa.fa-angle-right {
+  width: 42px;
+  position: relative;
+  right: 77px;
+  top: 357px;
+  font-size: 80px;
+}
+
+/* line 18, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+a.right.carousel-control {
+  width: 0;
+}
+
+/* line 21, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+a.left.carousel-control {
+  width: 0;
+}
+
+/* line 24, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+span.fa.fa-angle-left {
+  width: 42px;
+  position: relative;
+  left: 29px;
+  top: 357px;
+  font-size: 80px;
+}
+
+/* line 31, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.carousel-indicators li {
+  display: inline-block;
+  width: 30px;
+  height: 3px;
+  margin: 3px;
+  text-indent: -999px;
+  border: 0;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 0 !important;
+  cursor: pointer;
+}
+
+/* line 42, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.carousel-indicators .active {
+  margin: 3px;
+  width: 30px;
+  height: 3px;
+  background-color: #fff;
+}
+
+/* line 48, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.slogan.text-center {
+  padding-top: 75px;
+  padding-bottom: 45px;
+}
+
+/* line 52, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.wel-bc {
+  padding-bottom: 90px;
+}
+
+/* line 55, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.wel-bc-2-2.wel-bc {
+  background: #f8f8f8;
+}
+
+/* line 61, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.lesson-block .slogan h2 {
+  font-size: 32px;
+  color: #555;
+}
+/* line 66, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.lesson-block .lesson-item {
+  border: 1px solid #e5e5e5;
+  overflow: hidden;
+}
+/* line 70, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.lesson-block .lesson-image {
+  position: relative;
+}
+/* line 73, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.lesson-block .lesson-image img {
+  width: 100%;
+}
+/* line 76, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.lesson-block .lesson-title {
+  position: absolute;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 500;
+  color: #444;
+  padding: 12px;
+}
+/* line 87, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.lesson-block .lesson-subtitle {
+  color: #666;
+  font-size: 1.1em;
+  /* margin-left: 15px; */
+  padding: 8px;
+}
+/* line 93, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.lesson-block p.lesson-price {
+  margin-bottom: 0;
+}
+/* line 96, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.lesson-block .panel-btn {
+  float: right;
+  padding-bottom: 7px;
+  margin-top: 8px;
+}
+/* line 101, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.lesson-block span.lesson-price {
+  font-size: .83em;
+  margin-right: 14px;
+  /* margin-top: 8px; */
+  position: relative;
+  bottom: -3px;
+}
+/* line 108, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.lesson-block .panel-btn a.btn.btn-success {
+  background: #2dbe60;
+  border-radius: 2px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+/* line 114, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.lesson-block .panel-btn a.btn.btn-success:hover {
+  background: #fff;
+  color: #2dbe60;
+}
+/* line 118, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.lesson-block .lesson-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 1.4em;
+  width: 67%;
+}
+/* line 128, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.lesson-block .lesson-voerlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  transition: 0.5s ease;
+}
+/* line 138, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.lesson-block .lesson-voerlay:hover {
+  opacity: 1;
+}
+
+/* line 145, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.shopping-block .panel-body {
+  padding: 0;
+  position: relative;
+}
+/* line 149, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.shopping-block .panel-body img {
+  width: 100%;
+}
+/* line 152, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.shopping-block .panel .panel-footer a {
+  color: #555;
+}
+/* line 158, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.shopping-block .panel {
+  border-radius: 0;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0;
+}
+/* line 163, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.shopping-block .overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+}
+/* line 173, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.shopping-block .activity {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  font-size: 25px;
+  width: 59%;
+}
+/* line 182, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.shopping-block .overlay:hover {
+  opacity: 1;
+}
+/* line 185, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.shopping-block .panel .footer-btn a.btn.btn-default {
+  color: #fff;
+  background: #2dbe60;
+  border-radius: 2px;
+  border: 1px solid #2dbe60;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+/* line 193, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.shopping-block .panel .footer-btn a.btn.btn-default:hover {
+  background: #fff;
+  color: #2dbe60;
+}
+/* line 197, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.shopping-block span.msrp {
+  font-size: .75em;
+  color: #777;
+}
+/* line 201, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.shopping-block .footer-btn {
+  float: right;
+  margin-right: -7px;
+  margin-bottom: -3px;
+  color: #2dbe60;
+  font-size: 1.2em;
+}
+/* line 208, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.shopping-block .panel-group .panel-footer {
+  border-top: 0;
+  overflow: hidden;
+  position: relative;
+  min-height: 111px;
+}
+/* line 214, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.shopping-block .panel {
+  border-radius: 0;
+  border: 1px solid #e5e5e5;
+}
+/* line 218, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.shopping-block .footer-btn {
+  float: right;
+  margin-right: -7px;
+  margin-bottom: -3px;
+  color: #2dbe60;
+  font-size: 1.2em;
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+}
+/* line 228, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.shopping-block span.product-title:hover {
+  text-decoration: none;
+  color: #e4393c;
+}
+/* line 232, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/welcome.scss */
+.shopping-block .panel-footer a:hover {
+  text-decoration: none;
+}
