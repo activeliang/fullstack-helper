@@ -135,6 +135,18 @@ span.price-icon {
 .lesson-intro-slogan p {
     margin-bottom: 4px;
 }
+.lesson-subtitle p {
+    /* margin-bottom: 15px; */
+    display: inline-block;
+    position: relative;
+}
+p.sales_count {
+    margin-bottom: 0;
+    float: right;
+    position: relative;
+    bottom: -14px;
+    font-size: .8em;
+}
 
 }
 
