@@ -72,14 +72,12 @@ class Payment < ApplicationRecord
           if !order.of_lesson?
             product = Product.find(product_list.product_id)
             product_list.lists_image = product.main_product_photo.product_image.thumb
-            product_list.save!
           end
           if order.of_lesson?
             lesson = Lesson.find(order.lesson_id)
             product_list.lists_image = lesson.main_image.thumb
-            product_list.save!
           end
-
+          product_list.save!
         end
 
     end
