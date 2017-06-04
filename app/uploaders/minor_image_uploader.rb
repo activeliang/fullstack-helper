@@ -22,7 +22,7 @@ class MinorImageUploader < CarrierWave::Uploader::Base
   end
 
   version :medium do
-    process resize_to_fill: [240, 300]
+    process resize_to_fill: [540, 300]
   end
 
   version :thumb do

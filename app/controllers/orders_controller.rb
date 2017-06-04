@@ -94,7 +94,7 @@ class OrdersController < ApplicationController
         product_list.order = order
         product_list.product_name = lesson.title
         product_list.product_price = lesson.price
-        product_list.lists_image = lesson.main_image.thumb
+
         product_list.quantity = 1
         product_list.save!
 
