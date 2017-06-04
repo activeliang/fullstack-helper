@@ -71,7 +71,7 @@ class Payment < ApplicationRecord
         order.product_lists.each do |product_list|
           if !order.of_lesson?
             product = Product.find(product_list.product_id)
-            product_list.lists_image = product.main_product_photo.product_image.thumb
+            product_list.lists_image = product.main_product_photo.product_image.my_list
           end
           if order.of_lesson?
             lesson = Lesson.find(order.lesson_id)

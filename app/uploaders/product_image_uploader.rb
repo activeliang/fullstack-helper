@@ -36,6 +36,10 @@ class ProductImageUploader < CarrierWave::Uploader::Base
     end
 
     version :thumb do
+      process resize_to_fill: [54, 54]
+    end
+
+    version :my_list do
       process resize_to_fill: [100, 100]
     end
 
