@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-skip_before_action :require_login, only: [:new, :create]
-helper_method :is_buyer?
+skip_before_action :auth_user, only: [:new, :create]
+
 # 用户在注册时不需要验证是否已经登录
 
 

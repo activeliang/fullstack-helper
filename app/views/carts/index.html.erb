@@ -92,13 +92,18 @@
         </div>
 
 
-
+      <% if current_user %>
       <div class="checkout-btn checkout-btn-1">
         <input id="checkout-btn-1" type="submit" value="去结算" class="btn btn-success btn-lg"/>
       </div>
       <div style="display: none;" class="checkout-btn checkout-btn-2">
         <input id="checkout-btn-2" type="button" value="去结算" class="btn btn-success btn-lg"/>
       </div>
+      <% else %>
+      <div class="checkout-btn checkout-btn-3">
+        <input id="checkout-btn-3" type="button" value="去结算" class="btn btn-success btn-lg"/>
+      </div>
+      <% end %>
       <% end %>
       <div class="total-price">
         <p>合计（不含运费）：<span class="cart-item-total-price"><%= render_cart_total_price(current_cart) %></span></p>
@@ -250,6 +255,10 @@ $("#cart-item-<%= cart_item.id %>").click(function(){
     // 选择为空时的提示
     $("#checkout-btn-2").click(function(){
       alert("请选择要要结算的商品~");
+    })
+    // 未登录时，提示登入
+    $("#checkout-btn-3").click(function(){
+      alert("请先登入哦~");
     })
 
 

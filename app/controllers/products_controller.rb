@@ -1,8 +1,6 @@
 class ProductsController < ApplicationController
+    skip_before_action :auth_user
     layout 'product'
-  def index
-    @products = Product.all
-  end
 
   def show
 

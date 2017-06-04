@@ -93,6 +93,13 @@ abbr,acronym {
   border: 0;
 }
 
+// 以下是alert下拉提示条
+.alert.alert-dismissable {
+    margin-bottom: 0;
+    width: 93%;
+    margin: 0 auto;
+}
+
 //以下是导航条
 .navbar {
     margin-bottom: 0;

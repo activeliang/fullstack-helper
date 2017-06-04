@@ -2,7 +2,7 @@ class CellphoneTokensController < ApplicationController
   prepend_before_action :valify_captcha!, only: [:create]
 
   skip_before_action :require_login, only: [:create]
-  # prepend_before_action :valify_phone_unrepeated!
+  prepend_before_action :valify_phone_unrepeated!
 
   def create
     unless params[:cellphone] =~ User::CELLPHONE_RE
@@ -41,16 +41,17 @@ class CellphoneTokensController < ApplicationController
       true
     end
 
-    # def valify_phone_unrepeated!
-    #   phonenumber = User.find_by_cellphone(params[:cellphone])
-    #     if phonenumber.present?
-    #       # redirect_back_or_to "/sessions/new", notic: "You are not admin."
-    #       render :json => {status: "gologin"}
-    #     return false
-    #     else
-    #     return true
-    #     end
-    # end
+    def valify_phone_unrepeated!
+
+      phonenumber = User.find_by_cellphone(params[:cellphone])
+        if phonenumber.present?
+          # redirect_back_or_to "/sessions/new", notic: "You are not admin."
+          render :json => {status: "gologin"}
+        return false
+        else
+        return true
+        end
+    end
 
 
     # def generate_rucaptcha

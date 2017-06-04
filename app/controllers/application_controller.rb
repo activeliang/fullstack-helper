@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :require_login
-
+  before_action :auth_user
   helper_method :current_cart
   helper_method :is_buyer?
 
@@ -10,8 +9,10 @@ class ApplicationController < ActionController::Base
 
 
   def is_buyer?(lesson)
-    b = lesson.buyers.map{|x| x.user_id}
-    b.include?(current_user.id)
+    if current_user
+      b = lesson.buyers.map{|x| x.user_id}
+      b.include?(current_user.id)
+    end
   end
 
   def current_cart
@@ -20,10 +21,11 @@ class ApplicationController < ActionController::Base
 
   def auth_user
     unless logged_in?
-      flash[:notice] = "请登录"
+      flash[:notice] = "请登录~"
       redirect_to new_session_path
     end
   end
+
 
   private
 

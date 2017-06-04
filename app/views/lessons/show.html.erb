@@ -42,8 +42,9 @@
           <a type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="付款后可以开始学习">开始学习</a>
         </div>
         <div class="payment-index">
+          <% if logged_in? %>
         <div class="payment-btn">
-          <%= link_to lesson_order_create_orders_path, class: "payment-btn btn btn-primary", id: "payha" do %>
+          <%= link_to lesson_order_create_orders_path, class: "payment-btn-3 btn btn-primary", id: "payha" do %>
           <div class="alipay-img"><img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-30-520.png" alt=""></div>
           <div class="payment-btn-font">
 
@@ -51,8 +52,22 @@
           </div>
           <% end %>
           </div>
+
+          <% else %>
+          <!-- 未登入时的按钮 -->
+          <div class="payment-btn-4">
+            <%= link_to '#', class: "payment-btn-5 btn btn-primary", id: "payha" do %>
+            <div class="alipay-img"><img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-30-520.png" alt=""></div>
+            <div class="payment-btn-font">
+
+              <p class="btn-font"><i style="display: none;" class="fa fa-spinner payment-btn-1 fa-spin fa-fw"></i>使用支付宝付款</p>
+            </div>
+            <% end %>
+            </div>
+          <% end %>
           </div>
       </div>
+
         <% end %>
     </div>
   </div>
@@ -131,7 +146,7 @@
           <p><a href="https://mobile.alipay.com/index.htm" target="view_window">首次使用请下载手机支付宝</a></p>
         </div>
         <div class="pay-alert">
-          <p class="pay-alert-1">提示：付款后，通常在10秒内会跳转页面，请耐心等候...</p>
+          <p class="pay-alert-1">提示：付款后，通常在10秒内会跳转页面，请耐心等候...如遇到网络延迟不跳转，可以进入个人订单查看付款状态。</p>
         </div>
         <input type="hidden" id="order_id_helper" value="">
       </div>
@@ -190,7 +205,7 @@ function clock()
 
   // 以下是发起支付
 
-$(".payment-btn").click(function(evt){
+$("#payha").click(function(evt){
   event.preventDefault();
 
   var url = $(this).attr("href");
@@ -226,7 +241,7 @@ $(".payment-btn").click(function(evt){
       }
       }
     });
-      // var int=self.setInterval("clock()",1000);
+      var int=self.setInterval("clock()",1000);
   })
 
 // 以下是关闭收银台
@@ -237,11 +252,13 @@ $(".fa-times").click(function(){
 })
 
 $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="tooltip"]').tooltip();
 })
 
-$('#liangliang').popover(options)
 
-
+// 以下是未登入的提示
+$(".payment-btn-4").click(function(){
+  alert("请先登入哦~");
+})
 
 </script>

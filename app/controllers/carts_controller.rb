@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  skip_before_action :auth_user
   layout 'product'
   def clean
     current_cart.cart_items.destroy_all

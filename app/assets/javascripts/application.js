@@ -19,3 +19,14 @@
 //= require demo
 //= require jquery.particleground
 //= require_tree .
+
+
+
+
+
+
+
+// 2.5秒自动关闭提示条
+setTimeout(function (){
+$(".alert-dismissable").fadeOut();
+}, 2500);

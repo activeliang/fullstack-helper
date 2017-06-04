@@ -1,7 +1,7 @@
-<div id="fix_signup">
+<div id="our_singup_page">
 
 <div id="particles">
-	<div class="intro" >
+	<div id="particles"><canvas class="pg-canvas" width="1501" height="1083"></canvas>
       <!-- <div class="id=signup-font">
       <h1>注册</h1>
       </div> -->
@@ -16,70 +16,69 @@
       </div>
     <% end -%>
 
-  <%= form_for :user, url: users_path, method: :post, html: { class: 'form-horizontal', id: "user_form"} do |f| %>
-    <!--输入用户名  -->
-      <div class="form-group">
-        <label class="col-sm-4 control-label"></label>
-        <div class="col-sm-4">
-        <%= f.text_field :username, placeholder: "用户名", class: "form-control" %>
-        </div>
-      </div>
+    <div class="input-group">
+			<div class="input-slogan"><h2>新用户注册</h2></div>
+			<%= form_for :user, url: users_path, method: :post, html: { class: 'form-horizontal', id: "user_form"} do |f| %>
+				<!--输入用户名  -->
+					<div class="input-item">
 
-    <!-- 输入手机号 -->
-      <div class="form-group">
-        <label class="col-sm-4 control-label"></label>
-        <div class="col-sm-4">
-        <%= f.text_field :cellphone, class: "form-control", placeholder: "手机号"%>
-        </div>
-      </div>
+						<div class="username">
+						<%= f.text_field :username, placeholder: "用户名", class: "form-control" %>
+						</div>
+					</div>
 
-    <!-- 输入验证码 -->
-      <div class="form-group">
-        <label class="col-sm-4 control-label"></label>
-        <div class="col-sm-4">
-          <div class="col-sm-6 token-size">
-          <%= rucaptcha_input_tag(class: 'form-control', placeholder: '验证码') %>
-          </div>
-          <div class="col-sm-6 change-captcha-size">
-            <span class="input-group-addon input-group-captcha button-size"><a class="rucaptcha-image-box" href="#"><%= rucaptcha_image_tag %></a></span>
-          </div>
-        </div>
-      </div>
+				<!-- 输入手机号 -->
+					<div class="input-item">
+						<div class="phonenumber">
+						<%= f.text_field :cellphone, class: "form-control", placeholder: "11位手机号码"%>
+						</div>
+					</div>
 
-    <!-- 手机验证码 -->
-      <div class="form-group">
-        <label class="col-sm-4 control-label"></label>
-        <div class="col-sm-4">
-          <div class="col-sm-6 token-size">
-            <%= f.text_field :token, class: "form-control", placeholder: "手机校验码" %>
-          </div>
-          <div class="col-sm-6 button-size">
-            <input type="button" value="获取验证码" class="btn btn-warning fetch-token-btn" data-url="<%= cellphone_tokens_path %>" />
-          </div>
-        </div>
-      </div>
+				<!-- 输入验证码 -->
+					<div class="input-item">
+						<div class="rucaptch-item">
+							<div class="change-captcha-size">
+								<span class="input-group-addon input-group-captcha button-size"><a class="rucaptcha-image-box" href="#"><%= rucaptcha_image_tag %></a>
+								<span class="alert">点击图片刷新</span></span>
+							</div>
+							<div class="token-size">
+							<%= rucaptcha_input_tag(class: 'form-control', placeholder: '请输入验证码') %>
+							</div>
+						</div>
+					</div>
 
-    <!-- 输入密码 -->
-      <div class="form-group">
-        <label class="col-sm-4 control-label"></label>
-        <div class="col-sm-4 signup-input">
-          <%= f.password_field :password, class: "form-control" ,id:"signup-input" , placeholder: "密码" %>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-4 control-label"></label>
-        <div class="col-sm-4 signup-input">
-          <%= f.password_field :password_confirmation, class: "form-control", id:"signup-input", placeholder: "密码确认"%>
-        </div>
-      </div>
-    <!-- 创建帐户 -->
-      <div class="form-group">
-        <label class="col-sm-4 control-label"></label>
-        <div class="col-sm-4 signup-input">
-          <input type="submit" name="create_user_submit" value="创建账户" ,id="signup-input", class="btn btn-primary">
-        </div>
-      </div>
-    <% end -%>
+				<!-- 手机验证码 -->
+					<div class="input-item">
+						<div class="row phone-item">
+
+							<div class="col-sm-6 button-size">
+								<input type="button" value="获取验证码" class="btn btn-warning fetch-token-btn" data-url="<%= cellphone_tokens_path %>" />
+							</div>
+							<div class="col-sm-6 token-size">
+								<%= f.text_field :token, class: "form-control", placeholder: "短信校验码" %>
+							</div>
+						</div>
+					</div>
+
+				<!-- 输入密码 -->
+					<div class="input-item">
+						<div class="password-input">
+							<%= f.password_field :password, class: "form-control" ,id:"signup-input" , placeholder: "密码" %>
+						</div>
+					</div>
+					<div class="password-input">
+						<div class="signup-input">
+							<%= f.password_field :password_confirmation, class: "form-control", id:"signup-input", placeholder: "密码确认"%>
+						</div>
+					</div>
+				<!-- 创建帐户 -->
+					<div class="input-create">
+						<div class="create-btn">
+							<input type="submit" name="create_user_submit" value="创建账户" ,id="signup-input", class="btn btn-primary">
+						</div>
+					</div>
+				<% end %>
+    </div>
     </div>
   </div>
 </div>
@@ -158,7 +157,10 @@
             if (data.status == 'error') {
               alert(data.message);
             $token_btn.attr('value', '获取短信验证码').prop('disabled', false);
-            } else {
+					}else if(data.status == 'gologin'){
+						alert("你的手机号已注册过，请直接登录！");
+						$token_btn.attr('value', '获取短信验证码').prop('disabled', false);
+					} else {
               $this.attr('value', $this.data('old-value'));
               $this.trigger('start_token_timer');
             }

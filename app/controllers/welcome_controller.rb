@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-skip_before_action :require_login
+  skip_before_action :auth_user
 
   layout 'application'
   def index
@@ -12,7 +12,6 @@ skip_before_action :require_login
 
 
   def test
-    @test = params[:id]
-    @user = current_user.id
+
   end
 end

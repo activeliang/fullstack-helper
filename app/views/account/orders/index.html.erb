@@ -63,7 +63,9 @@
             <div class="row option-item">
               <div class="col-sm-4 text-center">
                 <p class="total">￥<%= order.total %></p>
+                <% if !order.of_lesson? %>
                 <p class="carriage">(含运费：￥<%= order.carriage %>)</p>
+                <% end %>
               </div>
               <div class="col-sm-4 text-center"><%= render_order_status(order) %></div>
               <div class="col-sm-4 text-center">
