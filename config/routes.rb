@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
 
   # 用户注册和登录登出
-  resources :users 
+  resources :users
   resources :sessions
   delete '/logout' => 'sessions#destroy', as: :logout
   resources :cellphone_tokens, only: [:create]
@@ -23,7 +23,11 @@ Rails.application.routes.draw do
     end
     resources :categories
     resources :products do
-      resources :subproducts
+      resources :subproducts do
+        member do
+          post :update_weight
+        end
+      end
       resources :product_params
       resources :product_photos
     end
@@ -132,7 +136,7 @@ Rails.application.routes.draw do
     resources :buyers
     resources :chapters
 
-  
+
   end
 
   resources :posts

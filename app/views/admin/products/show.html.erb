@@ -28,7 +28,7 @@
     <td><%= subproduct.place %></td>
     <td><%= subproduct.quantity %></td>
     <td>
-      <%= form_tag admin_product_subproduct_path(@product, subproduct), method: :put do %>
+      <%= form_tag update_weight_admin_product_subproduct_path(@product, subproduct), method: :post do %>
         <input type="text" value="<%= subproduct.weight %>" name="weight" />
         <%= submit_tag "更新", class: "btn btn-default btn-xs" %>
       <% end %>

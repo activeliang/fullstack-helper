@@ -28,6 +28,17 @@ class Admin::SubproductsController < ApplicationController
     end
   end
 
+  def update_weight
+    @product = Product.find(params[:product_id])
+    @subproduct = @product.subproducts.find(params[:id])
+    @subproduct.weight = params[:weight]
+    if @subproduct.save
+      redirect_to :back, notice: "success!"
+    else
+      redirect_to :back, alert: "failed!"
+    end
+  end
+
   def update
     @product = Product.find(params[:product_id])
     @subproduct = @product.subproducts.find(params[:id])
