@@ -55,7 +55,7 @@
               </div>
               <div class="col-sm-6 text-center">
                 <div class="bc-5 col-sm-3">
-                  <% if cart_item.subproduct.price.present? %>
+                  <% if cart_item.subproduct.present? %>
                    ￥<%= cart_item.subproduct.price %>
                    <% else %>
                    未找到价格
