@@ -1,0 +1,15 @@
+<div class="container">
+  <h3>新增小分类</h3>
+  <%= simple_form_for [:admin,@product, @subproduct] do |f| %>
+  <%= f.input :subtitle %>
+  <%= f.input :msrp %>
+  <%= f.input :price %>
+  <%= f.input :activity %>
+  <%= f.input :carriage %>
+  <%= f.input :place %>
+  <%= f.input :quantity %>
+  <%= f.input :subproduct_image, as: :file %>
+  <%= f.submit "submit" %>
+  <% end %>
+
+</div>

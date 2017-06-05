@@ -36,7 +36,10 @@
     <% if subproduct.subproduct_image.present? %>
     <td><%= image_tag(subproduct.subproduct_image.thumb.url, class: "img-responsive") %></td>
     <% end %>
-    <td><%= link_to("Delete", admin_product_subproduct_path(@product, subproduct), method: :delete, "data-confirm": "Are you sure?", class: "btn btn-primary") %></td>
+    <td>
+      <%= link_to("Delete", admin_product_subproduct_path(@product, subproduct), method: :delete, "data-confirm": "Are you sure?", class: "btn btn-primary") %>
+      <%= link_to "编辑", edit_admin_product_subproduct_path(@product, subproduct), class: "btn btn-success" %>
+    </td>
   </tr>
 <% end %>
 </tbody>

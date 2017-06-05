@@ -12,6 +12,11 @@ class Admin::SubproductsController < ApplicationController
     end
   end
 
+  def edit
+    @product = Product.find(params[:product_id])
+    @subproduct = @product.subproducts.find(params[:id])
+  end
+
   def destroy
     @product = Product.find(params[:product_id])
     @subproduct = @product.subproducts.find(params[:id])
