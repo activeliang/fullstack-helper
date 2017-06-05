@@ -41,7 +41,6 @@ class Payment < ApplicationRecord
           order.product_lists.each do |product_list|
 
             product = Product.find(product_list.product_id)
-
             product.sales_count += 1
             product.save
           end
@@ -53,7 +52,6 @@ class Payment < ApplicationRecord
           lesson = Lesson.find(order.lesson_id)
           lesson.sales_count += 1
           lesson.save
-
           buyer = Buyer.new
           buyer.price = lesson.price
           buyer.user_id = order.user_id
@@ -65,23 +63,23 @@ class Payment < ApplicationRecord
     end
   end
 
-  def do_success_image_migration
-    self.orders.each do |order|
-
-        order.product_lists.each do |product_list|
-          if !order.of_lesson?
-            product = Product.find(product_list.product_id)
-            product_list.lists_image = product.main_product_photo.product_image.my_list
-          end
-          if order.of_lesson?
-            lesson = Lesson.find(order.lesson_id)
-            product_list.lists_image = lesson.main_image.thumb
-          end
-          product_list.save!
-        end
-
-    end
-  end
+  # def do_success_image_migration
+  #   self.orders.each do |order|
+  #
+  #       order.product_lists.each do |product_list|
+  #         if !order.of_lesson?
+  #           product = Product.find(product_list.product_id)
+  #           product_list.lists_image = product.main_product_photo.product_image.my_list
+  #         end
+  #         if order.of_lesson?
+  #           lesson = Lesson.find(order.lesson_id)
+  #           product_list.lists_image = lesson.main_image.thumb
+  #         end
+  #         product_list.save!
+  #       end
+  #
+  #   end
+  # end
 
   def do_failed_payment! params
     self.transaction_no = params[:trade_no]

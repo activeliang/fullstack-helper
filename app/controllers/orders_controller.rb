@@ -33,6 +33,7 @@ class OrdersController < ApplicationController
              product_list.contact_name = address.contact_name
              product_list.subproduct = cart_item.subproduct.subtitle
              product_list.product_id = cart_item.subproduct.product_id
+             product_list.lists_image = cart_item.subproduct.subproduct_image.thumb
              product_list.save!
 
            end
@@ -69,6 +70,7 @@ class OrdersController < ApplicationController
       product_list.contact_name = address.contact_name
       product_list.subproduct = subproduct.subtitle
       product_list.product_id = subproduct.product_id
+      product_list.lists_image = subproduct.subproduct_image.thumb
       product_list.save!
 
     end
@@ -94,7 +96,7 @@ class OrdersController < ApplicationController
         product_list.order = order
         product_list.product_name = lesson.title
         product_list.product_price = lesson.price
-
+        product_list.lists_image = lesson.minor_image.thumb
         product_list.quantity = 1
         product_list.save!
 
