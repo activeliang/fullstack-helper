@@ -17,6 +17,7 @@ class Admin::SubproductsController < ApplicationController
     @subproduct = @product.subproducts.find(params[:id])
   end
 
+
   def destroy
     @product = Product.find(params[:product_id])
     @subproduct = @product.subproducts.find(params[:id])
@@ -31,12 +32,14 @@ class Admin::SubproductsController < ApplicationController
     @product = Product.find(params[:product_id])
     @subproduct = @product.subproducts.find(params[:id])
     @subproduct.weight = params[:weight]
-    if @subproduct.save
+    if @subproduct.update(subproduct_params)
       flash[:notice] = "修改成功！"
+      redirect_to admin_product_path(@product)
     else
       flash[:warning] = "修改失败！"
+      redirect_to :back
     end
-    redirect_to :back
+
   end
 
   private
