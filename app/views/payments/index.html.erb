@@ -78,9 +78,15 @@
         </div>
         <div class="bc-2-2">
           <div id="pay_qrcode"></div>
+          <div id="pay_qrcode_helper_2" style="display: none;">
+            <div class="failed-img">
+              <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-06-05-Snip20170530_2.png" alt="">
+            </div>
+            <p>付款超时，请刷新页面重试...</p>
+          </div>
           <div id="pay_qrcode_helper" style="display: none;">
             <div class="success-img text-center">
-              <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-30-Snip20170530_1.png" alt="join-cart-success">
+              <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-30-Snip20170530_1.png" alt="">
             </div>
             <p><i class="fa fa-spinner fa-spin fa-fw"></i>正在跳转页面</p>
           </div>
@@ -169,6 +175,9 @@ $("#payha").click(function(evt){
       success: function(data){
       if (data["status"] = "ok"){
         $("#pay_qrcode").html(data["qrcode"]);
+        $("#pay_qrcode").css("display", "block");
+        $(".alipay-logo").css("display", "block");
+        $("#pay_qrcode_helper_2").css("display", "none");
 
         $(".pay-counter-bc").css("height", "854px");
         $("#order_id_helper").val(data["order_id"]);
@@ -190,6 +199,14 @@ $("#payha").click(function(evt){
       }
     });
       var int=self.setInterval("clock()",1000);
+      setTimeout(function (){
+
+
+        window.clearInterval(int);
+        $("#pay_qrcode").css("display", "none");
+        $(".alipay-logo").css("display", "none");
+        $("#pay_qrcode_helper_2").css("display", "block");
+      }, 900000);
   })
 
 // 以下是关闭收银台
