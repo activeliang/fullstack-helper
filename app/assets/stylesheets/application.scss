@@ -94,6 +94,12 @@ abbr,acronym {
   margin: 0;
   border: 0;
 }
+//为table加自适应
+.table > tbody > tr > td {
+ padding:3px 8px;
+ vertical-align: middle;
+ word-break:break-all;
+}
 
 // 以下是alert下拉提示条
 .alert.alert-dismissable {
