@@ -161,7 +161,7 @@
       var CELLPHONE_RE_2 = /^(\+886|886)/;
 			$('input[name="user[cellphone]"]').change(function(){
 				if (!CELLPHONE_RE.test($(this).val())){
-					alert("提示：註冊成功後，請以+國際區號開頭的格式登入~");
+					alert("提示：註冊成功後，請以 "+國際區號" 開頭的格式登入~");
 				}
 			})
 
