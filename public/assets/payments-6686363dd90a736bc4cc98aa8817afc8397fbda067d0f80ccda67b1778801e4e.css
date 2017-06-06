@@ -1,0 +1,334 @@
+/* line 10, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+#overlay {
+  position: fixed;
+  /* Sit on top of the page content */
+  display: none;
+  /* Hidden by default */
+  width: 100%;
+  /* Full width (cover the whole page) */
+  height: 100%;
+  /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  /* Black background with opacity */
+  z-index: 2;
+  /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer;
+  /* Add a pointer on hover */
+  transition: 10s ease;
+  animation: fadein-1 0.8s, fadeout-1 0.5s 2.5s;
+}
+
+/* line 26, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+#text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 2em;
+  color: white;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+/* line 39, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index h1 {
+  font-size: 1.7em;
+  color: #555;
+  margin-top: 39px;
+}
+/* line 44, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .pay-alert-1 {
+  border: 1px solid #7ED321;
+  padding: 31px;
+  color: #555;
+}
+/* line 49, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .pay-alert-1 h4 {
+  margin-bottom: 27px;
+}
+/* line 53, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .pay-alert {
+  padding-top: 25px;
+  border-top: 1px solid #d8d8d8;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #d8d8d8;
+}
+/* line 59, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .pay-alert img {
+  width: 76px;
+}
+/* line 62, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .col-sm-6.order-no {
+  margin-left: -30px;
+}
+/* line 65, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .col-sm-6.order-no p {
+  margin-bottom: 0;
+}
+/* line 69, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .alipay-img img {
+  width: 38px;
+  float: left;
+  margin-left: -5px;
+  margin-right: 5px;
+}
+/* line 75, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index a#payha {
+  font-size: 1.3em;
+  background: #00a0e9;
+  border: 0;
+  float: right;
+  margin-top: 9px;
+  border-radius: 4px;
+}
+/* line 83, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .alipay-img {
+  width: 38px;
+  height: 38px;
+  float: left;
+}
+/* line 88, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index p.btn-font {
+  margin-right: 7px;
+  float: right;
+  margin-left: 10px;
+  margin-top: 8px;
+  margin-bottom: 3px;
+}
+/* line 95, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .payment-btn-font {
+  float: right;
+}
+/* line 98, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index i.fa.fa-spinner.payment-btn-1.fa-spin.fa-fw {
+  float: left;
+  margin-top: 4px;
+  margin-right: 3px;
+  margin-left: -9px;
+}
+/* line 106, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .pay-counter-bc {
+  position: fixed;
+  bottom: 0;
+  height: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 8;
+  transition: 2s ease;
+}
+/* line 116, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .pay-counter.container {
+  margin-top: 35px;
+  background: #fff;
+}
+/* line 120, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .pay-counter-nav {
+  background: #f6f6f6;
+  border-bottom: 1px solid #d1d1d1;
+  text-align: center;
+  font-size: 1.4em;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 3px solid #e8e8e8;
+  border-bottom: 3px solid #e8e8e8;
+}
+/* line 130, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .payment-counter-bc-1 {
+  padding-top: 30px;
+  border-bottom: 2px solid #e8e8e8;
+  width: 90%;
+  margin: 0 auto;
+}
+/* line 136, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .bc-2 {
+  text-align: center;
+}
+/* line 139, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index table {
+  margin: 0 auto;
+}
+/* line 142, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .alipay-logo img {
+  width: 45px;
+}
+/* line 145, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .alipay-logo.text-center {
+  margin-top: -131px;
+  margin-bottom: 92px;
+}
+/* line 149, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .bc-2-2 {
+  width: 217px;
+  margin: 0 auto;
+  padding-top: 6px;
+  border: 1px solid #d4d4d4;
+}
+/* line 155, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .bc-2-1 {
+  padding-top: 62px;
+  text-align: center;
+  padding-bottom: 7px;
+}
+/* line 160, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .bc-2-1 p {
+  margin-bottom: 0px;
+  margin-left: 16px;
+}
+/* line 164, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index h5.pay-total {
+  color: #f60;
+  font-size: 26px;
+  font-weight: 700;
+}
+/* line 169, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .payment-counter-bc-3 {
+  width: 59%;
+  margin: 0 auto;
+}
+/* line 173, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .image-1 {
+  float: right;
+  margin-top: -81px;
+  z-index: 3;
+}
+/* line 178, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .image-2 {
+  float: right;
+  margin-right: -204px;
+  margin-top: -81px;
+}
+/* line 183, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .bc-2-3 p {
+  color: #666;
+  margin-bottom: 0px;
+}
+/* line 187, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .bc-2-3 {
+  padding: 8px;
+}
+/* line 190, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .bc-2-3 img {
+  float: left;
+  /* padding: 16px; */
+  margin-left: 23px;
+  margin-top: 6px;
+}
+/* line 196, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .alipay-app {
+  text-align: center;
+  margin-top: 4px;
+  font-size: .8em;
+  /* color: #e8e8e8; */
+}
+/* line 202, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .alipay-app p a {
+  margin: 0 0 10px;
+  text-decoration: underline;
+  color: #999;
+}
+/* line 207, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .alipay-app {
+  text-align: center;
+  margin-top: 4px;
+  font-size: .8em;
+  /* color: #e8e8e8; */
+  margin-bottom: 90px;
+  width: 90;
+}
+/* line 215, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .payment-counter-bc-2 .pay-alert {
+  padding-top: 25px;
+  border-top: 1px solid #d8d8d8;
+  padding-bottom: 25px;
+  border-top: 2px solid #e8e8e8;
+  width: 90%;
+  margin: 0 auto;
+}
+/* line 223, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index a.btn.btn-default {
+  border: 0;
+  padding: 0 2px;
+  color: #266ac7;
+}
+/* line 228, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index i.fa.fa-times {
+  float: right;
+  color: #888;
+  line-height: 27px;
+  padding-right: 7px;
+}
+/* line 234, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index i.fa.fa-times:hover {
+  color: #e4393c;
+}
+/* line 237, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .image-alert:hover {
+  cursor: pointer;
+}
+/* line 240, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index #pay_qrcode_helper {
+  width: 215px;
+  height: 205px;
+}
+/* line 245, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index #pay_qrcode_helper {
+  margin-top: 5px;
+  padding-top: 15px;
+  transition: 1.5s ease;
+}
+/* line 250, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .success-img.text-center {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+/* line 254, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index h5.payment-payment_no {
+  font-weight: 600;
+}
+/* line 257, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index .payment-counter-bc-1 .row .col-sm-6 h5 {
+  font-weight: 600;
+}
+/* line 260, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index #pay_qrcode_helper_2 {
+  width: 215px;
+  height: 205px;
+}
+/* line 263, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.payment-index #pay_qrcode_helper_2 .failed-img {
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+/* line 275, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.success-page .bc-2 {
+  padding-top: 108px;
+  padding-bottom: 30px;
+  border-bottom: 2px solid #e8e8e8;
+  margin-bottom: 10px;
+}
+/* line 281, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.success-page a.btn {
+  width: 100%;
+  border-radius: 0;
+  padding-bottom: 16px;
+  padding-top: 16px;
+  font-size: 1.2em;
+}
+/* line 288, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.success-page a.btn.btn-primary:hover {
+  border: 1px solid #337ab7;
+  background: #e8e8e8;
+  color: #337ab7;
+}
+/* line 293, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/payments.scss */
+.success-page h5 {
+  font-size: 2em;
+  color: #555;
+  margin-left: 19px;
+  margin-top: 20px;
+}
