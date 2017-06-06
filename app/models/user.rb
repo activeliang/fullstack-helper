@@ -4,6 +4,7 @@ class User < ApplicationRecord
     attr_accessor :password, :password_confirmation, :token
 
   CELLPHONE_RE = /\A(\+86|86)?1\d{10}\z/
+  CELLPHONE_RE_2 = /\A(\+886|886)?09\d{8}\z/
   EMAIL_RE = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
 
   # validates_presence_of :email, message: "邮箱不能为空"
@@ -81,10 +82,7 @@ class User < ApplicationRecord
           end
         end
       else
-        unless self.cellphone =~ CELLPHONE_RE
-          self.errors.add :cellphone, "手机号格式不正确"
-          return false
-        end
+
 
         unless VerifyToken.available.find_by(cellphone: self.cellphone, token: self.token)
           self.errors.add :cellphone, "手机验证码不正确或者已过期"

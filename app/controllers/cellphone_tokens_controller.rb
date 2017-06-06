@@ -5,10 +5,13 @@ class CellphoneTokensController < ApplicationController
   prepend_before_action :valify_phone_unrepeated!
 
   def create
-    unless params[:cellphone] =~ User::CELLPHONE_RE
-      render json: {status: 'error', message: "手机号格式不正确！"}
-      return
+    if params[:helper] == 0
+      unless params[:cellphone] =~ User::CELLPHONE_RE
+        render json: {status: 'error', message: "手机号格式不正确！"}
+        return
+      end
     end
+
 
     if session[:token_created_at] and
       session[:token_created_at] + 60 > Time.now.to_i
@@ -19,7 +22,11 @@ class CellphoneTokensController < ApplicationController
     ChinaSMS.use :yunpian, password: ENV["sms_signup"]
     token = generate_cellphone_token
     VerifyToken.upsert params[:cellphone], token
-    ChinaSMS.to params[:cellphone], "【大赛加油站】#{token}(注册验证码)，请在15分钟内完成注册。如非本人操作，请忽略。"
+    if params[:helper] == 0
+      ChinaSMS.to params[:cellphone], "【大赛加油站】#{token}(注册验证码)，请在15分钟内完成注册。如非本人操作，请忽略。"
+    else
+      ChinaSMS.to params[:cellphone], "【大賽加油站】#{token}(註冊驗證碼)，請在15分鐘內完成註冊。如非本人操作，請忽略。"
+    end
     session[:token_created_at] = Time.now.to_i
     render json: {status: 'ok'}
   end
@@ -42,7 +49,6 @@ class CellphoneTokensController < ApplicationController
     end
 
     def valify_phone_unrepeated!
-
       phonenumber = User.find_by_cellphone(params[:cellphone])
         if phonenumber.present?
           # redirect_back_or_to "/sessions/new", notic: "You are not admin."

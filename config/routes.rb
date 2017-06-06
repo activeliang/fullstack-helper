@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     end
     resources :orders do
       member do
+        get :ship_page
         post :cancel
         post :ship
         post :shipped

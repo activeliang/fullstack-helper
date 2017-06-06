@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170604002623) do
+ActiveRecord::Schema.define(version: 20170606005705) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -103,19 +103,21 @@ ActiveRecord::Schema.define(version: 20170604002623) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.decimal  "total",          precision: 10, scale: 3
+    t.decimal  "total",           precision: 10, scale: 3
     t.integer  "user_id"
-    t.datetime "created_at",                                                       null: false
-    t.datetime "updated_at",                                                       null: false
+    t.datetime "created_at",                                                        null: false
+    t.datetime "updated_at",                                                        null: false
     t.string   "token"
-    t.boolean  "is_paid",                                 default: false
+    t.boolean  "is_paid",                                  default: false
     t.string   "payment_method"
-    t.string   "aasm_state",                              default: "order_placed"
+    t.string   "aasm_state",                               default: "order_placed"
     t.integer  "payment_id"
-    t.decimal  "carriage",       precision: 10, scale: 3
-    t.boolean  "of_lesson",                               default: false
+    t.decimal  "carriage",        precision: 10, scale: 3
+    t.boolean  "of_lesson",                                default: false
     t.integer  "lesson_id"
     t.datetime "payment_at"
+    t.string   "carriage_no"
+    t.string   "carriage_method"
     t.index ["aasm_state"], name: "index_orders_on_aasm_state"
     t.index ["of_lesson"], name: "index_orders_on_of_lesson"
     t.index ["payment_id"], name: "index_orders_on_payment_id"
@@ -238,6 +240,7 @@ ActiveRecord::Schema.define(version: 20170604002623) do
     t.boolean  "is_admin",                        default: false
     t.integer  "default_address_id"
     t.string   "username"
+    t.boolean  "is_overseas",                     default: false
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["cellphone"], name: "index_users_on_cellphone"
     t.index ["email"], name: "index_users_on_email"

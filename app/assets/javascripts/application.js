@@ -18,6 +18,7 @@
 //= require egg
 //= require demo
 //= require jquery.particleground
+//= require bootstrap-select.min
 //= require_tree .
 
 

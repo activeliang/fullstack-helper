@@ -28,11 +28,22 @@
 					</div>
 
 				<!-- 输入手机号 -->
-					<div class="input-item">
-						<div class="phonenumber">
-						<%= f.text_field :cellphone, class: "form-control", placeholder: "11位手机号码"%>
-						</div>
+				<div class="myphone">
+					<div class="overseas">
+						<select class="selectpicker"  data-width="fit">
+							<option>大陆</option>
+							<option>台灣</option>
+							<option>香港</option>
+							<option>其他</option>
+						</select>
 					</div>
+						<div class="input-item">
+							<div class="phonenumber">
+							<%= f.text_field :cellphone, class: "form-control", placeholder: "11位手机号码"%>
+							</div>
+
+						</div>
+				</div>
 
 				<!-- 输入验证码 -->
 					<div class="input-item">
@@ -52,7 +63,8 @@
 						<div class="row phone-item">
 
 							<div class="col-sm-6 button-size">
-								<input type="button" value="获取验证码" class="btn btn-warning fetch-token-btn" data-url="<%= cellphone_tokens_path %>" />
+								<input type="button" value="获取验证码" id="fetch_helper" class="btn btn-warning fetch-token-btn" data-url="<%= cellphone_tokens_path %>" />
+								<input type="hidden" name="user[type]" value="0" id="helper">
 							</div>
 							<div class="col-sm-6 token-size">
 								<%= f.text_field :token, class: "form-control", placeholder: "短信校验码" %>
@@ -88,6 +100,13 @@
 
 
     (function(){
+
+		var helper = $("#helper").val();
+
+		if ($("#helper").val() == 1){
+			alert("提示：註冊成功後，請以+886開頭的格式登入~");
+		}
+
     // //检查手机号是否重复：
     // $cellphone_btn = $('.fetch-cellphone-btn');
     // $cellphone_btn.click(function(){
@@ -112,12 +131,51 @@
       })
 
 
+
+			// 地区检查
+
+			$(".overseas").click(function(){
+				var location = $(".filter-option").html();
+
+				if (location == "大陆"){
+						$("#user_cellphone").val("");
+						$("#helper").val(0);
+						$("#user_cellphone").attr("placeholder", "11位手机号码");
+
+				}else if(location == "台灣"){
+					$("#user_cellphone").val("+886");
+          $("#helper").val(1);
+				}else if(location == "香港"){
+					$("#user_cellphone").val("+852");
+          $("#helper").val(1);
+				}else if(location == "其他"){
+					$("#user_cellphone").val("");
+					$("#user_cellphone").attr("placeholder", "註冊,登入時請加+區號");
+          $("#helper").val(1);
+				}
+
+				// if ($("#helper").val() == 1){
+        //   alert("提示：註冊成功後，請以+886開頭的格式登入~");
+				// }
+      })
+      var CELLPHONE_RE_2 = /^(\+886|886)/;
+			$('input[name="user[cellphone]"]').change(function(){
+				if (!CELLPHONE_RE.test($(this).val())){
+					alert("提示：註冊成功後，請以+國際區號開頭的格式登入~");
+				}
+			})
+
+
       // 验证码
       var CELLPHONE_RE = /^(\+86|86)?1\d{10}$/;
+
       var token_wait = 60,
+
         token_interval,
-        $token_btn = $('.fetch-token-btn');
+        $token_btn = $('#fetch_helper');
+
       $token_btn.click(function () {
+				var helper = $("#helper").val();
         var $this = $(this),
         cellphone = $('#user_cellphone').val();
         // cellphone = $('input[name="test"]').val();
@@ -126,12 +184,16 @@
           url: $this.data('url'),
           method: 'post',
           // data: {cellphone: cellphone},
-          data: {cellphone: cellphone, _rucaptcha: _rucaptcha},
+          data: {cellphone: cellphone, _rucaptcha: _rucaptcha, helper: helper},
           beforeSend: function () {
-            if (!CELLPHONE_RE.test(cellphone)) {
-              alert("手机号码格式错误!");
-              return false;
-            }
+						if (helper == 0){
+							if (!CELLPHONE_RE.test(cellphone)) {
+
+	              alert("手机号码格式错误!");
+	              return false;
+	            }
+						}
+
             $this.data('old-value', $this.attr('value'));
             $this.attr('value', "发送中...").prop('disabled', true);
           },
@@ -167,6 +229,22 @@
           }
         })
       })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       .on('start_token_timer', function () {
         token_interval = setInterval(function () {
           $token_btn.trigger('token_timer');

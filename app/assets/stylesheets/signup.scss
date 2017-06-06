@@ -27,7 +27,7 @@ canvas.pg-canvas {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 99;
+    z-index: 97;
         width: 19%;
 }
 .input-slogan h2 {
@@ -105,6 +105,21 @@ input.btn.btn-warning.fetch-token-btn:hover {
 .col-sm-6.button-size {
     padding-right: 0;
 }
+button.btn.dropdown-toggle.btn-default {
+    margin-left: 0px;
+    padding-left: 10px;
+    border-radius: 4px;
+    padding-right: 14px;
+}
+span.filter-option.pull-left {
+    padding-right: 0;
+    margin-right: -8px;
+}
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 220px;
+    margin-right: 3px;
+    float: left;
+}
 
 
 }
@@ -116,7 +131,7 @@ input.btn.btn-warning.fetch-token-btn:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 99;
+    z-index: 97;
     width: 19%;
 }
 .login-slogan {

@@ -1,22 +1,43 @@
 ``<h2>订单列表</h2>
 
 <table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>生成时间</th>
-            <th>订购者</th>
-            <th>订单状态</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @orders.each do |order| %>
-        <tr>
-            <td><%= link_to(order.id, admin_order_path(order))%></td>
-            <td><%= order.created_at.to_s(:long)%></td>
-            <td><%= order.user.email %></td>
-            <td><%= order.aasm_state %></td>
-        </tr>
+  <thead>
+    <tr>
+      <th></th>
+      <th>生成时间 </th>
+      <th>支付时间</th>
+      <th>状态</th>
+      <th>运费</th>
+      <th>商品名</th>
+      <th>分类</th>
+      <th>数量</th>
+      <th>价格</th>
+      <th>收货地址</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |o| %>
+    <tr>
+      <td><%= o.id %></td>
+      <td><%= o.created_at.strftime("%Y-%m-%d") %></td>
+      <% if o.payment_at.present? %>
+      <td><%= o.payment_at.strftime("%Y-%m-%d") %></td>
+      <% else %>
+      <td>未支付</td>
+      <% end %>
+      <td><%= o.aasm_state %></td>
+      <td><%= o.carriage %></td>
+
+        <% o.product_lists.each do |p| %>
+          <td><%= p.product_name %></td>
+          <td><%= p.subproduct %></td>
+          <td><%= p.quantity %></td>
+          <td><%= p.product_price %></td>
+          <td><%= p.address %>/<%= p.contact_name %>/<%= p.cellphone %></td>
+          <td><%= link_to "我要发货", ship_page_admin_order_path(o), class: "btn btn-success" %></td>
         <% end %>
-    </tbody>
+    </tr>
+    <% end %>
+  </tbody>
 </table>

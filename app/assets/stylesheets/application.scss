@@ -83,6 +83,8 @@ abbr,acronym {
 
 @import "orders";
 
+@import "bootstrap-select";
+
 
 
 @import "signup";
@@ -242,4 +244,9 @@ html, body {
 }
 .row.footer-row {
     margin-top: 60px;
+}
+
+// 以下是amin_html的navbar
+.row.admin {
+    background: #555;
 }
