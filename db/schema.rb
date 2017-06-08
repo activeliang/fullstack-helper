@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 20170606005705) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.decimal  "total",           precision: 10, scale: 3
+    t.decimal  "total",           precision: 10, scale: 2
     t.integer  "user_id"
     t.datetime "created_at",                                                        null: false
     t.datetime "updated_at",                                                        null: false
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20170606005705) do
     t.string   "payment_method"
     t.string   "aasm_state",                               default: "order_placed"
     t.integer  "payment_id"
-    t.decimal  "carriage",        precision: 10, scale: 3
+    t.decimal  "carriage",        precision: 10, scale: 2, default: "0.0"
     t.boolean  "of_lesson",                                default: false
     t.integer  "lesson_id"
     t.datetime "payment_at"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20170606005705) do
     t.string   "payment_no"
     t.string   "transaction_no"
     t.string   "status",                                  default: "initial"
-    t.decimal  "total_money",    precision: 10, scale: 3
+    t.decimal  "total_money",    precision: 10, scale: 2
     t.datetime "payment_at"
     t.text     "raw_response"
     t.datetime "created_at",                                                  null: false
@@ -151,10 +151,10 @@ ActiveRecord::Schema.define(version: 20170606005705) do
   create_table "product_lists", force: :cascade do |t|
     t.integer  "order_id"
     t.string   "product_name"
-    t.decimal  "product_price", precision: 10, scale: 3
-    t.integer  "quantity"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.decimal  "product_price", precision: 10, scale: 2
+    t.integer  "quantity",                               default: 1
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
     t.string   "address"
     t.string   "cellphone"
     t.string   "contact_name"
@@ -185,7 +185,7 @@ ActiveRecord::Schema.define(version: 20170606005705) do
     t.string   "title"
     t.text     "description"
     t.integer  "quantity"
-    t.decimal  "price",            precision: 10, scale: 3
+    t.decimal  "price",            precision: 10, scale: 2
     t.integer  "evaluation_count",                          default: 0
     t.integer  "sales_count",                               default: 0
     t.integer  "category_id"
@@ -208,8 +208,8 @@ ActiveRecord::Schema.define(version: 20170606005705) do
   create_table "subproducts", force: :cascade do |t|
     t.integer  "product_id"
     t.string   "subtitle"
-    t.decimal  "msrp",             precision: 10, scale: 3
-    t.decimal  "price",            precision: 10, scale: 3
+    t.decimal  "msrp",             precision: 10, scale: 2
+    t.decimal  "price",            precision: 10, scale: 2
     t.string   "activity"
     t.integer  "carriage",                                  default: 0
     t.string   "place"

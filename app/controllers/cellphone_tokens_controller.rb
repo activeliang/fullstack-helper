@@ -22,7 +22,7 @@ class CellphoneTokensController < ApplicationController
     ChinaSMS.use :yunpian, password: ENV["sms_signup"]
     token = generate_cellphone_token
     VerifyToken.upsert params[:cellphone], token
-    if params[:helper] == 0
+    if params[:helper] == "0"
       ChinaSMS.to params[:cellphone], "【大赛加油站】#{token}(注册验证码)，请在15分钟内完成注册。如非本人操作，请忽略。"
     else
       ChinaSMS.to params[:cellphone], "【大賽加油站】#{token}(註冊驗證碼)，請在15分鐘內完成註冊。如非本人操作，請忽略。"
