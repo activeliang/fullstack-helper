@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       post :public
       end
     end
+    
     resources :categories
     resources :products do
       resources :subproducts do
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
       resources :product_params
       resources :product_photos
     end
+
     resources :orders do
       member do
         get :ship_page
