@@ -31,12 +31,12 @@
       </div>
       <div class="row text-center">
         <div class="col-sm-4">
-          <%= link_to upvote_post_path(@post), class: "btn btn-default" do %>
+          <%= link_to upvote_post_path(@post), method: :post, class: "btn btn-default" do %>
           <span class="emjoy">😄</span> So easy
           <% end %>
         </div>
         <div class="col-sm-4">
-          <%= link_to downvote_post_path(@post), class: "btn btn-default"  do %>
+          <%= link_to downvote_post_path(@post), method: :post, class: "btn btn-default"  do %>
           <span class="emjoy">😐</span> 还Ok啦
           <% end %>
         </div>
@@ -87,16 +87,26 @@
       </div>
       <div class="content">
         <p>反馈：</p>
-        <%= simple_form_for post_post_eva_path(@post), method: :post do |f| %>
+        <%= simple_form_for [@post, @post_eva], method: :post do |f| %>
         <%= f.input :content %>
         <%= f.input :eva_image, as: :file %>
-        <div class="feedback-btn"><%= f.submit "吐槽", class: "btn btn-default" %></div>
-        <button type="button" class="close btn btn-default" data-dismiss="modal" aria-label="Close">取消</button>
+        <div class="feedback-btn">
+          <div class="feedback-btn"><%= f.submit "吐槽", class: "btn btn-default" %></div>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
         <% end %>
       </div>
     </div>
   </div>
-</div>
+</div> method: :post,
+
+<!-- 以下是弹出提示条 -->
+
+<!-- Use a button to open the snackbar -->
+<button onclick="myFunction()">Show Snackbar</button>
+
+<!-- The actual snackbar -->
+<div id="snackbar">已收到您的反馈，谢谢~</div>
 
 <script>
 document.onkeydown=function(event){

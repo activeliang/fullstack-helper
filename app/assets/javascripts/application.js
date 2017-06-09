@@ -31,3 +31,15 @@
 setTimeout(function (){
 $(".alert-dismissable").fadeOut();
 }, 2500);
+
+// 以下是弹出提示框
+function myFunction() {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar")
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}

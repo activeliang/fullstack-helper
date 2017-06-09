@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608142005) do
+ActiveRecord::Schema.define(version: 20170609020931) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -151,10 +151,12 @@ ActiveRecord::Schema.define(version: 20170608142005) do
     t.string   "title"
     t.text     "description"
     t.integer  "chapter_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "weight"
     t.integer  "lesson_id"
+    t.integer  "so_easy",     default: 0
+    t.integer  "okay",        default: 0
   end
 
   create_table "product_lists", force: :cascade do |t|

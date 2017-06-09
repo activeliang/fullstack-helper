@@ -16,7 +16,6 @@ skip_before_action :auth_user, only: [:new, :create]
   def create
     @user =User.new(user_params)
     @user.username = params[:user][:username]
-    binding.pry
     if params[:user][:type] == "0"
       @user.is_overseas = false
     else

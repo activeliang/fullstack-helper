@@ -142,7 +142,7 @@ Rails.application.routes.draw do
   end
 
   resources :posts do
-    resources :post_eva
+    resources :post_evas
     member do
       post :upvote
       post :downvote
