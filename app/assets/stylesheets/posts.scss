@@ -50,15 +50,78 @@ i.fa.fa-long-arrow-right {
 }
 
 // 以下是反馈区
+.post-eva {
+    border-top: 1px solid #e5e5e5;
+    padding: 20px;
+    font-size: 17px;
+    color: #666;
 
+button#feedback-btn-1 {
+    background: #fff;
+    border-radius: 4px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid #ccc;
+}
+.row.text-center.feedback-btn-group {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+button#feedback-btn-4 {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+}
+.post-show .lesson-content .post-eva .row.text-center.feedback-btn-group {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+}
 
+// 以下是modal
+.feedback-modal .modal-dialog .modal-content {
+    padding: 25px;
+    color: #666;
+
+    .modal-header {
+    padding: 8px;
+}
+.content {
+    margin-top: 20px;
+        padding-bottom: 38px;
+}
+.modal-btn {
+    float: right;
+}
+.modal-btn-1 {
+    float: right;
+}
+.modal-btn-2 {
+    float: left;
+}
+.modal-btn-1 {
+    margin-left: 5px;
+}
+input.btn.btn-success {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.modal-btn-2 button.btn.btn-default {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 
 }
 
 // 以下是弹出提示条的css
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
-    visibility: hidden; /* Hidden by default. Visible on click */
+    display: none;
+    // visibility: hidden; /* Hidden by default. Visible on click */
     min-width: 250px; /* Set a default minimum width */
     margin-left: -125px; /* Divide value of min-width by 2 */
     background-color: #333; /* Black background color */

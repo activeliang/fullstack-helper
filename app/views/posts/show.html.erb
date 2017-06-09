@@ -25,23 +25,27 @@
     <div class="post-eva">
       <div class="slogan">
         <span class="text">对本页内容的感受如何？</span>
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">
+        <button type="button" class="btn btn-default" id="feedback-btn-1" data-toggle="modal" data-target=".bs-example-modal-lg">
           🗣 我要吐槽
         </button>
       </div>
-      <div class="row text-center">
+      <div class="row text-center feedback-btn-group">
         <div class="col-sm-4">
-          <%= link_to upvote_post_path(@post), method: :post, class: "btn btn-default" do %>
-          <span class="emjoy">😄</span> So easy
+          <%= link_to upvote_post_path(@post), id: "feedback-btn-2", class: "btn btn-default" do %>
+          <span class="emjoy">😄</span>
+           <i style="display: none;" class="fa fa-spinner feedback-font-1 fa-spin fa-fw"></i>
+           So easy
           <% end %>
         </div>
         <div class="col-sm-4">
-          <%= link_to downvote_post_path(@post), method: :post, class: "btn btn-default"  do %>
-          <span class="emjoy">😐</span> 还Ok啦
+          <%= link_to downvote_post_path(@post),  id: "feedback-btn-3", class: "btn btn-default"  do %>
+          <span class="emjoy">😐</span>
+          <i style="display: none;" class="fa fa-spinner feedback-font-2 fa-spin fa-fw"></i>
+          还Ok啦
           <% end %>
         </div>
         <div class="col-sm-4">
-          <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">
+          <button type="button" class="btn btn-default" id="feedback-btn-4" data-toggle="modal" data-target=".bs-example-modal-lg">
           <span class="emjoy">😭</span> 崩溃了
           </button>
         </div>
@@ -78,7 +82,7 @@
 <!-- Large modal -->
 
 
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade feedback-modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -86,29 +90,93 @@
         <h4 class="modal-title" id="gridSystemModalLabel">遇到什么问题了吗？</h4>
       </div>
       <div class="content">
-        <p>反馈：</p>
-        <%= simple_form_for [@post, @post_eva], method: :post do |f| %>
-        <%= f.input :content %>
-        <%= f.input :eva_image, as: :file %>
-        <div class="feedback-btn">
-          <div class="feedback-btn"><%= f.submit "吐槽", class: "btn btn-default" %></div>
-          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+
+        <%= simple_form_for [@post, @post_eva],:remote => true, method: :post do |f| %>
+        <%= f.input :content, label: "反馈：" %>
+        <!-- <%= f.input :eva_image %> -->
+        <div class="modal-btn">
+          <div class="modal-btn-1"><%= f.submit "吐槽", class: "btn btn-success" %></div>
+          <div class="modal-btn-2">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          </div>
         </div>
         <% end %>
       </div>
     </div>
   </div>
-</div> method: :post,
+</div>
 
 <!-- 以下是弹出提示条 -->
 
 <!-- Use a button to open the snackbar -->
-<button onclick="myFunction()">Show Snackbar</button>
 
 <!-- The actual snackbar -->
 <div id="snackbar">已收到您的反馈，谢谢~</div>
 
 <script>
+
+
+// 以下是soeasy的ajax
+  $("#feedback-btn-2").click(function(evt){
+    evt.preventDefault();
+    var url = $(this).attr("href");
+
+    $.ajax({
+      url: url,
+      method: "POST",
+      data: { id: <%= @post.id %> },
+      dataType: 'json',
+      beforeSend: function(){
+        $(".feedback-font-1").css("display", "inline-block");
+       },
+      success: function(data){
+        $(".feedback-font-1").css("display", "none");
+        $("#snackbar").addClass('show');
+      },
+      complete: function(){
+
+        setTimeout(function (){
+
+
+          $("#snackbar").removeClass('show');
+        }, 3000);
+
+      }
+    })
+  })
+// 以下是还ok啦的ajax
+  $("#feedback-btn-3").click(function(evt){
+    evt.preventDefault();
+    var url = $(this).attr("href");
+
+    $.ajax({
+      url: url,
+      method: "POST",
+      data: { id: <%= @post.id %> },
+      dataType: 'json',
+      beforeSend: function(){
+        $(".feedback-font-2").css("display", "inline-block");
+       },
+      success: function(data){
+        $(".feedback-font-2").css("display", "none");
+        $("#snackbar").addClass('show');
+      },
+      complete: function(){
+
+        setTimeout(function (){
+
+
+          $("#snackbar").removeClass('show');
+        }, 3000);
+
+      }
+    })
+  })
+
+
+
+
+
 document.onkeydown=function(event){
              var e = event || window.event || arguments.callee.caller.arguments[0];
              var left = $(".btn-left-url").attr("href");

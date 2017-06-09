@@ -29,15 +29,14 @@ class PostsController < ApplicationController
 
   def upvote
     @post = Post.find(params[:id])
-    binding.pry
     @post.update_column :so_easy, @post.so_easy +=1
-    render :json => "ok"
+    # render :json => "ok"
   end
 
   def downvote
     @post = Post.find(params[:id])
-    @post.update_column :okay, @post.okay -=1
-    render :json => "ok"
+    @post.update_column :okay, @post.okay +=1
+    # render :json => "ok"
   end
 
 end

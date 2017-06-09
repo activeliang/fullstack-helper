@@ -4,9 +4,7 @@ class PostEvasController < ApplicationController
     @post_eva = PostEva.new(post_eva_params)
     @post_eva.user = current_user
     @post_eva.post_id = params[:post_id]
-    if @post_eva.save
-      render :json => {status: "ok"}
-    end
+    @post_eva.save
   end
 
   private
