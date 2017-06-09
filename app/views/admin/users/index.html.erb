@@ -1,0 +1,22 @@
+<div class="container">
+  <table class="table table-responsive table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>用户名</th>
+        <th>手机号</th>
+        <th>注册时间</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |u| %>
+      <tr>
+        <td><%= u.id %></td>
+        <td><%= u.username %></td>
+        <td><%= u.cellphone %></td>
+        <td><%= u.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

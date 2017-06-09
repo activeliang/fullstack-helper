@@ -22,6 +22,31 @@
         <%= raw @post.description %>
       </div>
     </div>
+    <div class="post-eva">
+      <div class="slogan">
+        <span class="text">对本页内容的感受如何？</span>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">
+          🗣 我要吐槽
+        </button>
+      </div>
+      <div class="row text-center">
+        <div class="col-sm-4">
+          <%= link_to upvote_post_path(@post), class: "btn btn-default" do %>
+          <span class="emjoy">😄</span> So easy
+          <% end %>
+        </div>
+        <div class="col-sm-4">
+          <%= link_to downvote_post_path(@post), class: "btn btn-default"  do %>
+          <span class="emjoy">😐</span> 还Ok啦
+          <% end %>
+        </div>
+        <div class="col-sm-4">
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">
+          <span class="emjoy">😭</span> 崩溃了
+          </button>
+        </div>
+      </div>
+    </div>
     <div class="post-page-footer text-center">
       <div class="btn-left">
         <% if @left.present? %>
@@ -43,6 +68,30 @@
         下一页
         <i class="fa fa-arrow-right" aria-hidden="true"></i>
         <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 以下是模态 -->
+<!-- Large modal -->
+
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">遇到什么问题了吗？</h4>
+      </div>
+      <div class="content">
+        <p>反馈：</p>
+        <%= simple_form_for post_post_eva_path(@post), method: :post do |f| %>
+        <%= f.input :content %>
+        <%= f.input :eva_image, as: :file %>
+        <div class="feedback-btn"><%= f.submit "吐槽", class: "btn btn-default" %></div>
+        <button type="button" class="close btn btn-default" data-dismiss="modal" aria-label="Close">取消</button>
         <% end %>
       </div>
     </div>

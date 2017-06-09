@@ -38,6 +38,7 @@ class User < ApplicationRecord
 
   has_many :orders
   has_many :payments
+  has_many :post_evas
 
   # def username
   #   self.email.blank? ? self.cellphone : self.email.split('@').first

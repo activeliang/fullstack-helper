@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    resources :users
     resources :slider_photos do
       member do
       post :hide
@@ -140,7 +141,13 @@ Rails.application.routes.draw do
 
   end
 
-  resources :posts
+  resources :posts do
+    resources :post_eva
+    member do
+      post :upvote
+      post :downvote
+    end
+  end
 
 
 end

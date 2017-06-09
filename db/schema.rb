@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170606005705) do
+ActiveRecord::Schema.define(version: 20170608142005) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -136,6 +136,15 @@ ActiveRecord::Schema.define(version: 20170606005705) do
     t.index ["payment_no"], name: "index_payments_on_payment_no", unique: true
     t.index ["transaction_no"], name: "index_payments_on_transaction_no"
     t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
+  create_table "post_evas", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "eva_image"
   end
 
   create_table "posts", force: :cascade do |t|
