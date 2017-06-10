@@ -23,10 +23,10 @@
     <tr>
       <td><%= o.user.username %> / <%= o.user.cellphone %> </td>
       <td style="width:100px">
-        <% if o.payment.persent? %>
+        <% if o.payment.present? %>
         <%= o.payment.payment_no %>
         <% else %>
-        <td>订单无付款号</td>
+        订单无付款号
         <% end %>
       </td>
       <td><%= o.id %></td>
