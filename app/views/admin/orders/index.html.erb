@@ -1,6 +1,6 @@
 ``<h2>订单列表</h2>
 
-<table class="table table-bordered table-condensed table-responsive table-hover">
+<table class="table table-bordered table-condensed table-hover">
   <thead>
     <tr>
       <th>用户</th>
@@ -22,7 +22,13 @@
     <% @orders.each do |o| %>
     <tr>
       <td><%= o.user.username %> / <%= o.user.cellphone %> </td>
-      <td style="width:100px"><%= o.payment.payment_no %></td>
+      <td style="width:100px">
+        <% if o.payment.persent? %>
+        <%= o.payment.payment_no %>
+        <% else %>
+        <td>订单无付款号</td>
+        <% end %>
+      </td>
       <td><%= o.id %></td>
       <td><%= o.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
       <% if o.payment_at.present? %>
