@@ -1,4 +1,4 @@
-``<h2>订单列表</h2>
+<h2>订单列表</h2>
 
 <table class="table table-bordered table-condensed table-hover">
   <thead>
@@ -21,7 +21,7 @@
   <tbody>
     <% @orders.each do |o| %>
     <% count = o.product_lists.count %>
-    <tr> rowspan="<%= count %>"
+    <tr>
       <td rowspan="<%= count %>"><%= o.user.username %> / <%= o.user.cellphone %> </td>
       <td rowspan="<%= count %>" style="width:100px">
         <% if o.payment.present? %>
