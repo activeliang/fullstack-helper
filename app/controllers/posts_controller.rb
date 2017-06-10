@@ -8,9 +8,9 @@ class PostsController < ApplicationController
     posts = @lesson.posts
 
     buyer_id = @lesson.buyers.map{|x| x.user_id}
-    # unless buyer_id.include?(current_user.id) || !current_user.is_admin?
-    #   redirect_to lesson_path(@lesson), notice: "您未购买此课程哦~~"
-    # end
+    unless buyer_id.include?(current_user.id) || !current_user.is_admin?
+      redirect_to lesson_path(@lesson), notice: "您未购买此课程哦~~"
+    end
 
     i = posts.index(@post)
 

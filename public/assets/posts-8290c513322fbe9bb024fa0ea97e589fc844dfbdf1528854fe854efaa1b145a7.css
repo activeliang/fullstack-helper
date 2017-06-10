@@ -1,0 +1,209 @@
+/* line 6, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content .post-title {
+  font-size: 1.7em;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 18px;
+  color: #555;
+}
+/* line 12, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content span.pull-right {
+  font-size: .61em;
+  color: #888;
+  line-height: 44px;
+  margin-bottom: -20px;
+  padding-bottom: 0;
+}
+/* line 20, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content .post-page-footer {
+  border-top: 2px solid #e5e5e5;
+  padding: 20px;
+  margin-bottom: 34px;
+}
+/* line 25, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content .btn-left {
+  float: left;
+}
+/* line 28, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content .btn-right {
+  float: right;
+}
+/* line 31, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content a.btn.btn-success:hover {
+  background-color: #fff;
+  color: #5CB860;
+}
+/* line 35, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content .btn-alert {
+  display: inline-block;
+  color: #888;
+  font-size: .85em;
+}
+/* line 40, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content i.fa.fa-long-arrow-left {
+  border: 1px solid #d1d1d1;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+/* line 45, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content i.fa.fa-long-arrow-right {
+  border: 1px solid #d1d1d1;
+  padding: 2px 4px;
+  border-radius: 3px;
+  margin-left: 6px;
+}
+/* line 53, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content .post-eva {
+  border-top: 1px solid #e5e5e5;
+  padding: 20px;
+  font-size: 17px;
+  color: #666;
+}
+/* line 59, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content .post-eva button#feedback-btn-1 {
+  background: #fff;
+  border-radius: 4px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid #ccc;
+}
+/* line 66, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content .post-eva .row.text-center.feedback-btn-group {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+/* line 70, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content .post-eva button#feedback-btn-4 {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+/* line 78, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.post-show .lesson-content .row.text-center.feedback-btn-group {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+/* line 87, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.feedback-modal .modal-dialog .modal-content {
+  padding: 25px;
+  color: #666;
+}
+/* line 91, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.feedback-modal .modal-dialog .modal-content .modal-header {
+  padding: 8px;
+}
+/* line 94, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.feedback-modal .modal-dialog .modal-content .content {
+  margin-top: 20px;
+  padding-bottom: 38px;
+}
+/* line 98, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.feedback-modal .modal-dialog .modal-content .modal-btn {
+  float: right;
+}
+/* line 101, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.feedback-modal .modal-dialog .modal-content .modal-btn-1 {
+  float: right;
+}
+/* line 104, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.feedback-modal .modal-dialog .modal-content .modal-btn-2 {
+  float: left;
+}
+/* line 107, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.feedback-modal .modal-dialog .modal-content .modal-btn-1 {
+  margin-left: 5px;
+}
+/* line 110, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.feedback-modal .modal-dialog .modal-content input.btn.btn-success {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+/* line 114, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+.feedback-modal .modal-dialog .modal-content .modal-btn-2 button.btn.btn-default {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+/* line 124, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+#snackbar {
+  display: none;
+  min-width: 250px;
+  /* Set a default minimum width */
+  margin-left: -125px;
+  /* Divide value of min-width by 2 */
+  background-color: #333;
+  /* Black background color */
+  color: #fff;
+  /* White text color */
+  text-align: center;
+  /* Centered text */
+  border-radius: 2px;
+  /* Rounded borders */
+  padding: 16px;
+  /* Padding */
+  position: fixed;
+  /* Sit on top of the screen */
+  z-index: 1;
+  /* Add a z-index if needed */
+  left: 50%;
+  /* Center the snackbar */
+  bottom: 30px;
+  /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+/* line 141, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/posts.scss */
+#snackbar.show {
+  visibility: visible;
+  /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
