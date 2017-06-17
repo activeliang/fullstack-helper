@@ -1,0 +1,107 @@
+/* line 8, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index p {
+  margin-bottom: 0;
+}
+/* line 11, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index .order-nav.text-center p {
+  margin-bottom: 0;
+  font-size: 1em;
+}
+/* line 15, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index .order-nav.text-center {
+  background: #f5f5f5;
+  border: 1px solid #e5e5e5;
+  font-size: .9em;
+  line-height: 20px;
+  color: #666;
+  padding: 4px;
+}
+/* line 23, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index .item-nav {
+  background: rgba(57, 191, 84, 0.22);
+  padding: 7px;
+  font-size: .8em;
+  padding-left: 20px;
+  border: 1px solid #e1e1e1;
+}
+/* line 30, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index .order-item {
+  border: 1px solid #e5e5e5;
+  margin-top: 23px;
+  word-wrap: break-word;
+}
+/* line 35, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index p.product-title {
+  font-size: .9em;
+  color: #666;
+  margin-top: 21px;
+  margin-bottom: 15px;
+  word-wrap: break-word;
+}
+/* line 42, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index p.subtitle {
+  font-size: .8em;
+  color: #777;
+}
+/* line 46, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index .col-sm-4.text-center.bc-1 {
+  margin-top: 30px;
+  font-size: .8em;
+  color: #555;
+}
+/* line 51, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index .product-lists-item {
+  border-right: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 11px;
+}
+/* line 56, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index .row.item-bc-2 {
+  border-bottom: 1px solid #e5e5e5;
+  margin-left: 0;
+  margin-right: 0;
+}
+/* line 61, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index .product-lists-item {
+  border-right: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 11px;
+  margin-left: -15px;
+}
+/* line 67, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index p.carriage {
+  padding: 0;
+  margin-top: 0;
+  font-size: .8em;
+}
+/* line 72, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index .row.option-item {
+  margin-top: 30px;
+  color: #444;
+}
+/* line 76, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index .item-footer {
+  padding: 5px;
+  font-size: .3em;
+  color: #999;
+}
+/* line 81, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index span.pay_no {
+  margin-left: 20px;
+}
+/* line 84, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index span.pay_raw_no {
+  margin-left: 84px;
+}
+/* line 87, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index a {
+  color: #777;
+  text-decoration: underline;
+  font-size: .9em;
+}
+/* line 92, /Users/liang/0611/jd-store/app/assets/stylesheets/orders.scss */
+.account-order-index .title h5 {
+  font-size: 1.5em;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
