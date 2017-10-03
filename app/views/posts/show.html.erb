@@ -19,7 +19,7 @@
     </div>
     <div class="post-content">
       <div class="intro-markdown">
-        <%= raw @post.description %>
+        <%= raw @post.description.gsub(/​/, '') %>
       </div>
     </div>
     <div class="post-eva">
