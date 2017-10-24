@@ -5,7 +5,10 @@
 1. 真实支付功能，支付宝二维码扫付。
 2. 手机注册短信验证。
 
-预览：[https://fullstackhelper.herokuapp.com](https://fullstackhelper.herokuapp.com/)
+预览：
+
+[https://fullstackhelper.herokuapp.com](https://fullstackhelper.herokuapp.com)
+
 
 ![](http://olmrxx9ks.bkt.clouddn.com/2017-10-24-122845.jpg)
 
