@@ -4,10 +4,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_cart
   helper_method :is_buyer?
 
-
-
-
-
   def is_buyer?(lesson)
     if current_user
       b = lesson.buyers.map{|x| x.user_id}
@@ -26,14 +22,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   private
 
   def find_cart
-    cart = Cart.find_by(id: session[:fullstack_cart_id])
-    if cart.blank?
-      cart = Cart.create
-    end
+    cart = Cart.find_by(id: session[:fullstack_cart_id]) || Cart.create
     session[:fullstack_cart_id] = cart.id
     return cart
   end
@@ -50,6 +42,5 @@ class ApplicationController < ActionController::Base
     flash[:warning] = 'You have to authenticate to access this page.'
     redirect_to new_session_path
   end
-
 
 end

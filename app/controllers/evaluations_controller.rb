@@ -2,10 +2,8 @@ class EvaluationsController < ApplicationController
 
   def create
     @product = Product.find(params[:product_id])
-    @evaluation = Evaluation.new(evaluation_params)
-    @evaluation.user = current_user
-    @evaluation.product = @product
-    if @evaluation.save
+    @evaluation = @product.evaluations.new(evaluation_params)
+    if @evaluation.update_column user: current_user
       redirect_to :back, notice: "新增成功！"
     else
       redirect_to :back, alert: "出错！新增失败！"
@@ -17,6 +15,4 @@ class EvaluationsController < ApplicationController
   def evaluation_params
     params.require(:evaluation).permit(:grade, :description)
   end
-
-
 end

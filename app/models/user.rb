@@ -7,12 +7,6 @@ class User < ApplicationRecord
   CELLPHONE_RE_2 = /\A(\+886|886)?09\d{8}\z/
   EMAIL_RE = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
 
-  # validates_presence_of :email, message: "邮箱不能为空"
-  # validates_format_of :email, message: "邮箱格式不合法",
-  #   with: /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/,
-  #   if: proc { |user| !user.email.blank? }
-  # validates :email, uniqueness: true
-
   validates_presence_of :password, message: "密码不能为空",
     if: :need_validate_password
   validates_presence_of :password_confirmation, message: "密码确认不能为空",
@@ -21,17 +15,12 @@ class User < ApplicationRecord
     if: :need_validate_password
   validates_length_of :password, message: "密码最短为6位", minimum: 6,
     if: :need_validate_password
-
   validate :validate_email_or_cellphone, on: :create
-
-  # validate :validate_cellphone_unrepeated, on: :create
   validates_presence_of :username, message: "用户名不能为空"
 
   def admin?
     is_admin
   end
-
-
 
   has_many :addresses, -> { where(address_type: Address::AddressType::User).order("id desc") }
   belongs_to :default_address, class_name: :Address
@@ -40,31 +29,11 @@ class User < ApplicationRecord
   has_many :payments
   has_many :post_evas
 
-  # def username
-  #   self.email.blank? ? self.cellphone : self.email.split('@').first
-  # end
-
   private
   def need_validate_password
     self.new_record? ||
       (!self.password.nil? || !self.password_confirmation.nil?)
   end
-
-
-  # #
-  # # 手机号不重复注册的校验
-  # def validate_cellphone_unrepeated
-  #    phonenumber = User.find_by_cellphone(self.cellphone)
-  #    if !phonenumber.nil?
-  #     self.errors.add :base, "手机号已被注册，不能重复注册哦"
-  #     reture false
-  #    else
-  #     return true
-  #   end
-  # end
-
-
-  # TODO
 
   # 需要添加邮箱和手机号不能重复的校验
   def validate_email_or_cellphone
@@ -83,15 +52,12 @@ class User < ApplicationRecord
           end
         end
       else
-
-
         unless VerifyToken.available.find_by(cellphone: self.cellphone, token: self.token)
           self.errors.add :cellphone, "手机验证码不正确或者已过期"
           return false
         end
       end
     end
-
     return true
   end
 end

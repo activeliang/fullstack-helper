@@ -1,10 +1,8 @@
 class SessionsController < ApplicationController
   # prepend_before_action :valify_captcha!, only: [:create]
   skip_before_action :auth_user
-  # 用户在退出时不需要验证是否已经登录
 
   def new
-
   end
 
   def create

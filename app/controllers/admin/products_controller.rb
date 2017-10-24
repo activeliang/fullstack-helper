@@ -1,9 +1,6 @@
 class Admin::ProductsController < ApplicationController
-
   before_action :admin_required
-
-
-
+  before_action :find_product, only: [:show, :edit, :update, :destroy]
   layout "admin"
 
   def new
@@ -12,7 +9,6 @@ class Admin::ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
     @subproducts = @product.subproducts
     @subproduct = Subproduct.new
     @product_params = @product.product_params
@@ -34,11 +30,9 @@ class Admin::ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
     if @product.update(product_params)
       redirect_to admin_products_path,notice:"update success!"
     else
@@ -47,7 +41,6 @@ class Admin::ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
     if @product.destroy
       redirect_to :back, warning: "Deleted!"
     end
@@ -55,6 +48,9 @@ class Admin::ProductsController < ApplicationController
 
 
   private
+  def find_product
+    @product = Product.find(params[:id])
+  end
   def product_params
     params.require(:product).permit(:title, :description, :quantity, :price, :image, :category_id, :slogan)
   end

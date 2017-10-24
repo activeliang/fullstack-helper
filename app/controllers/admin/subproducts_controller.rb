@@ -1,5 +1,6 @@
 class Admin::SubproductsController < ApplicationController
   before_action :admin_required
+  before_action :find_product_and_sub_product, only: [:edit, :destroy, :update_weight, :update]
 
   def create
     @product = Product.find(params[:product_id])
@@ -13,14 +14,10 @@ class Admin::SubproductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:product_id])
-    @subproduct = @product.subproducts.find(params[:id])
   end
 
 
   def destroy
-    @product = Product.find(params[:product_id])
-    @subproduct = @product.subproducts.find(params[:id])
     if @subproduct.destroy
       redirect_to admin_product_path(@product), alert: "Deleted!"
     else
@@ -29,8 +26,6 @@ class Admin::SubproductsController < ApplicationController
   end
 
   def update_weight
-    @product = Product.find(params[:product_id])
-    @subproduct = @product.subproducts.find(params[:id])
     @subproduct.weight = params[:weight]
     if @subproduct.save
       redirect_to :back, notice: "success!"
@@ -40,8 +35,6 @@ class Admin::SubproductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:product_id])
-    @subproduct = @product.subproducts.find(params[:id])
     @subproduct.weight = params[:weight]
     if @subproduct.update(subproduct_params)
       flash[:notice] = "修改成功！"
@@ -50,10 +43,13 @@ class Admin::SubproductsController < ApplicationController
       flash[:warning] = "修改失败！"
       redirect_to :back
     end
-
   end
 
   private
+  def find_product_and_sub_product
+    @product = Product.find(params[:product_id])
+    @subproduct = @product.subproducts.find(params[:id])
+  end
 
   def subproduct_params
     params.require(:subproduct).permit(:subtitle, :msrp, :price, :activity, :carriage, :place, :quantity, :subproduct_image, :weight)

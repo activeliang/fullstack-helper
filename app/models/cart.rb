@@ -38,8 +38,25 @@ class Cart < ApplicationRecord
     sum.max
   end
 
-  def clean!
+  def update_cart!(params)
+    params.delete("utf8")
+    params.delete("authenticity_token")
+    params.delete("select-item")
+    self.cart_items.each do |cart_item|
+      cart_item.is_selected = false
+      cart_item.save
+    end
+    params.each do |k, v|
+      if k.to_i != 0
+        selected_item = current_cart.cart_items.find(k.to_i)
+        selected_item.is_selected = true
+        selected_item.quantity = v["quantity"]
+        selected_item.save
+      end
+    end
+  end
 
+  def clean!
     self.cart_items.where(:is_selected => true).destroy_all
   end
 end

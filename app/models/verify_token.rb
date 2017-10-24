@@ -12,7 +12,6 @@ class VerifyToken < ApplicationRecord
     else
       record.update_attributes token: token, expired_at: Time.now + 10.minutes
     end
-
     record
   end
 end

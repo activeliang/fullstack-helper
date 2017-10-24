@@ -7,9 +7,9 @@
     <%= link_to product_path(product) do %>
     <div class="panel">
       <div class="panel-body">
-        <%= image_tag(product.main_product_photo.product_image.small, class: "img-responsive") %>
+        <%= image_tag(product.main_product_photo.product_image.small, class: "img-responsive") if product.product_photos.present? %>
         <div class="overlay">
-          <div class="activity"><%= product.min_subproduct.activity %></div>
+          <div class="activity"><%= product.min_subproduct.activity if product.min_subproduct.present? %></div>
         </div>
       </div>
       <div class="line"></div>
@@ -17,8 +17,8 @@
         <span class="product-title"><%= product.title %><span>
         <% end %>
         <div class="footer-btn">
-          <span class="msrp">￥ <%= product.min_subproduct.msrp %></span>
-          <spna>￥</spna> <%= product.min_subproduct.price %>
+          <span class="msrp">￥ <%= product.min_subproduct.msrp if product.min_subproduct.present? %></span>
+          <spna>￥</spna> <%= product.min_subproduct.price if product.min_subproduct.present? %>
 
           <%= link_to "立即查看", product_path(product), class: "btn btn-default"%>
         </div>

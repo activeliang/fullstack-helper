@@ -6,12 +6,11 @@ class LessonsController < ApplicationController
   end
 
   def syllabus
-
     @lesson = Lesson.find(params[:id])
     if is_buyer?(@lesson)
       @chapters = @lesson.chapters
     else
-      # redirect_to lesson_path(@lesson),warning: "请先购买再学习~"
+      redirect_to lesson_path(@lesson),warning: "请先购买再学习~"
     end
   end
 

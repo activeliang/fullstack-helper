@@ -1,12 +1,11 @@
 class Admin::CategoriesController < ApplicationController
   before_action :admin_required
   layout 'admin'
+
   def index
     @category = Category.new
     @categories = Category.all
   end
-
-
 
   def create
     @category = Category.new(category_params)

@@ -12,7 +12,6 @@ class AddressesController < ApplicationController
     @address = current_user.addresses.new
   end
 
-
   def create
     @address = current_user.addresses.new(address_params)
     @address.address_type = "user"
@@ -52,7 +51,6 @@ class AddressesController < ApplicationController
 
   def destroy
     @address.destroy
-
     @addresses = current_user.addresses
     render json: {
       status: 'ok',
@@ -61,10 +59,8 @@ class AddressesController < ApplicationController
   end
 
   def set_default_address
-
     @address.set_as_default = 1
     @address.save
-
     @addresses = current_user.reload.addresses
     render json: {
       status: 'ok',

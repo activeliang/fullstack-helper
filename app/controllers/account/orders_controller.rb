@@ -8,7 +8,7 @@ class Account::OrdersController < ApplicationController
   def cancel
     @order = Order.find(params[:id])
     @order.cancel_order!
-    redirect_to :back
+    redirect_to :back, notice: '订单已关闭！'
   end
 
   def shipped

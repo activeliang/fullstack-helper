@@ -13,7 +13,6 @@ class PostsController < ApplicationController
     end
 
     i = posts.index(@post)
-
     if posts.first == @post
 
       @left = nil
@@ -30,13 +29,11 @@ class PostsController < ApplicationController
   def upvote
     @post = Post.find(params[:id])
     @post.update_column :so_easy, @post.so_easy +=1
-    # render :json => "ok"
   end
 
   def downvote
     @post = Post.find(params[:id])
     @post.update_column :okay, @post.okay +=1
-    # render :json => "ok"
   end
 
 end

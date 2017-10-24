@@ -21,16 +21,11 @@ class Payment < ApplicationRecord
       self.raw_response = params.to_json
       self.payment_at = Time.now
       self.save
-
       # 更新订单状态
       self.orders.each do |order|
         if order.is_paid?
           raise "order #{order.order_no} has alreay been paid"
         end
-
-
-
-
           order.payment_at = Time.now
           order.make_payment!
           order.is_paid = true
@@ -39,16 +34,13 @@ class Payment < ApplicationRecord
 
         if !order.of_lesson?
           order.product_lists.each do |product_list|
-
             product = Product.find(product_list.product_id)
             product.sales_count += 1
             product.save
           end
         end
 
-
         if order.of_lesson?
-
           lesson = Lesson.find(order.lesson_id)
           lesson.sales_count += 1
           lesson.save
@@ -58,28 +50,9 @@ class Payment < ApplicationRecord
           buyer.lesson_id = order.lesson_id
           buyer.save
         end
-
       end
     end
   end
-
-  # def do_success_image_migration
-  #   self.orders.each do |order|
-  #
-  #       order.product_lists.each do |product_list|
-  #         if !order.of_lesson?
-  #           product = Product.find(product_list.product_id)
-  #           product_list.lists_image = product.main_product_photo.product_image.my_list
-  #         end
-  #         if order.of_lesson?
-  #           lesson = Lesson.find(order.lesson_id)
-  #           product_list.lists_image = lesson.main_image.thumb
-  #         end
-  #         product_list.save!
-  #       end
-  #
-  #   end
-  # end
 
   def do_failed_payment! params
     self.transaction_no = params[:trade_no]
@@ -90,21 +63,29 @@ class Payment < ApplicationRecord
   end
 
   def self.create_from_orders! user, order
-
     payment = nil
     transaction do
-      payment = user.payments.create!(
-      total_money: order.total,
-    )
-
-      if order.is_paid?
-          raise "order #{order.order_no} has alreay been paid"
-      end
+      payment = user.payments.create!(total_money: order.total)
+      raise "order #{order.order_no} has alreay been paid" if order.is_paid?
       order.payment_id = payment
       order.save!
-
     end
     payment
+  end
+
+  def self.lesson_order_create!(params)
+    order = current_user.orders.find_by_token(params[:id])
+    payment = Payment.new
+      payment.total_money = order.total
+      payment.user = current_user
+      payment.save!
+      if payment.save && order.is_paid?
+        redirect_to order_path(order.token), alert: "该订单已支付！"
+      else
+        order.payment = payment
+        order.save!
+      end
+    return payment
   end
 
   private
