@@ -1,0 +1,50 @@
+<div id="our_login_page">
+
+	<div id="particles">
+		<div id="particles"><canvas class="pg-canvas" width="1501" height="1083"></canvas>
+
+      <div class="login-input-group">
+				<div class="login-slogan">
+					<h5>登录</h5>
+				</div>
+				<%= form_tag sessions_path, method: :post, class: "form-horizontal login-form" do %>
+				<div class="input-item">
+					<div class="input-item-1">
+						<%= text_field_tag :cellphone, nil, class: "form-control" , placeholder:"手机号"%>
+					</div>
+				</div>
+				<div class="input-item">
+					<div class="input-item-1">
+						<%= password_field_tag :password, nil, class: "form-control", placeholder:"密码"%>
+					</div>
+				</div>
+				<!-- 输入Captcha -->
+				<!-- <div class="input-item">
+					<label class="col-sm-2 control-label">验证 </label>
+					<div class="col-sm-2">
+						<%= rucaptcha_input_tag(class: 'form-control', placeholder: 'Input Captcha') %>
+						<span class="input-group-addon input-group-captcha"><a class="rucaptcha-image-box" href="#"><%= rucaptcha_image_tag %></a></span>
+					</div>
+				</div> -->
+
+				<div class="input-item">
+					<div class="col-sm-2">
+					</div>
+					<div class="input-item-1">
+						<div class="pull-right">
+							<a href="<%= new_user_path %>", class="text-color">注册</a>
+						</div>
+					</div>
+				</div>
+				<div class="input-item">
+					<div class="col-sm-2">
+					</div>
+					<div class="input-item-1">
+						<input type="submit" name="sign_submit" value="登录" class="col-xs-12 btn btn-primary">
+					</div>
+				</div>
+			<% end %>
+      </div>
+</div>
+</div>
+</div>

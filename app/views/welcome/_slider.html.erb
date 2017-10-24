@@ -1,0 +1,61 @@
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <% if @slider_images.present? %>
+    <% @slider_images.each_with_index do |p, index| %>
+    <% if index == 0 %>
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+  <% else %>
+    <% i = index %>
+    <li data-target="#myCarousel" data-slide-to="<%= i %>"></li>
+    <% end %>
+    <% end %>
+
+    <% end %>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+
+    <% if @slider_images.present? %>
+    <% @slider_images.each_with_index do |p, index| %>
+    <% if index == 0 %>
+    <div class="item active" style="width: 100%; margin: 0 auto;">
+      <% if p.link.present? %>
+      <%= link_to p.link do %>
+      <%= image_tag p.slider_image, class: "img-responsive" %>
+      <% end %>
+      <% else %>
+      <%= image_tag p.slider_image, class: "img-responsive" %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="item" style="width: 100%; margin: 0 auto;">
+      <% if p.link.present? %>
+      <%= link_to p.link do %>
+      <%= image_tag p.slider_image, class: "img-responsive" %>
+      <% end %>
+      <% else %>
+      <%= image_tag p.slider_image, class: "img-responsive" %>
+      <% end %>
+    </div>
+    <% end %>
+    <% end %>
+
+  <% else %>
+    <%= image_tag("http://placehold.it/400x400&text=No Pic", class: "thumbnail") %>
+    <% end %>
+  </div>
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="fa fa-angle-left" aria-hidden="true"></span>
+
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="fa fa-angle-right" aria-hidden="true"></span>
+
+  </a>
+</div>
+<script>
+  $('#myCarousel').carousel({interval: 32500})
+</script>

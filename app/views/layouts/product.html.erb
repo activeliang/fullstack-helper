@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>商店大赛加油站</title>
+        <%= csrf_meta_tags %>
+
+        <%= stylesheet_link_tag    'application', media: 'all' %>
+        <%= javascript_include_tag 'application' %>
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    </head>
+
+    <body>
+      <div class="container-fluid body-content">
+        <div class="content-inside">
+          <div class="row product">
+            <%= render "common/navbar" %>
+          </div>
+          <%= render "common/flashes" %>
+          <%= yield %>
+        </div>
+      </div>
+      <%= render "common/footer" %>
+      <%= yield :javascripts %>
+    </body>
+</html>

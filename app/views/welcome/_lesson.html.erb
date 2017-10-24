@@ -1,0 +1,33 @@
+<div class="slogan text-center">
+  <h2>购买他人爬坑时间(教程)</h2>
+</div>
+<% @lessons.each do |lesson| %>
+<%= link_to lesson_path(lesson) do %>
+<div class="col-sm-3">
+  <div class="lesson-item">
+    <div class="lesson-image">
+      <%= image_tag lesson.main_image.small, class: "img-responsive" %>
+      <div class="lesson-title">
+        <%= lesson.title %>
+      </div>
+      <div class="lesson-voerlay">
+        <div class="lesson-effect"><%= lesson.effect %></div>
+      </div>
+    </div>
+
+    <% end %>
+    <div class="lesson-subtitle">
+      <div class="lesson-subtitle-1">
+        <%= lesson.subtitle %>
+      </div>
+      <div class="panel-btn">
+        <span class="lesson-price">￥<%= lesson.price %></span>
+        <%= link_to "开始学习", lesson_path(lesson), class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<% end %>

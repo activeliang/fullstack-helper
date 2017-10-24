@@ -1,0 +1,705 @@
+/* line 6, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.select-item-active {
+  border: 4px solid red;
+}
+
+/* line 9, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+div#5r {
+  width: 38px !important;
+}
+
+/* line 22, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  color: #f5eded;
+  background-color: #e3220d;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+  cursor: default;
+}
+
+/* line 29, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.nav-tabs > li > a {
+  margin-right: 2px;
+  line-height: 1.42857143;
+  border: 1px solid transparent;
+  color: #666;
+  border-radius: 4px 4px 0 0;
+}
+
+/* line 36, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.nav-tabs > li {
+  float: left;
+  margin-bottom: -1px;
+  background: #ffeded;
+}
+
+/* line 43, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+h1 {
+  display: block;
+}
+
+/* line 48, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.list-group-item label {
+  font-weight: normal;
+}
+/* line 52, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.list-group-item a {
+  display: block;
+}
+/* line 55, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.list-group-item a.inline {
+  display: inline-block;
+}
+
+/* line 60, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.msrp {
+  text-decoration: line-through;
+}
+
+/* line 63, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.thumbnail {
+  height: 290px;
+}
+/* line 65, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.thumbnail.detail {
+  height: auto;
+}
+/* line 68, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.thumbnail a.title {
+  color: #333;
+}
+
+/* line 74, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.media.shopping-cart-row {
+  border-bottom: 1px solid #ccc;
+}
+/* line 77, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.media.shopping-cart-row:last-child {
+  border-bottom: 0;
+}
+
+/* line 83, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+a.add-to-cart-btn i {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  /* line 89, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+  .navbar-form .form-control.search-input {
+    width: 400px;
+  }
+}
+/* line 95, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.subnavbar {
+  background: #f1f1f1;
+  margin: 0 -30px;
+  padding: 13px;
+  font-size: 10px;
+  color: #888;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* line 103, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.subnavbar a {
+  color: #888;
+}
+
+/* line 106, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.product-bc-2 {
+  color: #666;
+}
+
+/* line 109, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.product-bc-2 h4 {
+  font: 700 16px Arial,"microsoft yahei";
+  color: #666;
+  line-height: 28px;
+  margin-bottom: 15px;
+}
+
+/* line 115, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.product-bc-2 .slogan {
+  color: #e4393c;
+  font-size: .8em;
+}
+
+/* line 119, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.price-bc {
+  font-size: 10px;
+  background-image: url("http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-24-%E4%B8%8B%E8%BD%BD.png");
+  margin-right: 30px;
+}
+
+/* line 124, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.price-bc-2 {
+  padding: 25px;
+  padding-bottom: 4px;
+}
+
+/* line 129, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+span#msrp {
+  margin-left: 20px;
+  /* color: #e4393c; */
+  text-decoration: line-through;
+  color: #888;
+}
+
+/* line 135, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+span#price {
+  color: #e4393c;
+  position: relative;
+  font-size: 2.6em;
+  top: 4px;
+  font-weight: 300;
+}
+
+/* line 142, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+span.price-icon {
+  font-size: .7em;
+  margin-right: 7px;
+  margin-left: 20px;
+}
+
+/* line 147, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.price-bc p {
+  color: #888;
+  font-weight: 300;
+}
+
+/* line 151, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+#price s {
+  position: absolute;
+  width: 0;
+  display: block;
+  font-size: 0;
+  left: -4px;
+  bottom: 0;
+  height: 0;
+  border: 3px solid #f47a86;
+  border-color: transparent #f47a86 #f47a86 transparent;
+}
+
+/* line 162, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+span.label.label-danger {
+  background-color: #f47a86;
+  border-radius: 1px;
+  color: #fff;
+  height: 16px;
+  line-height: 16px;
+  margin: 0 2px 4px 6px;
+  padding: 1px 5px;
+}
+
+/* line 172, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.eva_count {
+  float: right;
+  text-align: center;
+  padding-right: 3px;
+  line-height: 7px;
+  font-weight: 200;
+  margin-top: -10px;
+  padding-top: 7px;
+  border-right: 1px solid #999;
+  color: #999;
+}
+
+/* line 183, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.sale_count {
+  float: right;
+  line-height: 7px;
+  margin-right: -8px;
+  margin-top: -10px;
+  padding-top: 7px;
+  margin-left: 3px;
+  text-align: center;
+  color: #999;
+  font-weight: 200;
+}
+
+/* line 194, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.price-bc-2 .p2 {
+  margin-bottom: 0;
+  color: #888;
+}
+
+/* line 198, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.carriage {
+  font-size: 12px;
+  margin-top: 15px;
+  padding-left: 25px;
+  font-weight: 300;
+  color: #888;
+}
+
+/* line 205, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.carriage span {
+  margin-right: 30px;
+}
+
+/* line 208, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+span.trace {
+  margin-left: 20px;
+  margin-right: 0;
+}
+
+/* line 217, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.alert-log {
+  background: #f1f1f1;
+  color: #777;
+  display: none;
+}
+
+/* line 222, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+i.fa.fa-times {
+  float: right;
+  color: red;
+  line-height: 19px;
+  padding-right: 7px;
+}
+
+/* line 228, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+i.fa.fa-times:hover {
+  cursor: pointer;
+}
+
+/* line 232, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.select_product {
+  margin-right: 30px;
+  font-size: .8em;
+  font-weight: 400;
+  color: #888;
+  padding: 20px;
+  border-bottom: 1px solid #e8e8e8;
+  border-top: 1px solid #e8e8e8;
+}
+
+/* line 241, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.select_product .col-sm-10 {
+  margin-left: -30px;
+  margin-top: -10px;
+}
+
+/* line 245, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.select_product img.img-responsive {
+  float: left;
+  width: 40px;
+  height: 40px;
+}
+
+/* line 250, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.select_item {
+  display: inline-flex;
+  border: 2px solid #f1f1f1;
+  margin-right: 7px;
+  float: left;
+  background: #f8f8f8;
+  margin-top: 10px;
+}
+
+/* line 258, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.select_item h5 {
+  font-size: 1em;
+  font-weight: 400;
+  margin: auto 10px;
+}
+
+/* line 263, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.quantity-group {
+  margin-left: 15px;
+  margin-right: 15px;
+  font-size: .8em;
+  color: #888;
+  padding: 20px;
+}
+
+/* line 271, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+p.quantity-slogan {
+  float: left;
+  margin-right: 25px;
+  line-height: 31px;
+}
+
+/* line 276, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.quantity-group .btn-item-1 p {
+  text-align: center;
+  margin-top: 3px;
+  font-weight: 200;
+}
+
+/* line 281, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.select-quantity {
+  float: left;
+}
+
+/* line 285, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.product-bc-2 .join-cart-btn .btn-item-2 .btn {
+  background: #ffeded;
+  border-radius: 0;
+  font-size: 1.2em;
+  padding: 10px 10px;
+  width: 100%;
+  color: #e4393c;
+}
+
+/* line 293, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.product-bc-2 .join-cart-btn .btn-item-2 .btn:hover {
+  background: #e4393c;
+  color: #fff;
+}
+
+/* line 298, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.product-bc-2 .join-cart-btn .btn-item-3 .btn {
+  background: #e4393c;
+  border-radius: 0;
+  font-size: 1.2em;
+  padding: 10px 10px;
+  width: 100%;
+}
+
+/* line 305, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.product-bc-2 .join-cart-btn .btn-item-3 .btn:hover {
+  background: #ffeded;
+  color: #e4393c;
+}
+
+/* line 309, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.join-cart-btn {
+  padding: 30px;
+  padding-top: 20px;
+  width: 80%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* line 327, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+p.quantity-item-2 {
+  float: left;
+  line-height: 31px;
+  margin-left: 20px;
+}
+
+/* line 332, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.payment-method {
+  font-size: .8em;
+  font-weight: 200;
+}
+
+/* line 339, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.row.product-bc-3 {
+  margin-top: 97px;
+}
+
+/* line 342, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.nav-tabs {
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+}
+
+/* line 346, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  color: #e4393c;
+  background-color: #fff;
+  border: 1px solid #e4393c;
+  cursor: default;
+  border-radius: 0;
+}
+
+/* line 356, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.rand_product-slogan {
+  height: 43px;
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  /* width: 100%; */
+  margin-left: -15px;
+  border-bottom: 1px solid #e4393c;
+  margin-right: -15px;
+  text-align: center;
+}
+
+/* line 366, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.rand_product-slogan h4 {
+  font-size: 1em;
+  line-height: 29px;
+  font-weight: 400;
+  color: #777;
+}
+
+/* line 372, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.row.rand_product-item {
+  margin-top: 20px;
+  box-shadow: 1px 1px 1px #ddd;
+  transition: box-shadow 0.5s;
+  font-size: .9em;
+  font-weight: 200;
+  color: #777;
+  border: 1px solid #ddd;
+}
+
+/* line 381, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.rand_product a:hover {
+  text-decoration: none;
+}
+/* line 383, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.rand_product a:hover .rand_product-item p {
+  color: #e4393c;
+}
+
+/* line 388, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+p.rand_product-title {
+  padding: 10px 15px 5px;
+  line-height: 22px;
+  margin-bottom: 0;
+}
+
+/* line 393, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+p.rand_product-price {
+  color: #e4393c;
+  font-size: 1.3em;
+  margin-left: 28px;
+  font-weight: 600;
+  margin-bottom: 0;
+  /* text-align: center; */
+  margin-top: -5px;
+}
+
+/* line 402, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.rand_product-price span {
+  font-size: .8em;
+}
+
+/* line 407, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.params-slogan {
+  margin-top: 30px;
+  margin-left: 15px;
+  font-size: 1em;
+  color: #777;
+  margin-bottom: 16px;
+}
+
+/* line 414, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.row.product-params-bc {
+  width: 90%;
+  border-bottom: 1px solid #ddd;
+  margin: 0 auto;
+  padding-bottom: 14px;
+}
+
+/* line 420, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.params-item.col-sm-3 {
+  font-size: .8em;
+  font-weight: 200;
+  color: #777;
+  padding: 6px;
+}
+
+/* line 426, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.row.product-params-bc {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* line 433, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+p.eva-title {
+  font-size: 17px;
+  font-weight: 400;
+  color: #666;
+  padding: 25px;
+}
+
+/* line 439, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.row.product-eva {
+  margin: auto 0px;
+  /* background: #333; */
+}
+
+/* line 443, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+p.eva-nil {
+  font-size: 1em;
+  color: #888;
+  margin: 20px;
+}
+
+/* line 451, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.intro-markdown {
+  margin-top: -22px;
+}
+
+/* line 455, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+div#contacttop {
+  margin: 0 -15px;
+  opacity: .9;
+  position: fixed;
+  width: 100%;
+  height: 52px;
+  top: 0;
+  z-index: 999;
+  transition: 2s ease;
+}
+
+/* line 467, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+#contacttop {
+  display: none;
+  background-image: url("http://olmrxx9ks.bkt.clouddn.com/blog/2017-05-26-WechatIMG385-1.jpeg");
+}
+
+/* line 471, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.container-fluid.contact-top {
+  width: 100%;
+  /* margin: 0 -15px; */
+  padding: 0;
+  height: 100%;
+}
+/* line 477, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.container-fluid.contact-top .product-image {
+  float: left;
+}
+/* line 480, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.container-fluid.contact-top img.img-responsive {
+  width: 48px;
+  border: 1px solid #fff;
+  margin: 2px;
+}
+/* line 485, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.container-fluid.contact-top h4 {
+  float: left;
+  margin-left: 20px;
+  line-height: 33px;
+  color: #fff;
+  font-size: 1.2em;
+}
+/* line 492, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.container-fluid.contact-top span.btn.btn-danger {
+  float: right;
+  /* background: #f1d6d6; */
+  /* margin-right: 60px; */
+  border-radius: 0;
+  background: #fff;
+  padding: 8px;
+  width: 139px;
+  margin-top: 4px;
+  margin-left: 4px;
+  /* color: #333; */
+  font-size: 17px;
+  color: #e4393c;
+  border: 2px solid #f16464;
+}
+/* line 507, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.container-fluid.contact-top .buy-btn {
+  margin-right: 91px;
+}
+/* line 510, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.container-fluid.contact-top span.btn.btn-danger:hover {
+  float: right;
+  /* background: #f1d6d6; */
+  /* margin-right: 60px; */
+  border-radius: 0;
+  background: #e4393c;
+  padding: 8px;
+  width: 139px;
+  margin-top: 4px;
+  margin-left: 4px;
+  /* color: #333; */
+  font-size: 17px;
+  color: #fff;
+  border: 2px solid #f16464;
+}
+
+/* line 527, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+#contacttop.show {
+  display: block !important;
+  /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein-1 0.5s, fadeout-1 0.5s 2.5s;
+  animation: fadein-1 0.5s, fadeout-1 0.5s 2.5s;
+}
+
+@keyframes fadein-1 {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+@media (min-width: 768px) {
+  /* line 543, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+  .modal-dialog {
+    width: 606px;
+    margin: 190px auto;
+  }
+}
+/* line 547, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.modal-content {
+  padding-left: 57px;
+  padding-right: 57px;
+  padding-bottom: 0;
+  border-radius: 0;
+  padding-top: 30px;
+}
+
+/* line 554, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.success-img img {
+  width: 70px;
+  margin: 0 auto;
+}
+
+/* line 558, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+h5.text-center {
+  font-size: 1.6em;
+  font-weight: 200;
+  margin-top: 20px;
+  color: #555;
+}
+
+/* line 564, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+h4.media-heading {
+  font-size: 1.1em;
+  font-weight: 200;
+  color: #666;
+}
+
+/* line 569, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.media-body .row .col-sm-6 p {
+  color: #777;
+  font-size: .8em;
+  margin-bottom: 0;
+  margin-top: 11px;
+}
+
+/* line 575, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+.modal-footer {
+  padding: 18px;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+  margin-top: 0px;
+}
+
+/* line 581, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+button.btn.btn-default {
+  background: #f6f6f6;
+  border: 1px solid #e8e8e8;
+  padding-left: 45px;
+  padding-right: 45px;
+  color: #777;
+  border-radius: 0;
+}
+
+/* line 589, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+a.btn.btn-danger {
+  background: #e4393c;
+  border: 1px solid #e8e8e8;
+  padding-left: 45px;
+  padding-right: 45px;
+  color: #fff;
+  border-radius: 0;
+}
+
+/* line 597, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/products.scss */
+a.btn.btn-danger:hover {
+  background: #f7f7f7;
+  border: 1px solid #e4393c;
+  color: #e4393c;
+}

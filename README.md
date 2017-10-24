@@ -1,24 +1,16 @@
-# README
+这是一个基于**Rails**的**B2C**商城，个人学习用。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+主要实现：
 
-Things you may want to cover:
+1. 真实支付功能，支付宝二维码扫付。
+2. 手机注册短信验证。
 
-* Ruby version
+预览：[https://fullstackhelper.herokuapp.com](https://fullstackhelper.herokuapp.com/)
 
-* System dependencies
+![](http://olmrxx9ks.bkt.clouddn.com/2017-10-24-122845.jpg)
 
-* Configuration
+![](http://olmrxx9ks.bkt.clouddn.com/2017-10-24-122927.jpg)
 
-* Database creation
+![](http://olmrxx9ks.bkt.clouddn.com/2017-10-24-123111.jpg)
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![](http://olmrxx9ks.bkt.clouddn.com/2017-10-24-123212.jpg)

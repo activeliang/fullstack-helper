@@ -1,0 +1,177 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.post-show .lesson-content {
+  // 以下是页眉
+.post-title {
+    font-size: 1.7em;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 18px;
+    color: #555;
+}
+span.pull-right {
+    font-size: .61em;
+    color: #888;
+    line-height: 44px;
+    margin-bottom: -20px;
+    padding-bottom: 0;
+}
+.post-content {
+    display: inline-block;
+}
+
+
+
+
+
+// 以下是页脚
+.post-page-footer {
+    border-top: 2px solid #e5e5e5;
+    padding: 20px;
+    margin-bottom: 34px;
+}
+.btn-left {
+    float: left;
+}
+.btn-right {
+    float: right;
+}
+a.btn.btn-success:hover {
+  background-color: #fff;
+  color: #5CB860;
+}
+.btn-alert {
+    display: inline-block;
+    color: #888;
+    font-size: .85em;
+}
+i.fa.fa-long-arrow-left {
+    border: 1px solid #d1d1d1;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+i.fa.fa-long-arrow-right {
+    border: 1px solid #d1d1d1;
+    padding: 2px 4px;
+    border-radius: 3px;
+    margin-left: 6px;
+}
+
+// 以下是反馈区
+.post-eva {
+    border-top: 1px solid #e5e5e5;
+    padding: 20px;
+    font-size: 17px;
+    color: #666;
+
+button#feedback-btn-1 {
+    background: #fff;
+    border-radius: 4px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid #ccc;
+}
+.row.text-center.feedback-btn-group {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+button#feedback-btn-4 {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+}
+.row.text-center.feedback-btn-group {
+   margin-top: 30px;
+   margin-bottom: 10px;
+}
+
+}
+
+
+// 以下是modal
+.feedback-modal .modal-dialog .modal-content {
+    padding: 25px;
+    color: #666;
+
+    .modal-header {
+    padding: 8px;
+}
+.content {
+    margin-top: 20px;
+        padding-bottom: 38px;
+}
+.modal-btn {
+    float: right;
+}
+.modal-btn-1 {
+    float: right;
+}
+.modal-btn-2 {
+    float: left;
+}
+.modal-btn-1 {
+    margin-left: 5px;
+}
+input.btn.btn-success {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.modal-btn-2 button.btn.btn-default {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+}
+
+// 以下是弹出提示条的css
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    display: none;
+    // visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+
+/* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}

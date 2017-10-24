@@ -1,0 +1,20 @@
+<h2>新增课程</h2>
+
+<%= simple_form_for [:admin,@lesson] do |f| %>
+<select name="lesson[category_id]">
+  <option></option>
+  <% @root_categories.each do |category| %>
+    <option value="<%= category.id %>" <%= @lesson.category_id == category.id ? 'selected' : '' %>><%= category.title %></option>
+  <% end -%>
+</select>
+<%= f.input :title %>
+<%= f.input :intro, label: "简介"%>
+<%= f.input :description, label: "详情介绍(markdown)" %>
+<%= f.input :subtitle, label: "副标题" %>
+<%= f.input :price %>
+<%= f.input :weight %>
+<%= f.input :effect, label: "写在价格后面的，尽量10字内！" %>
+<%= f.input :main_image, label: "在首页的展示图" %>
+<%= f.input :minor_image, label: "介绍页面大图" %>
+<%= f.submit "提交" %>
+<% end  %>

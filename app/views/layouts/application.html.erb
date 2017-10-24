@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Jdstore</title>
-    <%= csrf_meta_tags %>
+    <head>
+        <title>商店大赛加油站</title>
+        <%= csrf_meta_tags %>
+        <%= stylesheet_link_tag    'application', media: 'all' %>
+        <%= javascript_include_tag 'application' %>
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    </head>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <body>
+      <div class="container-fluid body-content">
+        <div class="content-inside">
+          <div class="row application">
+            <%= render "common/navbar" %>
+          </div>
+          <%= render "common/flashes" %>
+          <%= yield %>
 
-  <body>
-    <%= yield %>
-  </body>
+        </div>
+      </div>
+      <%= render "common/footer" %>
+      <%= yield :javascripts %>
+      <%= yield :js %>
+    </body>
 </html>

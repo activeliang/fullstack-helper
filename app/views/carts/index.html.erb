@@ -1,0 +1,269 @@
+
+  <div class="container carts-index">
+    <div class="row">
+      <h1>购物车</h1>
+    <div class="cart-nav-top clearfix">
+
+      <p>已选商品（不含运费）<span class="cart-item-total-price cart-item-total-price-2"><%= render_cart_total_price(current_cart) %></span>
+          <%= link_to("清空购物车", clean_carts_path, method: :delete, class:"btn btn-danger pull-right", "data-confirm": "你确定要清空购物车吗?")%>
+      </p>
+    </div>
+    </div>
+
+    <div class="cart-navbar clearfix">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="bc-1 col-sm-3">全选</div>
+          <div class="bc-2 col-sm-9">商品信息</div>
+        </div>
+        <div class="col-sm-6 text-center">
+          <div class="bc-3 col-sm-3">单价</div>
+          <div class="bc-4 col-sm-3">数量</div>
+          <div class="bc-5 col-sm-3">金额</div>
+          <div class="bc-6 col-sm-3">操作</div>
+        </div>
+      </div>
+    </div>
+
+          <%= form_tag("/carts/update_cart", method: "post") do %>
+          <% current_cart.cart_items.each do |cart_item| %>
+
+            <div class="cart-item row">
+              <div class="col-sm-6">
+                <div class="col-sm-3">
+                  <div class="bc-1 col-sm-2">
+                    <% if cart_item.is_selected? %>
+                    <input class="cart-item-select" id="cart-item-<%= cart_item.id %>" type="checkbox" name="<%= cart_item.id %>[id]" value="<%= cart_item.id %>" checked="true">
+                    <% else %>
+                    <input class="cart-item-select" id="cart-item-<%= cart_item.id %>" type="checkbox" name="<%= cart_item.id %>[id]" value="<%= cart_item.id %>">
+                    <% end %>
+                  </div>
+                  <div class="bc-2 col-sm-10">
+                    <% if cart_item.subproduct.product.main_product_photo.product_image.present? %>
+                    <%= image_tag(cart_item.subproduct.subproduct_image, class:"img-responsive")%>
+                  <% else %>
+                    <%= image_tag("http://placehold.it/200x200&text=No Pic", class:"img-responsive" )%>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="bc-3 col-sm-5">
+                  <%= cart_item.subproduct.product.title %>
+                </div>
+                <div class="bc-4 col-sm-4">
+                  已选分类 ：<%= cart_item.subproduct.subtitle%>
+                </div>
+              </div>
+              <div class="col-sm-6 text-center">
+                <div class="bc-5 col-sm-3">
+                  <% if cart_item.subproduct.present? %>
+                   ￥<%= cart_item.subproduct.price %>
+                   <% else %>
+                   未找到价格
+                   <% end %>
+                </div>
+                <div class="bc-6 col-sm-3">
+                  <div id="cart-item-quantity-<%= cart_item.id %>">
+                    <% if cart_item.is_selected? %>
+                    <input id="quantity-<%= cart_item.id %>" class="quantity-input" data_step="1" name="<%= cart_item.id %>[quantity]" data_edit="true" data_min="1" data_max="523698" data_digit="0" value="<%= cart_item.quantity %>"/>
+                    <% else %>
+                    <input id="quantity-<%= cart_item.id %>" class="quantity-input" data_step="1" disabled="disabled" name="<%= cart_item.id %>[quantity]" data_edit="true" data_min="1" data_max="523698" data_digit="0" value="<%= cart_item.quantity %>"/>
+                    <% end %>
+                  </div>
+                  <!-- 一个辅助的隐藏表单 -->
+                  <input type="hidden" id="quantity-help-<%= cart_item.id %>" name="<%= cart_item.id %>[quantity]" value="<%= cart_item.quantity %>">
+                </div>
+                <div class="bc-7 col-sm-3">
+                <% if cart_item.is_selected? %>
+                <span>￥</span><span id="cart-item-price-<%= cart_item.id %>" class="selected-item-price cart-item-price"><%= cart_item.subproduct.price * cart_item.quantity %></span>
+                <% else %>
+                <span>￥</span><span id="cart-item-price-<%= cart_item.id %>" class="cart-item-price"><%= cart_item.subproduct.price * cart_item.quantity %></span>
+                <% end %>
+                </div>
+                <div class="bc-8 col-sm-3">
+                  <%= link_to(content_tag(:i,"", class: "fa fa-trash"), cart_item_path(cart_item),method: :delete, data:{confirm: "确定吗？"})%>
+                </div>
+              </div>
+          <!-- hidden-form -->
+          <input type="hidden" name="item-price-<%= cart_item.subproduct.price %>" disabled="true" value="<%= cart_item.subproduct.price %>">
+          </div>
+          <% end %>
+
+      <div class="total clearfix">
+        <div class="all-select">
+          <input type="hidden" id="select_help" value="0">
+          <input class="cart-item" type="checkbox" name="select-item" value="" >
+          <p>全选</p>
+        </div>
+
+
+      <% if current_user %>
+      <div class="checkout-btn checkout-btn-1">
+        <input id="checkout-btn-1" type="submit" value="去结算" class="btn btn-success btn-lg"/>
+      </div>
+      <div style="display: none;" class="checkout-btn checkout-btn-2">
+        <input id="checkout-btn-2" type="button" value="去结算" class="btn btn-success btn-lg"/>
+      </div>
+      <% else %>
+      <div class="checkout-btn checkout-btn-3">
+        <input id="checkout-btn-3" type="button" value="去结算" class="btn btn-success btn-lg"/>
+      </div>
+      <% end %>
+      <% end %>
+      <div class="total-price">
+        <p>合计（不含运费）：<span class="cart-item-total-price"><%= render_cart_total_price(current_cart) %></span></p>
+      </div>
+
+        </div>
+    </div>
+  </div>
+
+
+
+
+
+  <script>
+    <% current_cart.cart_items.each do |cart_item| %>
+    // 更改数量时
+    $("#cart-item-quantity-<%= cart_item.id %>").click(function(){
+      var price = $('input[name="item-price-<%= cart_item.subproduct.price %>"]').val();
+      var quantity = $("#quantity-<%= cart_item.id %>").val();
+      var max_quantity = <%= cart_item.subproduct.quantity %>;
+
+      if (quantity > max_quantity){
+        $("#quantity-<%= cart_item.id %>").val(max_quantity);
+        alert("输入在数量大于当前商品的库存，已更改为最大可买数量！");
+      }
+      $("#cart-item-price-<%= cart_item.id %>").html(price * quantity);
+      var total = 0;
+        $(".selected-item-price").each(function(i){
+          total += parseFloat($(this).html());
+        });
+      $(".cart-item-total-price").html(total);
+      // 赋值给辅助提交表单
+      $("#quantity-help-<%= cart_item.id %>").val(quantity);
+    })
+    // 更改数量时判断
+    $("#cart-item-quantity-<%= cart_item.id %>").change(function(){
+      var price = $('input[name="item-price-<%= cart_item.subproduct.price %>"]').val();
+      var quantity = $("#quantity-<%= cart_item.id %>").val();
+      var max_quantity = <%= cart_item.subproduct.quantity %>;
+
+      if (quantity > max_quantity){
+        $("#quantity-<%= cart_item.id %>").val(max_quantity);
+        alert("输入在数量大于当前商品的库存，已更改为最大可买数量！");
+      }
+      $("#cart-item-price-<%= cart_item.id %>").html(price * quantity);
+      var total = 0;
+        $(".selected-item-price").each(function(i){
+          total += parseFloat($(this).html());
+        });
+      $(".cart-item-total-price").html(total);
+      $("#quantity-help-<%= cart_item.id %>").val(quantity);
+    })
+
+
+
+// 选择时为表单生效
+$("#cart-item-<%= cart_item.id %>").click(function(){
+  var option = $("#quantity-<%= cart_item.id %>").prop("disabled");
+  // alert(option);
+
+  if (option == ""){
+    // alert(1);
+    $("#quantity-<%= cart_item.id %>").prop("disabled", "disabled");
+    $("#cart-item-price-<%= cart_item.id %>").removeClass('selected-item-price');
+    var total = 0;
+      $(".selected-item-price").each(function(i){
+        total += parseFloat($(this).html());
+      });
+    $(".cart-item-total-price").html(total);
+    $("#quantity-help-<%= cart_item.id %>").prop("disabled", "disabled");
+    // 判断当前选择是否为空
+    if($(".cart-item-total-price").html() == "0"){
+      $(".checkout-btn-2").css("display", "block");
+      $(".checkout-btn-1").css("display", "none");
+    }else{
+      $(".checkout-btn-2").css("display", "none");
+      $(".checkout-btn-1").css("display", "block");
+    }
+  }else{
+    // alert(2);
+    $("#quantity-<%= cart_item.id %>").prop("disabled", false);
+    $("#cart-item-price-<%= cart_item.id %>").addClass('selected-item-price');
+    var total = 0;
+      $(".selected-item-price").each(function(i){
+        total += parseFloat($(this).html());
+      });
+    $(".cart-item-total-price").html(total);
+    $("#quantity-help-<%= cart_item.id %>").prop("disabled",false);
+    // 判断当前选择是否为空
+    if($(".cart-item-total-price").html() == "0"){
+      $(".checkout-btn-2").css("display", "block");
+      $(".checkout-btn-1").css("display", "none");
+    }else{
+      $(".checkout-btn-2").css("display", "none");
+      $(".checkout-btn-1").css("display", "block");
+    }
+  }
+})
+
+    <% end %>
+
+
+    $(".all-select").click(function(){
+      var current_value = $("#select_help").val();
+
+      if (current_value == 0 ){
+        // 全选
+        $(".cart-item-price").addClass('selected-item-price');
+        $(".cart-item-select").prop('checked', true);
+        var total = 0;
+          $(".cart-item-price").each(function(i){
+            total += parseFloat($(this).html());
+          });
+        $(".cart-item-total-price").html(total);
+        $("#select_help").val(1);
+        $(".quantity-input").prop("disabled", false);
+
+        // 判断当前选择是否为空
+        if($(".cart-item-total-price").html() == "0"){
+          $(".checkout-btn-2").css("display", "block");
+          $(".checkout-btn-1").css("display", "none");
+        }else{
+          $(".checkout-btn-2").css("display", "none");
+          $(".checkout-btn-1").css("display", "block");
+        }
+      }else{
+        // 不选
+        $(".cart-item-select").prop("checked",false);
+        $("#select_help").val(0);
+        $(".cart-item-total-price").html("0");
+        $(".selected-item-price").removeClass('selected-item-price');
+        $(".quantity-input").prop("disabled", "disabled");
+
+
+
+        // 判断当前选择是否为空
+        if($(".cart-item-total-price").html() == "0"){
+          $(".checkout-btn-2").css("display", "block");
+          $(".checkout-btn-1").css("display", "none");
+        }else{
+          $(".checkout-btn-2").css("display", "none");
+          $(".checkout-btn-1").css("display", "block");
+        }
+
+      }
+    })
+
+
+    // 选择为空时的提示
+    $("#checkout-btn-2").click(function(){
+      alert("请选择要要结算的商品~");
+    })
+    // 未登录时，提示登入
+    $("#checkout-btn-3").click(function(){
+      alert("请先登入哦~");
+    })
+
+
+  </script>

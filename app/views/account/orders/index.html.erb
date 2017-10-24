@@ -1,0 +1,98 @@
+<div class="container account-order-index">
+  <div class="title">
+    <h5>我的订单</h5>
+  </div>
+  <div class="order-nav text-center">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="row">
+          <div class="col-sm-8">
+            <p>商品</p>
+          </div>
+          <div class="col-sm-4 text-center">
+            <div class="col-sm-4">单价</div>
+            <div class="col-sm-4">数量</div>
+            <div class="col-sm-4">小计</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 text-center">
+        <div class="col-sm-4">总价</div>
+        <div class="col-sm-4">状态</div>
+        <div class="col-sm-4">操作</div>
+      </div>
+    </div>
+  </div>
+
+
+      <% @orders.each do |order| %>
+      <div class="order-item">
+        <div class="item-nav">
+          <p><span class="titme"><%= order.created_at.strftime("%Y-%m-%d") %></span> 订单号：<%= order.token %></p>
+        </div>
+        <div class="row item-bc-2">
+          <div class="col-sm-8">
+            <% order.product_lists.each do |product_list| %>
+            <div class="product-lists-item">
+              <div class="row">
+                <div class="col-sm-8">
+                  <div class="col-sm-3">
+                    <% if product_list.lists_image.present? %>
+                    <%= image_tag product_list.lists_image, class: "img-responsive" %>
+                    <% else %>
+                    <img src="http://olmrxx9ks.bkt.clouddn.com/blog/2017-06-04-Snip20170604_75-1.png" style="width: 100px;" alt="">
+                    <% end %>
+                  </div>
+                  <div class="col-sm-9">
+                    <p class="product-title">
+                      <%= product_list.product_name %>
+                    </p>
+                    <p class="subtitle">
+                      <%= product_list.subproduct %>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-sm-4 text-center bc-1">
+                  <div class="col-sm-4"><%= product_list.product_price %></div>
+                  <div class="col-sm-4"><%= product_list.quantity %></div>
+                  <div class="col-sm-4"><%= product_list.product_price * product_list.quantity %></div>
+                </div>
+              </div>
+
+            </div>
+            <% end %>
+          </div>
+
+          <div class="col-sm-4 text-center">
+            <div class="row option-item">
+              <div class="col-sm-4 text-center">
+                <p class="total">￥<%= order.total %></p>
+                <% if !order.of_lesson? %>
+                <p class="carriage">(含运费：￥<%= order.carriage %>)</p>
+                <% end %>
+              </div>
+              <div class="col-sm-4 text-center"><%= render_order_status(order) %></div>
+              <div class="col-sm-4 text-center">
+                <% case order.aasm_state %>
+                <% when "order_placed"%>
+                <%= link_to("付款", payments_path(payment_no: order.payment.payment_no, order_token: order.token), class: "btn btn-default") %>
+                <br>
+                <%= link_to("取消订单", cancel_account_order_path(order), method: :post)%>
+                <% when "shipping"%>
+                <%= link_to("确认收货", shipped_account_order_path(order), class: "btn btn-primary", method: :post)%>
+                <% when "order_cancelled"%>
+                <span class="label label-default">订单已取消</span>
+                <% when "good_returned"%>
+                <span class="label label-default">已退货</span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item-footer">
+          <p><span class="pay_no">支付号:<%= order.payment.payment_no %></span><span class="pay_raw_no"><% if order.is_paid %>流水号:<%= JSON.parse(order.payment.raw_response)["trade_no"] %> <% end %></span></p>
+        </div>
+        </div>
+      <% end %>
+</div>

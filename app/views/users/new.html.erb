@@ -1,0 +1,265 @@
+<div id="our_singup_page">
+
+<div id="particles">
+	<div id="particles"><canvas class="pg-canvas" width="1501" height="1083"></canvas>
+      <!-- <div class="id=signup-font">
+      <h1>注册</h1>
+      </div> -->
+
+    <% unless @user.errors.empty? %>
+      <div class="alert alert-danger">
+        <ul>
+          <% @user.errors.messages.values.flatten.each do |error| %>
+            <li><%= error %></li>
+          <% end -%>
+        </ul>
+      </div>
+    <% end -%>
+
+    <div class="input-group">
+			<div class="input-slogan"><h2>新用户注册</h2></div>
+			<%= form_for :user, url: users_path, method: :post, html: { class: 'form-horizontal', id: "user_form"} do |f| %>
+				<!--输入用户名  -->
+					<div class="input-item">
+
+						<div class="username">
+						<%= f.text_field :username, placeholder: "用户名", class: "form-control" %>
+						</div>
+					</div>
+
+				<!-- 输入手机号 -->
+				<div class="myphone">
+					<div class="overseas">
+						<select class="selectpicker"  data-width="fit">
+							<option>大陆</option>
+							<option>台灣</option>
+							<option>香港</option>
+							<option>其他</option>
+						</select>
+					</div>
+						<div class="input-item">
+							<div class="phonenumber">
+							<%= f.text_field :cellphone, class: "form-control", placeholder: "11位手机号码"%>
+							</div>
+
+						</div>
+				</div>
+
+				<!-- 输入验证码 -->
+					<div class="input-item">
+						<div class="rucaptch-item">
+							<div class="change-captcha-size">
+								<span class="input-group-addon input-group-captcha button-size"><a class="rucaptcha-image-box" href="#"><%= rucaptcha_image_tag %></a>
+								<span class="alert">点击图片刷新</span></span>
+							</div>
+							<div class="token-size">
+							<%= rucaptcha_input_tag(class: 'form-control', placeholder: '请输入验证码') %>
+							</div>
+						</div>
+					</div>
+
+				<!-- 手机验证码 -->
+					<div class="input-item">
+						<div class="row phone-item">
+
+							<div class="col-sm-6 button-size">
+								<input type="button" value="获取验证码" id="fetch_helper" class="btn btn-warning fetch-token-btn" data-url="<%= cellphone_tokens_path %>" />
+								<input type="hidden" name="user[type]" value="0" id="helper">
+							</div>
+							<div class="col-sm-6 token-size">
+								<%= f.text_field :token, class: "form-control", placeholder: "短信校验码" %>
+							</div>
+						</div>
+					</div>
+
+				<!-- 输入密码 -->
+					<div class="input-item">
+						<div class="password-input">
+							<%= f.password_field :password, class: "form-control" ,id:"signup-input" , placeholder: "密码" %>
+						</div>
+					</div>
+					<div class="password-input">
+						<div class="signup-input">
+							<%= f.password_field :password_confirmation, class: "form-control", id:"signup-input", placeholder: "密码确认"%>
+						</div>
+					</div>
+				<!-- 创建帐户 -->
+					<div class="input-create">
+						<div class="create-btn">
+							<input type="submit" name="create_user_submit" value="创建账户" ,id="signup-input", class="btn btn-primary">
+						</div>
+					</div>
+				<% end %>
+    </div>
+    </div>
+  </div>
+</div>
+
+<%= content_for :javascripts do %>
+  <script>
+
+
+    (function(){
+
+		var helper = $("#helper").val();
+
+		if ($("#helper").val() == 1){
+			alert("提示：註冊成功後，請以+886開頭的格式登入~");
+		}
+
+    // //检查手机号是否重复：
+    // $cellphone_btn = $('.fetch-cellphone-btn');
+    // $cellphone_btn.click(function(){
+    //   var url = $(this).data("url");
+    //   cellphone = $('#user_cellphone').val();
+    //   $.ajax({
+    //     url: url,
+    //     method: 'post',
+    //     data: {cellphone: cellphone},
+    //
+    //   })
+    // })
+      $(".input-group-captcha").click(function(){
+         var url = $(".rucaptcha-image").attr("src");
+         $(".rucaptcha-image").attr("src", url+'#');
+       })
+
+      // 黄鸿亮写的js
+      $(".input-group-captcha").click(function(){
+        var url = $(".rucaptcha-image").attr("src");
+        $(".rucaptcha-image").attr("src", url+'#');
+      })
+
+
+
+			// 地区检查
+
+			$(".overseas").click(function(){
+				var location = $(".filter-option").html();
+
+				if (location == "大陆"){
+						$("#user_cellphone").val("");
+						$("#helper").val(0);
+						$("#user_cellphone").attr("placeholder", "11位手机号码");
+
+				}else if(location == "台灣"){
+					$("#user_cellphone").val("+886");
+          $("#helper").val(1);
+				}else if(location == "香港"){
+					$("#user_cellphone").val("+852");
+          $("#helper").val(1);
+				}else if(location == "其他"){
+					$("#user_cellphone").val("");
+					$("#user_cellphone").attr("placeholder", "註冊,登入時請加+區號");
+          $("#helper").val(1);
+				}
+
+				// if ($("#helper").val() == 1){
+        //   alert("提示：註冊成功後，請以+886開頭的格式登入~");
+				// }
+      })
+      var CELLPHONE_RE_2 = /^(\+886|886)/;
+			$('input[name="user[cellphone]"]').change(function(){
+				if (!CELLPHONE_RE.test($(this).val())){
+					alert('提示：註冊成功後，請以 "+國際區號" 開頭的格式登入~');
+				}
+			})
+
+
+      // 验证码
+      var CELLPHONE_RE = /^(\+86|86)?1\d{10}$/;
+
+      var token_wait = 60,
+
+        token_interval,
+        $token_btn = $('#fetch_helper');
+
+      $token_btn.click(function () {
+				var helper = $("#helper").val();
+        var $this = $(this),
+        cellphone = $('#user_cellphone').val();
+        // cellphone = $('input[name="test"]').val();
+          _rucaptcha = $('input[name="_rucaptcha"]').val();
+        $.ajax({
+          url: $this.data('url'),
+          method: 'post',
+          // data: {cellphone: cellphone},
+          data: {cellphone: cellphone, _rucaptcha: _rucaptcha, helper: helper},
+          beforeSend: function () {
+						if (helper == 0){
+							if (!CELLPHONE_RE.test(cellphone)) {
+
+	              alert("手机号码格式错误!");
+	              return false;
+	            }
+						}
+
+            $this.data('old-value', $this.attr('value'));
+            $this.attr('value', "发送中...").prop('disabled', true);
+          },
+          // 以下为测试图片验证码时使用
+          // success: function (data) {
+          //   if (data.status == 'error') {
+          //     alert(1);
+          //     alert(data.message);
+          //
+          //   }else if(data.status == "invalid_Captcha"){
+          //     alert(3);
+          //
+          //     alert("输入的验证码错误或者已过期~~~XD");
+          //   }else{
+          //     alert(4);
+          //     $this.attr('value', $this.data('old-value'));
+          //     $this.trigger('start_token_timer');
+          //   }
+          // }
+
+          // 原版
+          success: function (data) {
+            if (data.status == 'error') {
+              alert(data.message);
+            $token_btn.attr('value', '获取短信验证码').prop('disabled', false);
+					}else if(data.status == 'gologin'){
+						alert("你的手机号已注册过，请直接登录！");
+						$token_btn.attr('value', '获取短信验证码').prop('disabled', false);
+					} else {
+              $this.attr('value', $this.data('old-value'));
+              $this.trigger('start_token_timer');
+            }
+          }
+        })
+      })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      .on('start_token_timer', function () {
+        token_interval = setInterval(function () {
+          $token_btn.trigger('token_timer');
+        }, 1000);
+      })
+      .on('token_timer', function () {
+        token_wait--;
+        if (token_wait <= 0) {
+          clearInterval(token_interval);
+          $token_btn.attr('value', '获取短信验证码').prop('disabled', false);
+          token_wait = 60;
+        } else {
+          $token_btn.attr('value', '重新发送 ' + token_wait + ' 秒').prop('disabled', true);
+        }
+      })
+    })()
+  </script>
+<% end %>

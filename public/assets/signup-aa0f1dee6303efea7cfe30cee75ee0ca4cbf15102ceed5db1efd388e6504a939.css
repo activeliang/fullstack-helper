@@ -1,0 +1,198 @@
+/* line 1, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#particles {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #16a085;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+/* line 12, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+canvas.pg-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+}
+
+/* line 25, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page .input-group {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 97;
+  width: 19%;
+}
+/* line 33, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page .input-slogan h2 {
+  color: #fff;
+  text-align: center;
+  font-size: 1.8em;
+}
+/* line 38, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page .input-item {
+  overflow: hidden;
+  margin-bottom: 17px;
+}
+/* line 42, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page input#user_username {
+  border-radius: 4px;
+}
+/* line 45, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page input#user_cellphone {
+  border-radius: 4px;
+}
+/* line 48, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page .rucaptch-item .token-size input.form-control {
+  border-radius: 4px;
+  margin-top: 16px;
+}
+/* line 52, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page .phone-item .token-size input#user_token {
+  border-radius: 4px;
+}
+/* line 55, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page input#signup-input {
+  border-radius: 4px;
+}
+/* line 58, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page span.input-group-addon.input-group-captcha.button-size {
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  background: transparent;
+  border-radius: 4px;
+}
+/* line 66, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page .rucaptcha-image {
+  width: 120px;
+  margin: 0;
+  border-radius: 4px;
+  border: 0;
+}
+/* line 72, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page span.alert {
+  color: #fff;
+  font-size: 13px;
+  padding: 0;
+  margin-left: 8px;
+}
+/* line 78, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page input.btn.btn-warning.fetch-token-btn {
+  background: transparent;
+  border: 1px solid #fff;
+  width: 100%;
+}
+/* line 84, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page input.btn.btn-warning.fetch-token-btn:hover {
+  background: #fff;
+  color: #2dbe60;
+}
+/* line 88, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page .change-captcha-size {
+  width: 30px;
+  background: transparent;
+}
+/* line 92, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page .input-create input.btn.btn-primary {
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/* line 101, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page .input-create input.btn.btn-primary:hover {
+  background: #fff;
+  color: #2dbe60;
+}
+/* line 105, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page .col-sm-6.button-size {
+  padding-right: 0;
+}
+/* line 108, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page button.btn.dropdown-toggle.btn-default {
+  margin-left: 0px;
+  padding-left: 10px;
+  border-radius: 4px;
+  padding-right: 14px;
+}
+/* line 114, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page span.filter-option.pull-left {
+  padding-right: 0;
+  margin-right: -8px;
+}
+/* line 118, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_singup_page .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+  width: 220px;
+  margin-right: 3px;
+  float: left;
+}
+
+/* line 129, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_login_page .login-input-group {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 97;
+  width: 19%;
+}
+/* line 137, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_login_page .login-slogan {
+  color: #fff;
+  /* text-align: center; */
+  font-size: 30px;
+}
+/* line 142, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_login_page .login-slogan h5 {
+  font-size: 17px;
+}
+/* line 145, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_login_page input#cellphone {
+  margin-bottom: 19px;
+}
+/* line 148, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_login_page a.text-color {
+  color: #fff;
+  font-size: 14px;
+  /* margin-top: 9px; */
+}
+/* line 154, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_login_page .input-item-1 .pull-right {
+  margin-top: 7px;
+  margin-bottom: 3px;
+}
+/* line 158, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_login_page input.col-xs-12.btn.btn-primary {
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  padding-top: 6px;
+  font-size: 21px;
+  padding-bottom: 7px;
+}
+/* line 166, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_login_page input.col-xs-12.btn.btn-primary:hover {
+  background: #fff;
+  border: 1px solid #fff;
+  color: #2dbe60;
+}
+/* line 171, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/signup.scss */
+#our_login_page .login-slogan {
+  color: #fff;
+  /* text-align: center; */
+  font-size: 30px;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 27px;
+}

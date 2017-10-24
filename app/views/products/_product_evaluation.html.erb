@@ -1,0 +1,45 @@
+<div class="row product-eva">
+  <% if @product.evaluations.present? %>
+  <p class="eva-title">
+    商品评价
+  </p>
+  <% end %>
+</div>
+
+<% if @product.evaluations.present? %>
+    <% @product.evaluations.each do |evaluation| %>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="eva-bc-1">
+          <p><%= evaluation.description %></p>
+        </div>
+        <div class="eva-bc-2">
+          <% if evaluation.evaluation_photos.present? %>
+          <% evaluation.evaluation_photos.each do |evaluation_photo| %>
+          <div class="image-item">
+            <%= image_tag(evaluation_photo.evaluation_image.thumb, class: "img-responsive") %>
+          </div>
+          <% end %>
+          <% end %>
+        </div>
+        <div class="evc-bc-3">
+          <% if evaluation.explain.present? %>
+          <p><%= evaluation.explain %></p>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="col-sm-6">
+          <p>所选分类<span><%= evaluation.subtitle %></span></p>
+        </div>
+        <div class="col-sm-6">
+          <p><%= evaluation.user.id %></p>
+          <!-- Todo 增加用户头像 -->
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+<% else %>
+    <p class="eva-nil">此商品暂无评价</p>
+<% end %>

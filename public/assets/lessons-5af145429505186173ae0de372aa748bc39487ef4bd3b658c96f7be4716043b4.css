@@ -1,0 +1,260 @@
+/* line 6, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .lesson-bc-1.clearfix {
+  background: #f5f5f5;
+  border: 1px solid #e5e5e5;
+  margin-top: 38px;
+}
+/* line 12, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .lesson-page-nav {
+  font-size: .85em;
+  color: #888;
+  margin-top: 10px;
+  margin-bottom: -35px;
+}
+/* line 18, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .lesson-page-nav a {
+  color: #888;
+  text-decoration: underline;
+}
+/* line 22, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  width: 94%;
+  margin: 0 auto;
+}
+/* line 29, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .lesson-intro {
+  padding: 30px;
+  font-size: 13px;
+  color: #888;
+  margin-top: 10px;
+  padding-bottom: 0;
+  margin-bottom: -28px;
+  line-height: 25px;
+}
+/* line 38, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .col-sm-7.bc-1-1 {
+  padding: 49px;
+  text-align: center;
+  background: #f8f8f8;
+  border-right: 1px solid #e5e5e5;
+  height: 508px;
+}
+/* line 45, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .col-sm-5.bc-1-2 {
+  padding: 49px;
+  max-height: 508px;
+}
+/* line 49, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .row.lesson-title, .lesson-show .row.lesson-price, .lesson-show .row.lesson-subtitle {
+  margin-left: 0;
+  margin-right: 0;
+  /* font-size: 3em; */
+}
+/* line 54, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .lesson-title h5 {
+  font-size: 1.4em;
+  color: #555;
+}
+/* line 58, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .lesson-subtitle p {
+  margin-bottom: 15px;
+}
+/* line 61, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .row.lesson-subtitle {
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 3px;
+  font-size: .96em;
+  font-weight: 400;
+  color: #777;
+  margin-top: 23px;
+}
+/* line 69, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .row.lesson-price {
+  padding: 30px 20px;
+  margin: 20px 20px;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  background: #fff;
+}
+/* line 76, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show h6.price {
+  font-size: 2.5em;
+  color: #2dbe60;
+}
+/* line 80, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show p.effect {
+  padding-bottom: 0;
+  margin-bottom: 0px;
+  font-size: .88em;
+  margin-left: 20px;
+  color: #777;
+}
+/* line 87, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show span.price-icon {
+  font-size: 0.79em;
+  margin-right: 2px;
+  margin-left: 18px;
+}
+/* line 92, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .payment-alert {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 20px;
+  font-size: .91em;
+  color: #666;
+}
+/* line 98, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .to-learn-btn {
+  float: left;
+}
+/* line 101, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .btn-success {
+  color: #fff;
+  background-color: #2dbe60;
+  border-color: #4cae4c;
+  font-size: 1.3em;
+  margin-top: 9px;
+  /* padding-bottom: 11px; */
+  padding-top: 12px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 11px;
+}
+/* line 113, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .lesson-pay-btn {
+  margin-top: 32px;
+  /* padding-bottom: 11px; */
+}
+/* line 117, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .btn-success:hover {
+  color: #2dbe60;
+  background-color: #fff;
+  border-color: #2dbe60;
+}
+/* line 122, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .lesson-bc-2 {
+  background: #f9f9f9;
+  margin-top: 57px;
+  border: 1px solid #e5e5e5;
+}
+/* line 127, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .lesson-intro-slogan {
+  font-size: 1.5em;
+  margin: 0 auto;
+  width: 72%;
+  padding-top: 44px;
+  border-bottom: 1px solid #e2e2e2;
+  margin-bottom: 45px;
+}
+/* line 135, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .lesson-intro-slogan p {
+  margin-bottom: 4px;
+}
+/* line 138, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show .lesson-subtitle p {
+  /* margin-bottom: 15px; */
+  display: inline-block;
+  position: relative;
+}
+/* line 143, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.lesson-show p.sales_count {
+  margin-bottom: 0;
+  float: right;
+  position: relative;
+  bottom: -14px;
+  font-size: .8em;
+}
+
+/* line 156, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.syllabus-page {
+  background: #f8f8f8;
+  margin-left: -15px;
+  margin-right: -15px;
+  padding-bottom: 60px;
+}
+/* line 163, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.syllabus-page .row.lesson-navbar {
+  background: #f3f3f3;
+  border-bottom: 1px solid #e5e5e5;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+/* line 173, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.syllabus-page .lesson-syllabus {
+  float: right;
+}
+/* line 177, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.syllabus-page .lesson-title {
+  float: left;
+}
+/* line 180, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.syllabus-page .container.lesson-content {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  margin: auto;
+  box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.25);
+  width: 64%;
+  margin-top: 20px;
+  padding-top: 46px;
+  padding-left: 75px;
+  padding-right: 75px;
+}
+/* line 191, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.syllabus-page .chapter-item {
+  margin-bottom: 80px;
+}
+/* line 194, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.syllabus-page .chapter-item .chapter-title h5 {
+  font-size: 1.5em;
+  margin-bottom: 0px;
+  color: #555;
+}
+/* line 199, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.syllabus-page .chapter-title {
+  border-bottom: 1px solid #e4e4e4;
+  margin-bottom: 0px;
+  padding-bottom: 6px;
+}
+/* line 204, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.syllabus-page p.post {
+  margin-bottom: 0;
+  /* color: #333; */
+}
+/* line 208, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.syllabus-page .post-item a {
+  font-size: 1em;
+  color: #666;
+}
+/* line 212, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.syllabus-page .post-item a:hover {
+  text-decoration: none;
+}
+/* line 215, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.syllabus-page i.fa.fa-stop {
+  color: #1ecd97;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+/* line 220, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.syllabus-page .post-item {
+  padding-top: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d7d7d7;
+}
+/* line 225, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.syllabus-page .container.navbar-content {
+  width: 53%;
+}
+/* line 228, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.syllabus-page .lesson-title {
+  font-size: 1.4em;
+  font-weight: 600;
+  color: #666;
+}
+/* line 233, /Users/liang/jd9-3/jd-store/app/assets/stylesheets/lessons.scss */
+.syllabus-page .lesson-syllabus a {
+  color: #555;
+  font-size: 1.4em;
+}

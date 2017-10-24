@@ -1,0 +1,30 @@
+<div class="lesson-new-btn pull-right">
+  <%= link_to "新增", new_admin_lesson_path, class: "btn btn-primary" %>
+</div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>标题</th>
+      <th>副标题</th>
+      <th>简介</th>
+      <th>首图</th>
+      <th>副图</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @lessons.each do |lesson| %>
+    <tr>
+      <td><%= link_to lesson.title, admin_lesson_path(lesson) %></td>
+      <td><%= lesson.intro %></td>
+      <td><%= lesson.description %></td>
+      <td><%= image_tag lesson.main_image.thumb, class: "img-responsive" %></td>
+      <td><%= image_tag lesson.minor_image.thumb, class: "img-responsive" %></td>
+      <td>
+        <%= link_to "Delete", admin_lesson_path(lesson), method: :delete, "data-confirm": "确定要删除吗？所有数据会不见哦！！请三思呐！", class: "btn btn-primary" %>
+        <%= link_to "Update", edit_admin_lesson_path(lesson), class: "btn btn-primary" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

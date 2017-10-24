@@ -1,0 +1,77 @@
+<h2>订单列表</h2>
+
+<table class="table table-bordered table-condensed table-hover">
+  <thead>
+    <tr>
+      <th>用户</th>
+      <th style="width:100px">支付号</th>
+      <th>ID</th>
+      <th>生成时间</th>
+      <th>支付时间</th>
+      <th>状态</th>
+      <th>运费</th>
+      <th>商品名</th>
+      <th>分类</th>
+      <th>数量</th>
+      <th>价格</th>
+      <th>收货地址</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |o| %>
+    <% count = o.product_lists.count %>
+    <tr>
+      <td rowspan="<%= count %>"><%= o.user.username %> / <%= o.user.cellphone %> </td>
+      <td rowspan="<%= count %>" style="width:100px">
+        <% if o.payment.present? %>
+        <%= o.payment.payment_no %>
+        <% else %>
+        订单无付款号
+        <% end %>
+      </td>
+      <td rowspan="<%= count %>"><%= o.id %></td>
+      <td rowspan="<%= count %>"><%= o.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+      <% if o.payment_at.present? %>
+      <td rowspan="<%= count %>"><%= o.payment_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+      <% else %>
+      <td rowspan="<%= count %>">未支付</td>
+      <% end %>
+      <td rowspan="<%= count %>"><%= o.aasm_state %></td>
+      <td rowspan="<%= count %>"><%= o.carriage %></td>
+      <% if o.product_lists.count == 1 %>
+        <% o.product_lists.each_with_index do |p, index| %>
+          <td><%= p.product_name %></td>
+          <td><%= p.subproduct %></td>
+          <td><%= p.quantity %></td>
+          <td><%= p.product_price %></td>
+          <td><%= p.address %>/<%= p.contact_name %>/<%= p.cellphone %></td>
+          <td><%= link_to "我要发货", ship_page_admin_order_path(o), class: "btn btn-success" %></td>
+        <% end %>
+      </tr>
+    <% else %>
+        <% o.product_lists.each_with_index do |p, index| %>
+        <% if index == 0 %>
+          <td><%= p.product_name %></td>
+          <td><%= p.subproduct %></td>
+          <td><%= p.quantity %></td>
+          <td><%= p.product_price %></td>
+          <td><%= p.address %>/<%= p.contact_name %>/<%= p.cellphone %></td>
+          <td><%= link_to "我要发货", ship_page_admin_order_path(o), class: "btn btn-success" %></td>
+         </tr>
+      <% else %>
+      <tr>
+        <td><%= p.product_name %></td>
+        <td><%= p.subproduct %></td>
+        <td><%= p.quantity %></td>
+        <td><%= p.product_price %></td>
+        <td><%= p.address %>/<%= p.contact_name %>/<%= p.cellphone %></td>
+        <td><%= link_to "我要发货", ship_page_admin_order_path(o), class: "btn btn-success" %></td>
+      </tr>
+    <% end %>
+    <% end %>
+
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
